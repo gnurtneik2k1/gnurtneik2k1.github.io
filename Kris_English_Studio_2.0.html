@@ -1,0 +1,2035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kris's English Studio 2.0 — Learn it. Play it. Speak it.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ocean:#0e5c63; --ocean-deep:#0a3f47; --coral:#f4795b; --sun:#f7b32b;
+    --sand:#fdf8f1; --ink:#22343a; --mute:#5c7078; --line:#e6ded2;
+    --card:#ffffff; --tipbg:#eef7f5; --good:#2e8b6e; --bad:#d05a3d;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Lexend',system-ui,sans-serif;
+    font-size:18px; line-height:1.75; color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(247,179,43,.35), transparent 60%),
+      radial-gradient(1000px 700px at -10% 20%, rgba(244,121,91,.28), transparent 55%),
+      linear-gradient(160deg, #0e5c63 0%, #12707a 45%, #f4795b 100%);
+    background-attachment:fixed;
+    min-height:100vh;
+  }
+  .wrap{max-width:1160px;margin:0 auto;padding:24px 16px 80px;display:grid;grid-template-columns:270px 1fr;gap:24px}
+  @media(max-width:900px){.wrap{grid-template-columns:1fr}}
+  /* ---------- hero ---------- */
+  header.hero{grid-column:1/-1;color:#fff;padding:34px 8px 10px;text-align:center}
+  .hero h1{font-family:'Fraunces',serif;font-size:clamp(30px,5vw,46px);font-weight:700;letter-spacing:.3px;text-shadow:0 2px 14px rgba(0,0,0,.25)}
+  .hero p.sub{font-size:17px;opacity:.94;margin-top:6px;font-weight:300}
+  .statrow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+  .stat{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);border-radius:99px;padding:7px 18px;color:#fff;font-size:15px;font-weight:500}
+  .stat b{color:#ffe9a8;font-weight:700}
+  .badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+  .badge{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:12px;padding:5px 12px;color:#fff;font-size:14px;opacity:.38;filter:grayscale(1);cursor:default}
+  .badge.earn{opacity:1;filter:none;background:rgba(255,255,255,.28);box-shadow:0 2px 10px rgba(0,0,0,.15)}
+  .potd{
+    margin:20px auto 0;max-width:680px;background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);
+    border-radius:16px;padding:16px 22px;text-align:left;
+  }
+  .potd .label{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#ffe9a8;font-weight:600}
+  .potd .phrase{font-family:'Fraunces',serif;font-size:24px;margin:4px 0 2px;color:#fff}
+  .potd .meaning{font-size:16px;opacity:.95;font-weight:300}
+  .potd button{margin-top:10px;background:#fff;color:var(--ocean);border:0;border-radius:10px;padding:8px 16px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer}
+  .potd button:hover{background:#ffe9a8}
+  /* ---------- progress ---------- */
+  .progresswrap{grid-column:1/-1;background:rgba(255,255,255,.92);border-radius:14px;padding:14px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .progresswrap .txt{font-size:16px;font-weight:600;color:var(--ocean-deep)}
+  .bar{flex:1;min-width:200px;height:14px;background:#e9e2d6;border-radius:99px;overflow:hidden}
+  .bar>div{height:100%;width:0%;background:linear-gradient(90deg,var(--ocean),var(--good),var(--sun));border-radius:99px;transition:width .5s ease}
+  .progresswrap .pct{font-weight:700;color:var(--good);font-size:18px;min-width:52px;text-align:right}
+  /* ---------- sidebar ---------- */
+  nav.side{position:sticky;top:16px;align-self:start;background:rgba(255,255,255,.95);border-radius:16px;padding:18px 14px;box-shadow:0 8px 30px rgba(10,63,71,.18)}
+  nav.side h2{font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--mute);margin:0 8px 10px}
+  nav.side a{
+    display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;
+    color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;
+  }
+  nav.side a:hover{background:var(--tipbg)}
+  nav.side a .frac{margin-left:auto;font-size:12.5px;color:var(--mute);font-weight:600;background:#f1ece1;border-radius:99px;padding:1px 8px}
+  nav.side a.done .frac{background:var(--good);color:#fff}
+  nav.side a.done .dot{background:var(--good);border-color:var(--good)}
+  nav.side a.done .dot::after{content:'✓';color:#fff;font-size:11px;line-height:1}
+  .dot{width:18px;height:18px;border-radius:50%;border:2px solid #c9c0b0;flex:none;display:flex;align-items:center;justify-content:center;background:#fff}
+  @media(max-width:900px){nav.side{position:static}}
+  /* ---------- main / sections ---------- */
+  main{min-width:0}
+  section.part{background:var(--card);border-radius:18px;padding:30px 32px;margin-bottom:26px;box-shadow:0 10px 34px rgba(10,63,71,.16)}
+  @media(max-width:600px){section.part{padding:22px 18px}}
+  section.part>h2{
+    font-family:'Fraunces',serif;font-size:clamp(24px,3.4vw,32px);color:var(--ocean);
+    padding-bottom:10px;border-bottom:3px solid var(--sun);margin-bottom:8px
+  }
+  .part .intro{color:var(--mute);font-size:17px;margin-bottom:14px}
+  h3{font-size:21px;color:var(--ocean);margin:26px 0 8px;font-weight:600}
+  h4{font-size:18px;color:var(--coral);margin:18px 0 6px;font-weight:600}
+  p{margin:0 0 12px}
+  ul{margin:0 0 14px 4px;list-style:none}
+  ul li{padding:5px 0 5px 26px;position:relative}
+  ul li::before{content:'';position:absolute;left:6px;top:16px;width:8px;height:8px;border-radius:50%;background:var(--sun)}
+  ol{margin:0 0 14px 24px}
+  ol li{padding:5px 0}
+  strong{color:var(--ocean-deep)}
+  em{color:var(--mute)}
+  .tblwrap{overflow-x:auto;margin:0 0 16px;border-radius:12px;border:1px solid var(--line)}
+  table{border-collapse:collapse;width:100%;font-size:16.5px;min-width:480px}
+  th{background:var(--ocean);color:#fff;text-align:left;padding:11px 14px;font-weight:600;font-size:15.5px}
+  td{padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
+  tr:nth-child(even) td{background:#f7f4ed}
+  .tip{background:var(--tipbg);border-left:6px solid var(--good);border-radius:0 12px 12px 0;padding:14px 18px;margin:14px 0 18px}
+  .tip .tiptitle{font-weight:700;color:var(--good);margin-bottom:4px;font-size:17px}
+  .tip.gold{background:#fdf3dd;border-left-color:var(--sun)}
+  .tip.gold .tiptitle{color:#b8860b}
+  .dlg{background:#f7f9f9;border:1px solid #e1e9e9;border-radius:14px;padding:16px 20px;margin:12px 0 18px}
+  .dlg .line{padding:5px 0}
+  .dlg .sp{font-weight:700;color:var(--ocean)}
+  .dlg .sp.b{color:var(--coral)}
+  .totop{display:block;text-align:right;margin-top:10px;font-size:14px}
+  .totop a{color:var(--mute);text-decoration:none}
+  .totop a:hover{color:var(--ocean)}
+  footer{grid-column:1/-1;text-align:center;color:#fff;opacity:.9;font-size:15px;padding-top:8px;font-weight:300}
+  footer a{color:#ffe9a8}
+  :focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+  /* ================= PRACTICE ZONE ================= */
+  .zone{background:#fbf6ec;border:2px dashed var(--sun);border-radius:16px;padding:20px 22px;margin:28px 0 6px}
+  .zone>h3{margin-top:0;display:flex;align-items:center;gap:8px}
+  .zone .zsub{color:var(--mute);font-size:15.5px;margin-bottom:6px}
+  .qbox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;margin:10px 0 20px;box-shadow:0 2px 10px rgba(10,63,71,.06)}
+  .qmeta{font-size:13.5px;letter-spacing:1px;text-transform:uppercase;color:var(--mute);font-weight:600;margin-bottom:8px}
+  .qprompt{font-weight:600;font-size:17.5px;margin-bottom:12px;color:var(--ocean-deep)}
+  .opt{display:block;width:100%;text-align:left;background:#fdfbf6;border:2px solid var(--line);border-radius:12px;
+    padding:10px 14px;margin:8px 0;font-family:inherit;font-size:16.5px;color:var(--ink);cursor:pointer;transition:border-color .15s, background .15s}
+  .opt:hover{border-color:var(--sun);background:#fff8e8}
+  .opt.correct{background:#e5f5ee;border-color:var(--good)}
+  .opt.wrong{background:#fdeae5;border-color:var(--coral)}
+  .fb{margin-top:10px;font-size:16px;min-height:24px}
+  .fb .ok{color:var(--good);font-weight:700}
+  .fb .no{color:var(--bad);font-weight:700}
+  .btn{display:inline-block;background:var(--ocean);color:#fff;border:0;border-radius:11px;padding:10px 20px;
+    font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;margin-top:12px;transition:background .2s,transform .1s}
+  .btn:hover{background:var(--ocean-deep)}
+  .btn:active{transform:scale(.97)}
+  .btn.ghost{background:#efe9dc;color:var(--ocean-deep)}
+  .btn.ghost:hover{background:#e4dccb}
+  .result{font-size:20px;font-weight:700;color:var(--ocean);padding:6px 0}
+  .ans{width:100%;max-width:420px;border:2px solid var(--line);border-radius:11px;padding:10px 14px;font-family:inherit;font-size:17px;margin:4px 0}
+  .ans:focus{border-color:var(--ocean);outline:none}
+  .hintline{font-size:14.5px;color:var(--mute);margin-top:6px}
+  /* chips / ordering */
+  .chip{display:inline-block;background:#fff;border:2px solid var(--ocean);color:var(--ocean-deep);border-radius:99px;
+    padding:7px 15px;margin:5px 6px 5px 0;font-size:15.5px;font-weight:500;cursor:pointer;transition:all .15s}
+  .chip:hover{background:var(--tipbg)}
+  .chip.used{opacity:.25;pointer-events:none}
+  .buildarea{min-height:54px;background:#fdfbf6;border:2px dashed #cfc7b5;border-radius:12px;padding:8px 12px;margin:10px 0}
+  .buildarea .step{padding:4px 0;font-size:16px}
+  .buildarea .step b{color:var(--sun);margin-right:8px}
+  /* matcher */
+  .paircols{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+  @media(max-width:560px){.paircols{grid-template-columns:1fr}}
+  .pairbtn{background:#fdfbf6;border:2px solid var(--line);border-radius:11px;padding:9px 12px;font-family:inherit;
+    font-size:15.5px;color:var(--ink);cursor:pointer;text-align:left;transition:all .15s}
+  .pairbtn:hover{border-color:var(--sun)}
+  .pairbtn.sel{border-color:var(--ocean);background:#e8f2f3;box-shadow:0 0 0 2px rgba(14,92,99,.2)}
+  .pairbtn.ok{background:#e5f5ee;border-color:var(--good);color:var(--good);pointer-events:none;font-weight:600}
+  .pairbtn.shake{animation:shake .3s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+  /* flashcards */
+  .flashwrap{perspective:1200px;max-width:520px;margin:12px auto}
+  .flash{position:relative;width:100%;height:220px;cursor:pointer;transform-style:preserve-3d;transition:transform .5s}
+  .flash.flip{transform:rotateY(180deg)}
+  .fface{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;padding:22px;text-align:center}
+  .ffront{background:linear-gradient(135deg,var(--ocean),#12707a);color:#fff}
+  .ffront .word{font-family:'Fraunces',serif;font-size:30px}
+  .ffront .tap{font-size:13px;opacity:.75;margin-top:12px;letter-spacing:1px;text-transform:uppercase}
+  .fback{background:#fff;border:2px solid var(--sun);transform:rotateY(180deg)}
+  .fback .mean{font-size:19px;font-weight:600;color:var(--ocean-deep)}
+  .fback .ex{font-size:16px;color:var(--mute);margin-top:8px;font-style:italic}
+  .fnav{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:12px}
+  .fcount{font-size:15px;color:var(--mute);font-weight:600}
+  /* sorter */
+  .sortword{font-family:'Fraunces',serif;font-size:28px;color:var(--ocean-deep);text-align:center;padding:14px;background:#fdfbf6;border-radius:12px;border:1px solid var(--line);margin:10px 0}
+  .bucketrow{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .bucket{background:var(--coral);color:#fff;border:0;border-radius:11px;padding:10px 18px;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;transition:transform .1s, background .2s}
+  .bucket:hover{background:#e0603f}
+  .bucket:active{transform:scale(.95)}
+  /* roleplay */
+  .rline{padding:7px 10px;border-radius:10px;margin:6px 0;font-size:16.5px}
+  .rline.them{background:#f1ece1}
+  .rline.you{background:#e8f2f3}
+  .rline .rsp{font-weight:700;color:var(--coral);margin-right:6px}
+  .rline.you .rsp{color:var(--ocean)}
+  .rline.hidden-line .rtxt{filter:blur(6px);user-select:none}
+  .rline .reveal{margin-left:10px;background:var(--sun);border:0;border-radius:8px;padding:3px 12px;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer;color:#5b4300}
+  select.rsel{font-family:inherit;font-size:16px;padding:9px 12px;border-radius:11px;border:2px solid var(--line);background:#fff;color:var(--ink);max-width:100%}
+  /* timer */
+  .timerbig{font-family:'Fraunces',serif;font-size:64px;color:var(--ocean);text-align:center;font-weight:700}
+  .timerprompt{background:#fff;border:2px solid var(--sun);border-radius:14px;padding:16px 20px;font-size:18px;font-weight:600;color:var(--ocean-deep);text-align:center;margin:10px 0}
+  .timerctr{text-align:center}
+  /* toast */
+  #toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--ocean-deep);color:#fff;
+    padding:11px 26px;border-radius:99px;font-size:16px;font-weight:600;opacity:0;transition:all .35s;z-index:99;box-shadow:0 8px 24px rgba(0,0,0,.3);pointer-events:none}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  /* habits */
+  .habit{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 15px;margin:8px 0;cursor:pointer;font-size:16.5px}
+  .habit input{width:20px;height:20px;accent-color:var(--good);cursor:pointer}
+  .habit.on{background:#e5f5ee;border-color:var(--good)}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.bar>div,.flash{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero" id="top">
+  <h1>Kris's English Studio <span style="color:#ffe9a8">2.0</span></h1>
+  <p class="sub">Learn it. Play it. Speak it. — Your interactive conversational English gym 🌅</p>
+  <div class="statrow">
+    <span class="stat">🔥 Streak: <b id="stStreak">1</b></span>
+    <span class="stat">⚡ <b id="stXP">0</b> XP</span>
+    <span class="stat">🏅 <b id="stLevel">Newcomer 🌱</b></span>
+    <span class="stat">✅ <b id="stActs">0/24</b> activities</span>
+  </div>
+  <div class="badges" id="badgeRow"></div>
+  <div class="potd">
+    <div class="label">✨ Phrase of the day</div>
+    <div class="phrase" id="potdPhrase">"Fair enough."</div>
+    <div class="meaning" id="potdMeaning">= "Okay, that's reasonable." Use it once today in a real conversation.</div>
+    <button id="potdBtn" type="button">Give me another phrase</button>
+  </div>
+</header>
+
+<div class="progresswrap">
+  <span class="txt">📚 Your progress</span>
+  <div class="bar"><div id="barFill"></div></div>
+  <span class="pct" id="pctTxt">0%</span>
+</div>
+
+<nav class="side" aria-label="Handbook parts">
+  <h2>The 10 parts</h2>
+  <a href="#p1" data-nav="p1"><span class="dot"></span>1 · Everyday Conversation<span class="frac" data-frac="p1"></span></a>
+  <a href="#p2" data-nav="p2"><span class="dot"></span>2 · Functional Toolkit<span class="frac" data-frac="p2"></span></a>
+  <a href="#p3" data-nav="p3"><span class="dot"></span>3 · Sounding Natural<span class="frac" data-frac="p3"></span></a>
+  <a href="#p4" data-nav="p4"><span class="dot"></span>4 · Fluent Vocabulary<span class="frac" data-frac="p4"></span></a>
+  <a href="#p5" data-nav="p5"><span class="dot"></span>5 · Workplace English<span class="frac" data-frac="p5"></span></a>
+  <a href="#p6" data-nav="p6"><span class="dot"></span>6 · Hospitality English<span class="frac" data-frac="p6"></span></a>
+  <a href="#p7" data-nav="p7"><span class="dot"></span>7 · Dialogues to Shadow<span class="frac" data-frac="p7"></span></a>
+  <a href="#p8" data-nav="p8"><span class="dot"></span>8 · Pronunciation<span class="frac" data-frac="p8"></span></a>
+  <a href="#p9" data-nav="p9"><span class="dot"></span>9 · Fix Common Mistakes<span class="frac" data-frac="p9"></span></a>
+  <a href="#p10" data-nav="p10"><span class="dot"></span>10 · 30-Day Plan<span class="frac" data-frac="p10"></span></a>
+</nav>
+
+<main>
+<!-- ==================== PART 1 ==================== -->
+<section class="part" id="p1">
+<h2>Part 1 — Foundations of Everyday Conversation</h2>
+<p class="intro">Most conversations are won or lost in the first and last thirty seconds. Learn to open, sustain, and close naturally — then <strong>practice it below</strong>.</p>
+
+<h3>1.1 Greetings — from casual to formal</h3>
+<div class="tblwrap"><table>
+<tr><th>Register</th><th>What you say</th><th>When</th></tr>
+<tr><td>Very casual</td><td>Hey! / What's up? / How's it going?</td><td>Friends, close colleagues</td></tr>
+<tr><td>Casual</td><td>Hi! How are you doing? / How have you been?</td><td>Your safe everyday default</td></tr>
+<tr><td>Warm</td><td>Hey, good to see you! / Great to see you again.</td><td>Someone you know and like</td></tr>
+<tr><td>Neutral / work</td><td>Good morning. How are you today?</td><td>Colleagues, guests, stand-up</td></tr>
+<tr><td>Formal</td><td>Good morning. It's a pleasure to see you.</td><td>Senior leaders, VIP guests</td></tr>
+</table></div>
+<div class="tip"><div class="tiptitle">The trap Vietnamese speakers fall into</div>
+"How are you?" is usually a <strong>greeting, not a real question</strong>. Keep the answer short and light: "Good, thanks — you?" Launching into a full report ("I am fine. And you? I am fine too.") sounds robotic. Keep it breezy and bounce it back.</div>
+
+<h3>1.2 Goodbyes</h3>
+<ul>
+<li><strong>Casual:</strong> See you! / Catch you later / Take care</li>
+<li><strong>Warm:</strong> "It was great catching up — let's do this again soon."</li>
+<li><strong>Work:</strong> "Have a good one." / "Have a great rest of your day."</li>
+<li><strong>Leaving a meeting:</strong> "Thanks, everyone. I'll follow up by email."</li>
+<li><strong>Formal:</strong> "It was a pleasure meeting you. I look forward to staying in touch."</li>
+</ul>
+<p><em>"Have a good one"</em> is a hugely common, friendly sign-off — add it to your rotation.</p>
+
+<h3>1.3 Small talk starters</h3>
+<ul>
+<li><strong>Weather:</strong> "Lovely morning, isn't it?" / "Can you believe this heat?"</li>
+<li><strong>The weekend:</strong> "Did you get up to anything over the weekend?" / "Any plans for the weekend?"</li>
+<li><strong>Work:</strong> "How's your week going?" / "Busy day?"</li>
+<li><strong>Shared situation:</strong> "Have you been waiting long?" / "First time here?"</li>
+<li><strong>Compliment:</strong> "I love your bag — where's it from?"</li>
+</ul>
+<div class="tip gold"><div class="tiptitle">The magic follow-up</div>
+Don't just answer — throw the ball back. "Any plans for the weekend?" → "Yeah, hiking with some friends. <strong>You?</strong>" That little "You?" keeps the rally going.</div>
+
+<h3>1.4 Introductions</h3>
+<div class="dlg">
+<div class="line"><span class="sp">You:</span> Hi, I don't think we've met — I'm Kris.</div>
+<div class="line"><span class="sp b">Them:</span> Nice to meet you, Kris. I'm Daniel.</div>
+<div class="line"><span class="sp">You:</span> Good to meet you, Daniel. So what do you do here?</div>
+</div>
+<ul>
+<li>"Let me introduce myself — I'm Kris, I work in Learning and Development."</li>
+<li>"Have you two met? Daniel, this is Kris."</li>
+<li>"I've heard so much about you." <em>(warm and flattering)</em></li>
+<li>Responses: "Nice to meet you." / "Pleasure." / <strong>"Likewise."</strong> (= me too — sounds polished)</li>
+</ul>
+
+<h3>1.5 Keeping the conversation alive</h3>
+<h4>a) Follow-up questions</h4>
+<p>"Oh really? How come?" / "That sounds interesting — tell me more." / "What made you get into that?"</p>
+<h4>b) Active-listening sounds</h4>
+<p>"Mm-hmm." "Right." "Oh wow." "No way!" "That makes sense." "Exactly." — sprinkle these in and you instantly sound more engaged.</p>
+<h4>c) Echo + expand</h4>
+<div class="dlg">
+<div class="line"><span class="sp b">Them:</span> I just got back from Da Lat.</div>
+<div class="line"><span class="sp">You:</span> Da Lat? Nice — how was it?</div>
+</div>
+
+<h3>1.6 Ending a conversation gracefully</h3>
+<ul>
+<li>"Anyway, I should let you go —" <em>(classic, very polite)</em></li>
+<li>"I'd better get back to it, but it was great chatting."</li>
+<li>"Listen, I've got to run, but let's catch up soon."</li>
+<li>"It was really nice talking to you — take care!"</li>
+</ul>
+
+<div class="zone">
+<h3>🏋️ Practice Zone — Part 1</h3>
+<p class="zsub">Earn XP for every correct answer. Finish an activity to tick it off in the sidebar!</p>
+<h4>🎯 Quiz: choose the natural response</h4>
+<div id="p1quiz" class="qbox"></div>
+<h4>🧩 Build the conversation — tap the lines in the right order</h4>
+<div id="p1order" class="qbox"></div>
+<h4>✍️ Finish the phrase</h4>
+<div id="p1fill" class="qbox"></div>
+</div>
+<div class="totop"><a href="#top">↑ Back to top</a></div>
+</section>
+
+<!-- ==================== PART 2 ==================== -->
+<section class="part" id="p2">
+<h2>Part 2 — The Functional Toolkit</h2>
+<p class="intro">The "moves" of conversation: opinions, agreeing, disagreeing, requests, apologies — each with a ladder from casual to polite.</p>
+
+<h3>2.1 Giving your opinion (stop saying only "I think")</h3>
+<ul>
+<li>"If you ask me, …" / "The way I see it, …"</li>
+<li>"Honestly, I feel like …" / "I'd say …"</li>
+<li>"In my experience, …" <em>(great at work — sounds credible)</em></li>
+<li>Stronger: "I'm convinced that …" · Softer: "I might be wrong, but …"</li>
+</ul>
+
+<h3>2.2 Agreeing</h3>
+<div class="tblwrap"><table>
+<tr><th>Strength</th><th>Phrases</th></tr>
+<tr><td>Total</td><td>Absolutely. / Exactly. / Couldn't agree more. / You're spot on.</td></tr>
+<tr><td>Normal</td><td>Yeah, definitely. / That's true. / Good point. / Fair enough.</td></tr>
+<tr><td>Partial</td><td>I see your point, but … / True, though … / Yes and no.</td></tr>
+</table></div>
+<div class="tip gold"><div class="tiptitle">Sound native today</div>
+<strong>"Fair enough."</strong> = "Okay, that's reasonable." Incredibly common and flexible. "You want to leave early? Fair enough."</div>
+
+<h3>2.3 Disagreeing — politely</h3>
+<p>The formula: <strong>acknowledge + soften + your view</strong>.</p>
+<ul>
+<li>"I see what you mean, but I'm not sure I agree."</li>
+<li>"That's a fair point, though I'd look at it differently."</li>
+<li>"Hmm, I'm not so sure about that."</li>
+<li>Very gentle: "I'm probably missing something, but wouldn't it be better to …?"</li>
+</ul>
+
+<h3>2.4 Asking for clarification</h3>
+<ul>
+<li>"Sorry, could you say that again?" / "Sorry, I didn't catch that."</li>
+<li>"When you say X, do you mean …?"</li>
+<li>"Sorry, I'm not quite following. Could you walk me through it again?"</li>
+<li>One word missed: "Sorry, the… what?" <em>(rising tone)</em></li>
+</ul>
+
+<h3>2.5 Checking they understand YOU</h3>
+<ul>
+<li>"Does that make sense?" <em>(soft, common)</em></li>
+<li>"Let me know if I'm going too fast."</li>
+<li>"Feel free to stop me if anything's unclear."</li>
+</ul>
+
+<h3>2.6 Requests — the politeness ladder</h3>
+<div class="tblwrap"><table>
+<tr><th>Politeness</th><th>Request</th></tr>
+<tr><td>Direct (peers)</td><td>Can you pass me that? / Give me a hand with this?</td></tr>
+<tr><td>Polite</td><td>Could you help me with this? / Would you mind sending it over?</td></tr>
+<tr><td>Very polite</td><td>I was wondering if you could possibly … / Would it be possible to …?</td></tr>
+<tr><td>Softening add-ons</td><td>… when you get a chance / if it's not too much trouble / no rush.</td></tr>
+</table></div>
+<div class="tip"><div class="tiptitle">"Would you mind…" trap</div>
+The polite "yes" is actually <strong>"No, not at all!"</strong> (= I don't mind). When in doubt, answer with an action word: "Sure, of course!" / "Not at all, go ahead."</div>
+
+<h3>2.7 Offers & invitations</h3>
+<ul>
+<li><strong>Offering:</strong> "Can I get you anything?" / "Do you want a hand?" / "Let me get that for you."</li>
+<li><strong>Inviting:</strong> "Do you fancy grabbing a coffee?" (BrE) / "Want to grab lunch?" (AmE)</li>
+<li><strong>Accepting:</strong> "That'd be great, thanks!" / "I'd love to." / "Sounds good."</li>
+<li><strong>Declining kindly:</strong> "I'd love to, but I can't make it this time." / "Thanks, but I'm good."</li>
+</ul>
+
+<h3>2.8 Making suggestions</h3>
+<ul>
+<li>"Why don't we …?" / "How about we …?" / "What if we …?"</li>
+<li>"We could always …" <em>(relaxed, low-pressure)</em></li>
+<li>"It might be worth checking with HR first."</li>
+</ul>
+
+<h3>2.9 Apologizing</h3>
+<div class="tblwrap"><table>
+<tr><th>Situation</th><th>What to say</th></tr>
+<tr><td>Tiny</td><td>Sorry! / Oops, my bad.</td></tr>
+<tr><td>Normal</td><td>I'm so sorry about that. / Sorry to keep you waiting.</td></tr>
+<tr><td>Work / sincere</td><td>I apologize for the confusion. / That's on me — I'll fix it.</td></tr>
+<tr><td>Serious</td><td>I want to sincerely apologize for … It won't happen again.</td></tr>
+</table></div>
+<p><em>"That's on me"</em> is a confident, mature way to take responsibility at work.</p>
+
+<h3>2.10 Thanking & responding</h3>
+<ul>
+<li><strong>Thanks:</strong> "Thanks so much." / "I really appreciate it." / "You're a lifesaver."</li>
+<li><strong>Replies:</strong> "No problem." / "Anytime." / "My pleasure." / "Sure thing."</li>
+</ul>
+
+<h3>2.11 Interrupting & holding the floor</h3>
+<ul>
+<li><strong>Interrupting:</strong> "Sorry to jump in, but …" / "Can I just add something?"</li>
+<li><strong>Holding your turn:</strong> "Just to finish my thought —"</li>
+<li><strong>Giving the floor:</strong> "Sorry, you were saying?" / "Go ahead."</li>
+</ul>
+
+<h3>2.12 Complaining & handling complaints</h3>
+<ul>
+<li><strong>Complaining (firm but kind):</strong> "I'm afraid there's been a bit of a problem with …" / "Is there anything you can do about it?"</li>
+<li><strong>Handling:</strong> "I'm so sorry to hear that — let me see what I can do." / "Thank you for bringing this to my attention."</li>
+</ul>
+
+<div class="zone">
+<h3>🏋️ Practice Zone — Part 2</h3>
+<p class="zsub">Master the moves: react, request, apologize — the natural way.</p>
+<h4>🎯 Quiz: pick the right move</h4>
+<div id="p2quiz" class="qbox"></div>
+<h4>🪜 The politeness ladder — order from most direct to most polite</h4>
+<div id="p2order" class="qbox"></div>
+<h4>✍️ Finish the phrase</h4>
+<div id="p2fill" class="qbox"></div>
+</div>
+<div class="totop"><a href="#top">↑ Back to top</a></div>
+</section>
+
+<!-- ==================== PART 3 ==================== -->
+<section class="part" id="p3">
+<h2>Part 3 — Sounding Natural</h2>
+<p class="intro">The part that separates "correct English" from "native-sounding English": fillers, connectors, softeners, and blended speech.</p>
+
+<h3>3.1 Fillers & thinking time</h3>
+<p>Never freeze in silence or say "how to say…". Buy time out loud:</p>
+<ul>
+<li>"Well…" / "Let me think…" / "Let's see…"</li>
+<li>"You know…" / "I mean…" / "Like…" <em>(don't overuse "like")</em></li>
+<li>"How can I put this…" / "What's the word…"</li>
+</ul>
+
+<h3>3.2 Discourse markers — the connectors of speech</h3>
+<div class="tblwrap"><table>
+<tr><th>Function</th><th>Markers</th><th>Example</th></tr>
+<tr><td>Adding</td><td>Plus, / On top of that,</td><td>Plus, it's cheaper.</td></tr>
+<tr><td>Contrasting</td><td>That said, / Then again,</td><td>That said, it's not perfect.</td></tr>
+<tr><td>Giving reason</td><td>The thing is,</td><td>The thing is, we're short on time.</td></tr>
+<tr><td>Changing topic</td><td>Anyway, / By the way, / Speaking of which,</td><td>Anyway, how's the family?</td></tr>
+<tr><td>Concluding</td><td>So basically, / At the end of the day,</td><td>At the end of the day, it worked out.</td></tr>
+<tr><td>Softening bad news</td><td>To be honest, / I'm afraid…</td><td>To be honest, it's not looking great.</td></tr>
+</table></div>
+<div class="tip gold"><div class="tiptitle">Two phrases that make you sound fluent instantly</div>
+<strong>"At the end of the day…"</strong> = ultimately. "At the end of the day, guests just want to feel cared for."<br>
+<strong>"The thing is…"</strong> = introduces the real point. "I'd love to help — the thing is, I'm fully booked today."</div>
+
+<h3>3.3 Softeners & hedging</h3>
+<ul>
+<li><strong>Downtoners:</strong> kind of, sort of, a bit, slightly. "It's a bit expensive."</li>
+<li><strong>Softening opinions:</strong> "I'd say…", "It seems…", "probably", "I guess."</li>
+<li><strong>Softening requests:</strong> "Could you <em>just</em> double-check this?"</li>
+</ul>
+<p>Compare: <em>"You're wrong."</em> vs. <em>"I think you might be slightly off there."</em> Same message — completely different social effect.</p>
+
+<h3>3.4 Connected speech (why natives sound "fast")</h3>
+<div class="tblwrap"><table>
+<tr><th>Written</th><th>Sounds like</th><th>Example</th></tr>
+<tr><td>going to</td><td>gonna</td><td>I'm gonna call her.</td></tr>
+<tr><td>want to</td><td>wanna</td><td>Do you wanna come?</td></tr>
+<tr><td>got to</td><td>gotta</td><td>I gotta go.</td></tr>
+<tr><td>let me</td><td>lemme</td><td>Lemme check.</td></tr>
+<tr><td>give me</td><td>gimme</td><td>Gimme a second.</td></tr>
+<tr><td>what are you</td><td>whatcha</td><td>Whatcha doing?</td></tr>
+<tr><td>did you</td><td>didja</td><td>Didja see that?</td></tr>
+<tr><td>kind of</td><td>kinda</td><td>It's kinda cold.</td></tr>
+</table></div>
+<div class="tip"><div class="tiptitle">Speak vs. write</div>
+Use these <strong>out loud</strong>, never in emails or reports. Pronouncing "going to" as two crisp words in casual speech is a classic non-native tell.</div>
+
+<h3>3.5 Reactions & backchanneling</h3>
+<ul>
+<li><strong>Surprise:</strong> "Oh really?" / "No way!" / "Seriously?" / "You're kidding!"</li>
+<li><strong>Good news:</strong> "That's amazing!" / "Good for you!" / "Nice!"</li>
+<li><strong>Bad news:</strong> "Oh no." / "I'm so sorry to hear that." / "That must've been tough."</li>
+<li><strong>Agreement:</strong> "Right." / "Exactly." / "Totally." / "That makes sense."</li>
+<li><strong>Neutral listening:</strong> "Mm-hmm." / "Gotcha." / "I see."</li>
+</ul>
+
+<h3>3.6 Vague language (yes, it sounds MORE natural)</h3>
+<ul>
+<li>"…and stuff." / "…and things like that." / "…or whatever."</li>
+<li>"a couple of" (= 2 or a few) · "a bunch of" (= many)</li>
+<li>"or so" — "I'll be there in ten minutes or so."</li>
+<li><strong>"-ish"</strong> — "Let's meet at 7-ish." / "fifty-ish people" / "I'm hungry-ish."</li>
+</ul>
+<div class="tip gold"><div class="tiptitle">"-ish" is your friend</div>
+Adding "-ish" to times, numbers and adjectives is extremely common and instantly casual/native. Use it and you'll sound like a local.</div>
+
+<div class="zone">
+<h3>🏋️ Practice Zone — Part 3</h3>
+<p class="zsub">Train your ear and mouth: blends, connectors, softeners.</p>
+<h4>🔗 Match the written form to how it sounds</h4>
+<div id="p3match" class="qbox"></div>
+<h4>✍️ Complete the natural sentence</h4>
+<div id="p3fill" class="qbox"></div>
+<h4>🎯 Quiz: which sounds more natural?</h4>
+<div id="p3quiz" class="qbox"></div>
+</div>
+<div class="totop"><a href="#top">↑ Back to top</a></div>
+</section>
+<!-- ==================== PART 4 ==================== -->
+<section class="part" id="p4">
+<h2>Part 4 — Vocabulary That Makes You Sound Fluent</h2>
+<p class="intro">Fluency isn't big rare words — it's small, high-frequency chunks. A learner says "I will investigate the problem." A native says "I'll look into it."</p>
+
+<h3>4.1 High-frequency phrasal verbs</h3>
+<div class="tblwrap"><table>
+<tr><th>Phrasal verb</th><th>Meaning</th><th>Example</th></tr>
+<tr><td>look into</td><td>investigate</td><td>I'll look into it and get back to you.</td></tr>
+<tr><td>get back to</td><td>reply later</td><td>Let me get back to you tomorrow.</td></tr>
+<tr><td>come up with</td><td>produce an idea</td><td>We came up with a new plan.</td></tr>
+<tr><td>sort out</td><td>fix / organize</td><td>I'll sort out the schedule.</td></tr>
+<tr><td>figure out</td><td>understand / solve</td><td>I can't figure out this form.</td></tr>
+<tr><td>deal with</td><td>handle</td><td>She deals with guest complaints.</td></tr>
+<tr><td>bring up</td><td>mention a topic</td><td>He brought up a good point.</td></tr>
+<tr><td>catch up</td><td>update / reconnect</td><td>Let's catch up over coffee.</td></tr>
+<tr><td>run out of</td><td>have none left</td><td>We've run out of time.</td></tr>
+<tr><td>put off</td><td>postpone</td><td>They put off the meeting.</td></tr>
+<tr><td>end up</td><td>finally be/do</td><td>We ended up staying home.</td></tr>
+<tr><td>fill in (for)</td><td>substitute</td><td>Can you fill in for me?</td></tr>
+<tr><td>follow up</td><td>take further action</td><td>I'll follow up by email.</td></tr>
+<tr><td>reach out</td><td>make contact</td><td>Feel free to reach out anytime.</td></tr>
+<tr><td>go over</td><td>review</td><td>Let's go over the details.</td></tr>
+<tr><td>pick up</td><td>learn / collect</td><td>She picked up English fast.</td></tr>
+<tr><td>back up</td><td>support</td><td>I'll back you up in the meeting.</td></tr>
+</table></div>
+
+<h3>4.2 Everyday idioms worth knowing</h3>
+<div class="tblwrap"><table>
+<tr><th>Idiom</th><th>Meaning</th><th>Example</th></tr>
+<tr><td>a piece of cake</td><td>very easy</td><td>The test was a piece of cake.</td></tr>
+<tr><td>on the same page</td><td>in agreement</td><td>Let's make sure we're on the same page.</td></tr>
+<tr><td>a ballpark figure</td><td>rough estimate</td><td>Just give me a ballpark figure.</td></tr>
+<tr><td>touch base</td><td>make brief contact</td><td>Let's touch base next week.</td></tr>
+<tr><td>up in the air</td><td>undecided</td><td>The date is still up in the air.</td></tr>
+<tr><td>out of the blue</td><td>unexpectedly</td><td>She called me out of the blue.</td></tr>
+<tr><td>bite the bullet</td><td>do something hard</td><td>I bit the bullet and asked for a raise.</td></tr>
+<tr><td>the bottom line</td><td>the main point</td><td>The bottom line is, we need more staff.</td></tr>
+<tr><td>get the hang of it</td><td>become skilled</td><td>You'll get the hang of it soon.</td></tr>
+<tr><td>in the loop</td><td>informed</td><td>Keep me in the loop, please.</td></tr>
+<tr><td>a game changer</td><td>transformative</td><td>This tool is a game changer.</td></tr>
+<tr><td>wrap up</td><td>finish</td><td>Let's wrap up for today.</td></tr>
+</table></div>
+
+<h3>4.3 Collocations — words that "go together"</h3>
+<p>You <strong>make</strong> a decision but <strong>do</strong> your homework; you <strong>take</strong> a break but <strong>have</strong> a shower. Learn the whole chunk.</p>
+<h4>MAKE</h4><p>make a decision · make a mistake · make progress · make an effort · make a difference · make sense · make sure · make friends · make an exception</p>
+<h4>DO</h4><p>do your best · do a favor · do research · do the paperwork · do business · do a job · do exercise</p>
+<h4>TAKE</h4><p>take a break · take a look · take responsibility · take part in · take care of · take notes · take your time · take place · take into account</p>
+<h4>HAVE</h4><p>have a look · have a chat · have a meeting · have fun · have an impact · have a word (with someone) · have second thoughts</p>
+<h4>GET</h4><p>get ready · get in touch · get better · get along (with) · get used to · get rid of · get started · get on with it</p>
+
+<h3>4.4 Professional collocations</h3>
+<div class="tblwrap"><table>
+<tr><th>Collocation</th><th>Example</th></tr>
+<tr><td>meet a deadline</td><td>We managed to meet the deadline.</td></tr>
+<tr><td>raise a concern</td><td>I'd like to raise a concern about timing.</td></tr>
+<tr><td>set a goal / target</td><td>Let's set a realistic target.</td></tr>
+<tr><td>give feedback</td><td>Can I give you some quick feedback?</td></tr>
+<tr><td>run a session</td><td>She ran a great training session.</td></tr>
+<tr><td>take ownership</td><td>He took ownership of the project.</td></tr>
+<tr><td>keep track of</td><td>I keep track of completion rates.</td></tr>
+</table></div>
+
+<div class="zone">
+<h3>🏋️ Practice Zone — Part 4</h3>
+<p class="zsub">Build your chunk bank: flip, match, and sort.</p>
+<h4>🃏 Flashcards — flip to reveal, say it out loud first!</h4>
+<div id="p4flash" class="qbox"></div>
+<h4>🔗 Match the idiom to its meaning</h4>
+<div id="p4match" class="qbox"></div>
+<h4>🗂️ Collocation sorter — which verb does it go with?</h4>
+<div id="p4sort" class="qbox"></div>
+</div>
+<div class="totop"><a href="#top">↑ Back to top</a></div>
+</section>
+
+<!-- ==================== PART 5 ==================== -->
+<section class="part" id="p5">
+<h2>Part 5 — Professional & Workplace English</h2>
+<p class="intro">Meetings, emails, facilitating training, feedback — tuned to your daily L&D reality.</p>
+
+<h3>5.1 Meetings</h3>
+<h4>Opening</h4>
+<ul>
+<li>"Thanks for joining, everyone. Let's get started."</li>
+<li>"The main thing I'd like to cover today is …"</li>
+</ul>
+<h4>Contributing</h4>
+<ul>
+<li>"Can I add something here?" / "Building on what Phuong said, …"</li>
+<li>"From an L&D perspective, …" <em>(frames your expertise)</em></li>
+<li>"Just to play devil's advocate for a second …"</li>
+</ul>
+<h4>Managing the discussion</h4>
+<ul>
+<li>"Let's park that for now and come back to it."</li>
+<li>"Can we take that offline?" <em>(= discuss separately)</em></li>
+<li>"To bring us back on track, …"</li>
+</ul>
+<h4>Closing</h4>
+<ul>
+<li>"So, to sum up, the action items are …"</li>
+<li>"Who's owning this?" / "I'll send round a quick recap."</li>
+</ul>
+<div class="tip gold"><div class="tiptitle">Phrases that make you sound senior</div>
+"Let's take that offline." · "Let's park it." · "Who owns this?" · "Let's circle back on Friday." — these signal you run tight, action-oriented meetings.</div>
+
+<h3>5.2 Email & chat language</h3>
+<div class="tblwrap"><table>
+<tr><th>Purpose</th><th>Natural phrasing</th></tr>
+<tr><td>Opening (warm)</td><td>Hi Jamie, / Hope you're doing well.</td></tr>
+<tr><td>Opening (purpose)</td><td>Just a quick note about … / Following up on …</td></tr>
+<tr><td>Requesting</td><td>Could you please …? / When you get a chance, could you …</td></tr>
+<tr><td>Attaching</td><td>I've attached … / Here's the … you asked for.</td></tr>
+<tr><td>Chasing politely</td><td>Just checking in on this. / Any update on …?</td></tr>
+<tr><td>Closing</td><td>Thanks so much, / Best, / Kind regards,</td></tr>
+</table></div>
+<div class="tip"><div class="tiptitle">Softening in email</div>
+"Just" and "quick" are your softeners: "just a quick question." But don't over-apologize — one light softener is plenty. Too much "sorry" makes you sound unsure.</div>
+
+<h3>5.3 Presenting & facilitating training</h3>
+<h4>Opening a session</h4>
+<ul>
+<li>"Welcome, everyone — great to see you all here."</li>
+<li>"By the end of today, you'll be able to …" <em>(state the outcome)</em></li>
+<li>"Feel free to jump in with questions as we go."</li>
+</ul>
+<h4>Guiding</h4>
+<ul>
+<li>"Let's dive into the first topic." / "Moving on to …"</li>
+<li>"This next part is really important, so bear with me."</li>
+</ul>
+<h4>Involving the room</h4>
+<ul>
+<li>"What are your thoughts on this?" / "Has anyone experienced this?"</li>
+<li>"Great point — can you say a bit more about that?"</li>
+</ul>
+<h4>Checking & closing</h4>
+<ul>
+<li>"Is everyone with me so far?"</li>
+<li>"Let's recap the three key takeaways."</li>
+<li>"Thanks so much for your energy today — that's a wrap."</li>
+</ul>
+
+<h3>5.4 Giving & receiving feedback</h3>
+<ul>
+<li><strong>Positive:</strong> "You did a really nice job on …, especially …"</li>
+<li><strong>Constructive:</strong> "One thing I'd suggest is …" / "It might be even stronger if …"</li>
+<li>"Have you considered …?" <em>(invites, doesn't command)</em></li>
+<li><strong>Receiving:</strong> "That's really helpful, thank you." / "Good point — I hadn't thought of it that way."</li>
+</ul>
+
+<h3>5.5 Networking</h3>
+<ul>
+<li>"So, what do you do?" → answer with a hook: "I'm in L&D at a resort — basically I help new hires <strong>learn the ropes</strong>."</li>
+<li>"How did you get into that?" <em>(a great question to ask)</em></li>
+<li>"We should stay in touch — are you on LinkedIn?"</li>
+</ul>
+<div class="tip gold"><div class="tiptitle">"Learn the ropes"</div>
+= learn how things are done in a new job. "Show someone the ropes" = train them. Perfect vocabulary for your role.</div>
+
+<div class="zone">
+<h3>🏋️ Practice Zone — Part 5</h3>
+<p class="zsub">Sound senior in your next meeting and email.</p>
+<h4>🎯 Quiz: workplace situations</h4>
+<div id="p5quiz" class="qbox"></div>
+<h4>✍️ Email & meeting phrases — fill the gap</h4>
+<div id="p5fill" class="qbox"></div>
+</div>
+<div class="totop"><a href="#top">↑ Back to top</a></div>
+</section>
+
+<!-- ==================== PART 6 ==================== -->
+<section class="part" id="p6">
+<h2>Part 6 — Hospitality English</h2>
+<p class="intro">Built for your world at The Westin — warm, gracious, guest-first. Also perfect models for training your associates.</p>
+
+<h3>6.1 Welcoming & guest interactions</h3>
+<ul>
+<li>"Welcome to The Westin — it's wonderful to have you with us."</li>
+<li><strong>"My pleasure."</strong> <em>(the hospitality gold standard — warmer than "no problem")</em></li>
+<li>"Is there anything else I can do for you?"</li>
+<li>"Please don't hesitate to let me know if you need anything at all."</li>
+<li>"Enjoy the rest of your stay." / "Have a lovely evening."</li>
+</ul>
+<div class="tip gold"><div class="tiptitle">Upgrade your service words</div>
+"Certainly" instead of "OK" · "My pleasure" instead of "No problem" · "Right away" instead of "Now" · "I'd be happy to" instead of "I can" · "Absolutely" instead of "Yes." Small words, big class.</div>
+
+<h3>6.2 Front desk / check-in</h3>
+<div class="dlg">
+<div class="line"><span class="sp">Associate:</span> Good afternoon, welcome to The Westin. Do you have a reservation with us?</div>
+<div class="line"><span class="sp b">Guest:</span> Yes, under the name Tan.</div>
+<div class="line"><span class="sp">Associate:</span> Wonderful, Mr. Tan. I have you down for three nights in a Deluxe Ocean View. May I see your ID, please?</div>
+<div class="line"><span class="sp b">Guest:</span> Here you go.</div>
+<div class="line"><span class="sp">Associate:</span> Thank you. You're all set. Your room is on the eighth floor — here are your key cards. Breakfast is served until 10:30. Is there anything else I can help you with?</div>
+</div>
+<h4>Concierge / directions</h4>
+<ul>
+<li>"Of course — let me point you in the right direction."</li>
+<li>"It's just a short walk / a five-minute drive from here."</li>
+<li>"I'd highly recommend … It's very popular with our guests."</li>
+</ul>
+
+<h3>6.3 Handling complaints — the recovery sequence</h3>
+<p><strong>Listen → Empathize → Apologize → Act → Follow up</strong></p>
+<div class="tblwrap"><table>
+<tr><th>Step</th><th>What to say</th></tr>
+<tr><td>Listen</td><td>"I'm sorry to hear that. Please, tell me exactly what happened."</td></tr>
+<tr><td>Empathize</td><td>"I completely understand — that's not the experience we want for you."</td></tr>
+<tr><td>Apologize</td><td>"I sincerely apologize for the inconvenience."</td></tr>
+<tr><td>Act</td><td>"Here's what I'm going to do right away … / Let me sort this out for you personally."</td></tr>
+<tr><td>Follow up</td><td>"I'll check back shortly to make sure everything's been resolved."</td></tr>
+</table></div>
+<div class="tip"><div class="tiptitle">The phrase that de-escalates</div>
+<strong>"Let me see what I can do for you."</strong> It doesn't over-promise, but it signals ownership and action — exactly what an upset guest needs to hear.</div>
+
+<h3>6.4 Loyalty & Elite (Bonvoy) language</h3>
+<ul>
+<li>"Thank you for being a valued Bonvoy member — we truly appreciate your loyalty."</li>
+<li>"As a Platinum Elite member, you're entitled to …"</li>
+<li>"We've upgraded you as a thank-you for your continued loyalty."</li>
+<li>"It's our pleasure to welcome you back."</li>
+</ul>
+<p>Elite guests want to feel <em>seen</em> — words like "valued," "appreciate," "welcome back," and "loyalty" do the emotional work.</p>
+
+<h3>6.5 Phone & reservation English</h3>
+<div class="dlg">
+<div class="line"><span class="sp">You:</span> Good morning, thank you for calling The Westin Resort. This is Kris speaking — how may I help you?</div>
+<div class="line"><span class="sp b">Caller:</span> Hi, I'd like to check availability for next weekend.</div>
+<div class="line"><span class="sp">You:</span> Certainly, I'd be happy to help. May I have the dates and the number of guests, please?</div>
+<div class="line"><span class="sp b">Caller:</span> The 12th to the 14th, two adults.</div>
+<div class="line"><span class="sp">You:</span> Let me just check that for you… Yes, we do have availability. Would you like me to go ahead and book that?</div>
+</div>
+<ul>
+<li>"May I ask who's calling?" / "Could you hold for just a moment?"</li>
+<li>"I'll put you through to …" / "Let me take a message."</li>
+<li>"Could you spell that for me, please?"</li>
+</ul>
+
+<div class="zone">
+<h3>🏋️ Practice Zone — Part 6</h3>
+<p class="zsub">Guest scenarios: choose graciously, recover perfectly.</p>
+<h4>🎯 Guest scenario quiz — what would a 5-star associate say?</h4>
+<div id="p6quiz" class="qbox"></div>
+<h4>🧩 The recovery sequence — tap the steps in order</h4>
+<div id="p6order" class="qbox"></div>
+<h4>✨ Upgrade the service word — type the classier version</h4>
+<div id="p6fill" class="qbox"></div>
+</div>
+<div class="totop"><a href="#top">↑ Back to top</a></div>
+</section>
+<!-- ==================== PART 7 ==================== -->
+<section class="part" id="p7">
+<h2>Part 7 — Real-Life Dialogues to Shadow</h2>
+<p class="intro">Don't read silently — <strong>shadow</strong>: say each line out loud, copy the rhythm, then reproduce the scene from memory. Then hit <strong>Roleplay Mode</strong> below: your lines are hidden — speak first, reveal after!</p>
+
+<h3>7.1 Catching up with a colleague over coffee</h3>
+<div class="dlg">
+<div class="line"><span class="sp">Kris:</span> Hey! Long time no see — how have you been?</div>
+<div class="line"><span class="sp b">Anh:</span> Pretty good, thanks! Busy as always. You?</div>
+<div class="line"><span class="sp">Kris:</span> Can't complain. Work's been full-on with Culture Week coming up.</div>
+<div class="line"><span class="sp b">Anh:</span> Oh nice — are you running it again this year?</div>
+<div class="line"><span class="sp">Kris:</span> Yeah, MC-ing the whole thing. A bit nerve-racking, honestly, but I kind of love it.</div>
+<div class="line"><span class="sp b">Anh:</span> You'll smash it. You're a natural.</div>
+<div class="line"><span class="sp">Kris:</span> Ha, we'll see! Anyway, enough about me — how's the new role treating you?</div>
+</div>
+<div class="tip gold"><div class="tiptitle">Phrases to steal</div>
+"Long time no see" · "Can't complain" (= I'm doing well) · "full-on" (= very busy) · "You'll smash it" (= you'll do great) · "how's X treating you?"</div>
+
+<h3>7.2 A job interview (competency question)</h3>
+<div class="dlg">
+<div class="line"><span class="sp b">Interviewer:</span> Can you tell me about a time you handled a difficult situation at work?</div>
+<div class="line"><span class="sp">Kris:</span> Sure. So, in my current role, we once had a training program fall behind schedule because several trainers dropped out at short notice.</div>
+<div class="line"><span class="sp b">Interviewer:</span> And how did you handle that?</div>
+<div class="line"><span class="sp">Kris:</span> Well, the first thing I did was reassess what was actually essential. I reached out to two colleagues to fill in, restructured the sessions, and kept my manager in the loop throughout. In the end, we delivered on time, and the feedback was actually stronger than the year before.</div>
+<div class="line"><span class="sp b">Interviewer:</span> What did you take away from it?</div>
+<div class="line"><span class="sp">Kris:</span> Honestly, that staying calm and communicating early matters more than having a perfect plan. Things go wrong — what counts is how quickly you adapt.</div>
+</div>
+<p>Notice the <strong>STAR</strong> shape: Situation → Task → Action → Result. And the natural fillers ("So," "Well," "Honestly") that make it sound spoken, not memorized.</p>
+
+<h3>7.3 Disagreeing in a meeting — without friction</h3>
+<div class="dlg">
+<div class="line"><span class="sp b">Colleague:</span> I think we should cut the orientation down to half a day to save time.</div>
+<div class="line"><span class="sp">Kris:</span> I see where you're coming from, and I agree we're tight on time. That said, I'd be a bit cautious about cutting orientation — it's where new hires form their first impression of the brand.</div>
+<div class="line"><span class="sp b">Colleague:</span> Fair, but people do complain it's long.</div>
+<div class="line"><span class="sp">Kris:</span> True. What if we kept the full day but made the afternoon more interactive? That way we keep the depth without losing people's attention.</div>
+<div class="line"><span class="sp b">Colleague:</span> Actually, that's not a bad idea.</div>
+</div>
+<div class="tip"><div class="tiptitle">The recipe in action</div>
+Acknowledge ("I see where you're coming from") → soften ("I'd be a bit cautious") → your view with a reason → a middle path ("What if we…"). Wins people over instead of putting them on the defensive.</div>
+
+<h3>7.4 Handling an upset guest</h3>
+<div class="dlg">
+<div class="line"><span class="sp b">Guest:</span> This is ridiculous. I've been waiting forty minutes for room service.</div>
+<div class="line"><span class="sp">Kris:</span> I'm so sorry, sir — forty minutes is far too long, and I completely understand why you're frustrated.</div>
+<div class="line"><span class="sp b">Guest:</span> I just want my food.</div>
+<div class="line"><span class="sp">Kris:</span> Absolutely. Let me chase that down for you right now and make sure it's on its way. As an apology for the wait, I'd like to take the delivery charge off your bill.</div>
+<div class="line"><span class="sp b">Guest:</span> Well… okay, thank you.</div>
+<div class="line"><span class="sp">Kris:</span> Of course. I'll personally follow up in a few minutes to make sure everything's arrived. Again, my sincere apologies.</div>
+</div>
+
+<h3>7.5 Networking at a conference</h3>
+<div class="dlg">
+<div class="line"><span class="sp">Kris:</span> Hi, mind if I join you? These sessions are great but I don't know a soul here.</div>
+<div class="line"><span class="sp b">Mai:</span> Ha, same! Please, go ahead. I'm Mai.</div>
+<div class="line"><span class="sp">Kris:</span> Nice to meet you, Mai — I'm Kris. So what brings you to the conference?</div>
+<div class="line"><span class="sp b">Mai:</span> I'm in HR at a hotel group. You?</div>
+<div class="line"><span class="sp">Kris:</span> Oh, small world — I'm in Learning and Development, also hospitality. What's your take on the keynote?</div>
+<div class="line"><span class="sp b">Mai:</span> Loved it, actually. The bit about coaching stuck with me.</div>
+<div class="line"><span class="sp">Kris:</span> Same here. Hey, we should stay in touch — are you on LinkedIn?</div>
+</div>
+<div class="tip gold"><div class="tiptitle">Networking openers that always work</div>
+"Mind if I join you?" · "I don't know a soul here." · "What brings you here?" · "Small world!" · "What's your take on…?" · "We should stay in touch."</div>
+
+<div class="zone">
+<h3>🏋️ Practice Zone — Part 7</h3>
+<p class="zsub">This is where fluency is built. Speak out loud — nobody's listening!</p>
+<h4>🎭 Roleplay Mode — your lines are hidden. Say YOUR line out loud, then reveal to compare</h4>
+<div id="p7role" class="qbox"></div>
+<h4>🎯 Quiz: phrases to steal</h4>
+<div id="p7quiz" class="qbox"></div>
+</div>
+<div class="totop"><a href="#top">↑ Back to top</a></div>
+</section>
+
+<!-- ==================== PART 8 ==================== -->
+<section class="part" id="p8">
+<h2>Part 8 — Pronunciation & Intonation Essentials</h2>
+<p class="intro">You don't need a "perfect" accent — clarity and natural rhythm matter far more. Chosen for Vietnamese speakers specifically.</p>
+
+<h3>8.1 Word stress</h3>
+<ul>
+<li>PHO-to-graph → pho-TO-gra-pher → pho-to-GRAPH-ic <em>(stress moves!)</em></li>
+<li>Nouns vs. verbs: PRE-sent (gift) vs. pre-SENT (verb); RE-cord vs. re-CORD.</li>
+<li>Words ending -tion / -sion: stress just before it — informA-tion, decIsion.</li>
+</ul>
+
+<h3>8.2 Sentence stress & rhythm</h3>
+<p>English is <strong>stress-timed</strong>: stress the content words, rush over the small ones.</p>
+<p>"I <strong>NEED</strong> to <strong>TALK</strong> to the <strong>MAN</strong>ager about the <strong>BOOK</strong>ing." — the little words shrink: "to" → "tuh", "and" → "'n".</p>
+<div class="tip"><div class="tiptitle">The #1 rhythm fix for Vietnamese speakers</div>
+Vietnamese gives every syllable equal weight and a tone. English does not. If you say every syllable with full stress, you'll sound "choppy." Practice deliberately squashing the small words and stretching the important ones — this single change makes a huge difference.</div>
+
+<h3>8.3 Intonation (the melody)</h3>
+<ul>
+<li><strong>Falling ↘</strong> — statements & wh-questions: "Where do you live?"</li>
+<li><strong>Rising ↗</strong> — yes/no questions & uncertainty: "Are you coming?"</li>
+<li><strong>Fall-rise ↗↘</strong> — politeness / "but…": "It's fine… (but not great)."</li>
+<li><strong>Listing ↗↗↘</strong> — rise on each item, fall on the last: "pens, paper, and a projector."</li>
+</ul>
+
+<h3>8.4 Sounds that trip up Vietnamese speakers</h3>
+<div class="tblwrap"><table>
+<tr><th>Sound</th><th>The issue</th><th>Practice</th></tr>
+<tr><td>Final consonants</td><td>Often dropped/softened</td><td>Land on the END: "cat," "book," "eight."</td></tr>
+<tr><td>-s / -es / -ed endings</td><td>Frequently dropped</td><td>books, wants, needed — don't swallow the ending.</td></tr>
+<tr><td>/θ/ and /ð/ (th)</td><td>No Vietnamese equivalent</td><td>Tongue between teeth: think, this, three, mother.</td></tr>
+<tr><td>/l/ vs /n/ at word end</td><td>Often merged</td><td>Contrast: "fine/file," "seen/seal."</td></tr>
+<tr><td>Consonant clusters</td><td>Hard together</td><td>street, texts, asked — slow, then speed up.</td></tr>
+<tr><td>/v/ vs /w/, final /z/</td><td>Merged or dropped</td><td>very/wary; "is, was, does" end in /z/.</td></tr>
+</table></div>
+
+<h3>8.5 Linking (why speech flows)</h3>
+<ul>
+<li>Consonant + vowel: "an apple" → "a-napple"; "pick it up" → "pi-ki-tup".</li>
+<li>Same consonants merge: "big game" → one long g.</li>
+<li>Vowel + vowel gets a tiny glide: "go on" → "go-won"; "I am" → "I-yam".</li>
+</ul>
+
+<div class="zone">
+<h3>🏋️ Practice Zone — Part 8</h3>
+<p class="zsub">Say every answer out loud before you click it — that's the real exercise.</p>
+<h4>🎯 Quiz: stress, melody & sounds</h4>
+<div id="p8quiz" class="qbox"></div>
+</div>
+<div class="totop"><a href="#top">↑ Back to top</a></div>
+</section>
+
+<!-- ==================== PART 9 ==================== -->
+<section class="part" id="p9">
+<h2>Part 9 — Common Mistakes Vietnamese Learners Make</h2>
+<p class="intro">Nothing shameful here — they come from real differences between the languages. Fix even half of these and you'll noticeably level up.</p>
+
+<h3>9.1 Grammar patterns</h3>
+<div class="tblwrap"><table>
+<tr><th>Instead of…</th><th>Say…</th><th>Why</th></tr>
+<tr><td>I very like it.</td><td>I really like it.</td><td>"Very" doesn't modify verbs.</td></tr>
+<tr><td>I have 25 years old.</td><td>I am 25.</td><td>Age uses "be," not "have."</td></tr>
+<tr><td>I very tired yesterday.</td><td>I was very tired yesterday.</td><td>Don't drop "be."</td></tr>
+<tr><td>Yesterday I go to work.</td><td>Yesterday I went to work.</td><td>Past time → past tense.</td></tr>
+<tr><td>She go to school.</td><td>She goes to school.</td><td>3rd-person adds -s.</td></tr>
+<tr><td>I no have time.</td><td>I don't have time.</td><td>Negatives need do/does/did.</td></tr>
+<tr><td>I will can do it.</td><td>I'll be able to do it.</td><td>Two modals can't stack.</td></tr>
+<tr><td>If I will have time, I call.</td><td>If I have time, I'll call.</td><td>No "will" in the if-clause.</td></tr>
+<tr><td>I'm boring in this class.</td><td>I'm bored in this class.</td><td>-ed = your feeling; -ing = the cause.</td></tr>
+<tr><td>I'm agree with you.</td><td>I agree with you.</td><td>"Agree" is a verb; no "am."</td></tr>
+</table></div>
+
+<h3>9.2 Articles & prepositions</h3>
+<ul>
+<li>"a/an" for one non-specific thing the first time: "I saw <strong>a</strong> dog."</li>
+<li>"the" when both people know which one: "<strong>The</strong> dog was huge."</li>
+<li>No article for general plurals/uncountables: "I like coffee." "Dogs are loyal."</li>
+</ul>
+<div class="tblwrap"><table>
+<tr><th>Instead of…</th><th>Say…</th></tr>
+<tr><td>I go to home.</td><td>I go home.</td></tr>
+<tr><td>I'm good in English.</td><td>I'm good <strong>at</strong> English.</td></tr>
+<tr><td>depend of</td><td>depend <strong>on</strong></td></tr>
+<tr><td>married with</td><td>married <strong>to</strong></td></tr>
+<tr><td>listen music</td><td>listen <strong>to</strong> music</td></tr>
+<tr><td>discuss about it</td><td>discuss it <em>(no "about")</em></td></tr>
+<tr><td>arrive to the hotel</td><td>arrive <strong>at</strong> the hotel</td></tr>
+<tr><td>interested about</td><td>interested <strong>in</strong></td></tr>
+</table></div>
+
+<h3>9.3 Word choice & "false friends"</h3>
+<div class="tblwrap"><table>
+<tr><th>Instead of…</th><th>Say…</th><th>Note</th></tr>
+<tr><td>open the light</td><td>turn on the light</td><td>Vietnamese "mở" ≠ "open" for devices.</td></tr>
+<tr><td>too much people</td><td>too many people</td><td>much = uncountable; many = countable.</td></tr>
+<tr><td>I'm very exciting.</td><td>I'm very excited.</td><td>You are excited; the thing is exciting.</td></tr>
+<tr><td>make a photo</td><td>take a photo</td><td>Photos are "taken."</td></tr>
+<tr><td>say me the truth</td><td>tell me the truth</td><td>"tell" takes a person; "say" doesn't.</td></tr>
+<tr><td>I have a good news.</td><td>I have good news.</td><td>"News" is uncountable.</td></tr>
+<tr><td>fun vs funny</td><td>The party was fun. He's funny.</td><td>fun = enjoyable; funny = makes you laugh.</td></tr>
+</table></div>
+
+<h3>9.4 Direct translations that sound "off"</h3>
+<div class="tblwrap"><table>
+<tr><th>Word-for-word (odd)</th><th>Natural English</th></tr>
+<tr><td>How to say…? (stuck mid-sentence)</td><td>What's the word…? / How do I put this…?</td></tr>
+<tr><td>I think no.</td><td>I don't think so.</td></tr>
+<tr><td>Same same.</td><td>Pretty much the same.</td></tr>
+<tr><td>I very busy these days.</td><td>I've been really busy lately.</td></tr>
+<tr><td>Where you go?</td><td>Where are you going?</td></tr>
+<tr><td>I very happy to know you.</td><td>It's really nice to meet you.</td></tr>
+<tr><td>Please you help me.</td><td>Could you help me, please?</td></tr>
+<tr><td>I will try my possible.</td><td>I'll do my best.</td></tr>
+</table></div>
+<div class="tip"><div class="tiptitle">The mindset shift</div>
+The biggest leap isn't memorizing rules — it's <strong>stopping word-by-word translation</strong>. Learn whole English chunks ("I don't think so," "I'll do my best") and reach for the chunk directly.</div>
+
+<div class="zone">
+<h3>🏋️ Practice Zone — Part 9</h3>
+<p class="zsub">The Mistake Gym: fix broken sentences with your own hands.</p>
+<h4>🔧 Fix the sentence — type the correct version</h4>
+<div id="p9fix" class="qbox"></div>
+<h4>🎯 Quiz: catch the mistake</h4>
+<div id="p9quiz" class="qbox"></div>
+</div>
+<div class="totop"><a href="#top">↑ Back to top</a></div>
+</section>
+
+<!-- ==================== PART 10 ==================== -->
+<section class="part" id="p10">
+<h2>Part 10 — Your 30-Day Fluency Plan</h2>
+<p class="intro">Knowledge you don't practice fades. Most days need only 15–20 focused minutes. And now your daily workout lives right here.</p>
+
+<h3>The daily core (every day, ~15 min)</h3>
+<ol>
+<li><strong>Warm-up (2 min):</strong> read yesterday's phrases out loud once.</li>
+<li><strong>Learn (5 min):</strong> pick 3–5 new phrases from one section. Say each aloud 3 times.</li>
+<li><strong>Shadow (5 min):</strong> run one Roleplay dialogue from Part 7 out loud.</li>
+<li><strong>Use it (3 min):</strong> do the Daily Quick 5 below, then use one phrase in a real conversation.</li>
+</ol>
+
+<h3>The 4-week map</h3>
+<div class="tblwrap"><table>
+<tr><th>Week</th><th>Focus</th><th>Goal by end of week</th></tr>
+<tr><td>Week 1</td><td>Parts 1–2: greetings, small talk, functional toolkit</td><td>Open, sustain, and close a chat smoothly.</td></tr>
+<tr><td>Week 2</td><td>Part 3: sounding natural</td><td>Fillers and softeners come automatically; "gonna/wanna" out loud.</td></tr>
+<tr><td>Week 3</td><td>Parts 4–6: vocabulary, work & hospitality English</td><td>Use 20 new phrasal verbs; run a mock meeting or guest scenario.</td></tr>
+<tr><td>Week 4</td><td>Parts 7–9: shadow dialogues, fix your mistakes</td><td>Roleplay all dialogues from memory; kill 5 recurring errors.</td></tr>
+</table></div>
+
+<h3>Habits that separate fluent people from stuck people</h3>
+<ul>
+<li><strong>Speak before you're ready.</strong> Waiting until your English is "good enough" means waiting forever.</li>
+<li><strong>Being understood beats being perfect.</strong> Communication is the goal; grammar is the servant.</li>
+<li><strong>Learn phrases, not just words.</strong> Fluency is stored in chunks.</li>
+<li><strong>Get comfortable being wrong out loud.</strong> Every spoken mistake is a mistake corrected faster.</li>
+<li><strong>Consistency beats intensity.</strong> 15 minutes daily beats 3 hours weekly, every time.</li>
+</ul>
+
+<div class="zone">
+<h3>🏋️ Practice Zone — Part 10: The Daily Workout</h3>
+<p class="zsub">Come back here every day. 🔥 Your streak is counting!</p>
+
+<h4>🎤 60-Second Speaking Challenge — get a prompt, hit start, don't stop talking!</h4>
+<div id="p10timer" class="qbox"></div>
+
+<h4>⚡ Daily Quick 5 — a random mix from all quizzes. New questions every time!</h4>
+<div id="p10dailybox" class="qbox"><button class="btn" id="daily5btn" type="button">Deal me 5 questions 🎲</button><div id="p10daily"></div></div>
+
+<h4>✅ Weekly boosters — check off what you did this week</h4>
+<div id="habitbox">
+<label class="habit"><input type="checkbox" data-habit="h1"> Recorded myself for 60 seconds and listened back</label>
+<label class="habit"><input type="checkbox" data-habit="h2"> Shadowed 10 minutes of a show or video</label>
+<label class="habit"><input type="checkbox" data-habit="h3"> Used 3 new phrases in a real conversation</label>
+<label class="habit"><input type="checkbox" data-habit="h4"> Added expressions to my phrase notebook</label>
+<label class="habit"><input type="checkbox" data-habit="h5"> Narrated part of my day in English in my head</label>
+</div>
+<button class="btn ghost" id="habitReset" type="button">↺ New week — reset boosters</button>
+</div>
+
+<div class="tip gold"><div class="tiptitle">A closing word, Kris</div>
+You already read voraciously and think deeply — rocket fuel for language. The one thing reading can't give you is the muscle memory of speaking. So talk more than you think you should, earlier than you feel ready, and let the mistakes happen. Come back here not to read, but to <strong>train</strong> — grab a phrase, use it today, make it yours. You've got this. 🌊</div>
+<div class="totop"><a href="#top">↑ Back to top</a></div>
+</section>
+
+</main>
+
+<footer>Made for Kris · Speak first, polish later · 🌅 Kris's English Studio 2.0 · <a href="#" id="resetAll">reset all progress</a></footer>
+</div>
+<div id="toast"></div>
+<script>
+/* ================================================================
+   Kris's English Studio 2.0 — interactive engine
+   ================================================================ */
+// ---------- helpers ----------
+const $id = (s) => document.getElementById(s);
+function norm(s){
+  return s.toLowerCase()
+    .replace(/[’‘]/g, "'")
+    .replace(/[.,!?;:"“”]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+function shuffle(a){
+  a = a.slice();
+  for (let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ---------- state & persistence ----------
+const KEY = 'kris-studio-v2';
+let S = { xp:0, done:{}, streak:1, last:'', habits:{}, perfect:false };
+function saveState(){
+  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){}
+  if (typeof window.storage !== 'undefined'){
+    try { window.storage.set(KEY, JSON.stringify(S)); } catch(e){}
+  }
+}
+function loadState(){
+  try {
+    const r = localStorage.getItem(KEY);
+    if (r) S = Object.assign(S, JSON.parse(r));
+  } catch(e){}
+}
+async function loadRemote(){
+  if (typeof window.storage === 'undefined') return;
+  try {
+    const r = await window.storage.get(KEY);
+    if (r && r.value){ S = Object.assign(S, JSON.parse(r.value)); refreshAll(); }
+  } catch(e){}
+}
+
+// ---------- streak ----------
+function dayStr(d){ return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate(); }
+function bumpStreak(){
+  const t = dayStr(new Date());
+  if (S.last === t) return;
+  const y = new Date(Date.now() - 864e5);
+  S.streak = (S.last === dayStr(y)) ? (S.streak || 0) + 1 : 1;
+  S.last = t;
+  saveState();
+}
+
+// ---------- activities registry ----------
+const ACTS = {
+  p1:['p1quiz','p1order','p1fill'],
+  p2:['p2quiz','p2order','p2fill'],
+  p3:['p3match','p3fill','p3quiz'],
+  p4:['p4flash','p4match','p4sort'],
+  p5:['p5quiz','p5fill'],
+  p6:['p6quiz','p6order','p6fill'],
+  p7:['p7role','p7quiz'],
+  p8:['p8quiz'],
+  p9:['p9fix','p9quiz'],
+  p10:['p10timer','p10daily']
+};
+function totalActs(){ let n = 0; for (const p in ACTS) n += ACTS[p].length; return n; }
+function doneCount(){ return Object.keys(S.done).length; }
+
+const CHEERS = ['Well done! 🎉','You are on fire! 🔥','Beautiful work! 🌟','Another one down! 💪','Fluency loading… 🚀','That is how it is done! 👏'];
+function markDone(actId){
+  if (S.done[actId]) return;
+  S.done[actId] = true;
+  addXP(25, CHEERS[Math.floor(Math.random()*CHEERS.length)] + ' +25 XP bonus');
+  refreshAll();
+}
+
+// ---------- XP / levels / badges ----------
+const LEVELS = [[0,'Newcomer 🌱'],[100,'Explorer 🧭'],[250,'Conversationalist 💬'],[450,'Fluent Friend 🌊'],[700,'Studio Star ⭐'],[1000,'Native-ish 🏆']];
+function levelName(){
+  let name = LEVELS[0][1];
+  for (const [min, n] of LEVELS){ if (S.xp >= min) name = n; }
+  return name;
+}
+const BADGES = [
+  ['b1','🎯 First Step','Complete your first activity', () => doneCount() >= 1],
+  ['b2','🧠 Quiz Whiz','Complete 5 activities', () => doneCount() >= 5],
+  ['b3','🌗 Halfway There','Complete half of all activities', () => doneCount() >= Math.ceil(totalActs()/2)],
+  ['b4','👑 Studio Master','Complete every activity', () => doneCount() >= totalActs()],
+  ['b5','💯 Perfectionist','Score 100% on any quiz', () => !!S.perfect],
+  ['b6','🔥 3-Day Streak','Study 3 days in a row', () => S.streak >= 3],
+  ['b7','🚀 7-Day Streak','Study 7 days in a row', () => S.streak >= 7],
+  ['b8','💎 500 XP Club','Earn 500 XP', () => S.xp >= 500]
+];
+let toastTimer = null;
+function toast(msg){
+  const t = $id('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
+}
+function addXP(n, msg){
+  S.xp += n;
+  saveState();
+  renderStats();
+  toast(msg || ('+' + n + ' XP ⚡'));
+}
+
+// ---------- render stats / nav ----------
+function renderStats(){
+  $id('stXP').textContent = S.xp;
+  $id('stLevel').textContent = levelName();
+  $id('stStreak').textContent = S.streak + (S.streak === 1 ? ' day' : ' days');
+  $id('stActs').textContent = doneCount() + '/' + totalActs();
+  const row = $id('badgeRow');
+  row.innerHTML = '';
+  BADGES.forEach(([id, label, desc, test]) => {
+    const b = document.createElement('span');
+    b.className = 'badge' + (test() ? ' earn' : '');
+    b.textContent = label;
+    b.title = desc + (test() ? ' — earned!' : ' — locked');
+    row.appendChild(b);
+  });
+}
+function renderNav(){
+  let total = 0, done = 0;
+  for (const p in ACTS){
+    const acts = ACTS[p];
+    const d = acts.filter(a => S.done[a]).length;
+    total += acts.length; done += d;
+    const nav = document.querySelector('[data-nav="' + p + '"]');
+    const frac = document.querySelector('[data-frac="' + p + '"]');
+    if (frac) frac.textContent = d + '/' + acts.length;
+    if (nav) nav.classList.toggle('done', d === acts.length);
+  }
+  const pct = Math.round(done / total * 100);
+  $id('barFill').style.width = pct + '%';
+  $id('pctTxt').textContent = pct + '%';
+}
+function refreshAll(){ renderStats(); renderNav(); renderHabits(); }
+
+// ================================================================
+// ENGINE 1 — Multiple-choice quiz (one question at a time)
+// ================================================================
+function buildQuiz(elId, actId, questions, root){
+  root = root || $id(elId);
+  let i = 0, score = 0;
+  function show(){
+    const q = questions[i];
+    const opts = shuffle(q.o.map((t, k) => ({ t, ok: k === q.a })));
+    root.innerHTML =
+      '<div class="qmeta">Question ' + (i+1) + ' of ' + questions.length + ' · Score: ' + score + '</div>' +
+      '<div class="qprompt">' + q.q + '</div>' +
+      opts.map((o, k) => '<button class="opt" data-k="' + k + '" type="button">' + esc(o.t) + '</button>').join('') +
+      '<div class="fb"></div>';
+    let answered = false;
+    root.querySelectorAll('.opt').forEach(btn => {
+      btn.onclick = () => {
+        if (answered) return;
+        answered = true;
+        const chosen = opts[+btn.dataset.k];
+        root.querySelectorAll('.opt').forEach((bb, kk) => { if (opts[kk].ok) bb.classList.add('correct'); });
+        const fb = root.querySelector('.fb');
+        if (chosen.ok){
+          score++;
+          addXP(10);
+          fb.innerHTML = '<span class="ok">✓ Nice!</span> ' + (q.w || '');
+        } else {
+          btn.classList.add('wrong');
+          fb.innerHTML = '<span class="no">✗ Not quite.</span> ' + (q.w || '');
+        }
+        const nb = document.createElement('button');
+        nb.className = 'btn'; nb.type = 'button';
+        nb.textContent = (i < questions.length - 1) ? 'Next question →' : 'See my result 🏁';
+        nb.onclick = () => { i++; (i < questions.length) ? show() : finish(); };
+        root.appendChild(nb);
+      };
+    });
+  }
+  function finish(){
+    const pct = Math.round(score / questions.length * 100);
+    if (pct === 100 && !S.perfect){ S.perfect = true; saveState(); }
+    if (pct >= 70 && actId) markDone(actId);
+    root.innerHTML =
+      '<div class="result">' + (pct === 100 ? '🎉 PERFECT! ' : pct >= 70 ? '👏 Great job! ' : '💪 Keep going! ') +
+      'You scored ' + score + '/' + questions.length + '</div>' +
+      '<p style="color:var(--mute);font-size:15.5px">' +
+      (pct >= 70 ? 'Activity complete! Try again for a perfect score, or move on.' : 'Score 70% or more to complete this activity. Review the section above and retry!') + '</p>';
+    const rb = document.createElement('button');
+    rb.className = 'btn ghost'; rb.type = 'button'; rb.textContent = '↺ Try again';
+    rb.onclick = () => { i = 0; score = 0; show(); };
+    root.appendChild(rb);
+    refreshAll();
+  }
+  show();
+}
+
+// ================================================================
+// ENGINE 2 — Fill-in / type the answer
+// ================================================================
+function buildFill(elId, actId, questions){
+  const root = $id(elId);
+  let i = 0, score = 0;
+  function show(){
+    const q = questions[i];
+    root.innerHTML =
+      '<div class="qmeta">Item ' + (i+1) + ' of ' + questions.length + ' · Score: ' + score + '</div>' +
+      '<div class="qprompt">' + q.q + '</div>' +
+      '<input class="ans" type="text" autocomplete="off" placeholder="Type your answer…">' +
+      '<div><button class="btn" type="button" data-check>Check ✓</button></div>' +
+      (q.h ? '<div class="hintline">💡 Hint: ' + q.h + '</div>' : '') +
+      '<div class="fb"></div>';
+    const input = root.querySelector('.ans');
+    const fb = root.querySelector('.fb');
+    let attempts = 0, solved = false;
+    function next(){
+      i++;
+      (i < questions.length) ? show() : finish();
+    }
+    function nextBtn(label){
+      const nb = document.createElement('button');
+      nb.className = 'btn'; nb.type = 'button';
+      nb.textContent = (i < questions.length - 1) ? (label || 'Next →') : 'See my result 🏁';
+      nb.onclick = next;
+      root.appendChild(nb);
+    }
+    function check(){
+      if (solved) return;
+      const val = norm(input.value);
+      if (!val) return;
+      if (q.a.some(ans => norm(ans) === val)){
+        solved = true;
+        if (attempts === 0){ score++; addXP(10); }
+        fb.innerHTML = '<span class="ok">✓ ' + (attempts === 0 ? 'First try — brilliant!' : 'Correct!') + '</span> ' + (q.w || '');
+        nextBtn();
+      } else {
+        attempts++;
+        if (attempts >= 2){
+          solved = true;
+          fb.innerHTML = '<span class="no">The answer:</span> <strong>' + esc(q.a[0]) + '</strong>. ' + (q.w || '') + ' Say it out loud 3 times!';
+          nextBtn();
+        } else {
+          fb.innerHTML = '<span class="no">Not quite — one more try!</span>' + (q.h ? ' (Check the hint 👆)' : '');
+        }
+      }
+    }
+    root.querySelector('[data-check]').onclick = check;
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
+    input.focus({ preventScroll: true });
+  }
+  function finish(){
+    const pct = Math.round(score / questions.length * 100);
+    if (pct === 100 && !S.perfect){ S.perfect = true; saveState(); }
+    if (pct >= 60 && actId) markDone(actId);
+    root.innerHTML = '<div class="result">' + (pct >= 60 ? '👏 ' : '💪 ') + 'You got ' + score + '/' + questions.length + ' on the first try</div>';
+    const rb = document.createElement('button');
+    rb.className = 'btn ghost'; rb.type = 'button'; rb.textContent = '↺ Practice again';
+    rb.onclick = () => { i = 0; score = 0; show(); };
+    root.appendChild(rb);
+    refreshAll();
+  }
+  show();
+}
+
+// ================================================================
+// ENGINE 3 — Put in order (tap the chips)
+// ================================================================
+function buildOrder(elId, actId, items, note){
+  const root = $id(elId);
+  function start(){
+    let picked = [];
+    let pool = shuffle(items.map((t, idx) => ({ t, idx })));
+    // ensure not already in correct order
+    if (pool.every((p, k) => p.idx === k)) pool = pool.reverse();
+    root.innerHTML =
+      (note ? '<div class="qprompt">' + note + '</div>' : '') +
+      '<div class="buildarea" data-area><em style="color:var(--mute);font-size:15px">Your sequence appears here…</em></div>' +
+      '<div data-pool></div>' +
+      '<div><button class="btn ghost" type="button" data-undo>↩ Undo</button> <button class="btn" type="button" data-check>Check my order ✓</button></div>' +
+      '<div class="fb"></div>';
+    const poolEl = root.querySelector('[data-pool]');
+    const areaEl = root.querySelector('[data-area]');
+    const fb = root.querySelector('.fb');
+    pool.forEach((p, k) => {
+      const c = document.createElement('button');
+      c.className = 'chip'; c.type = 'button'; c.textContent = p.t; c.dataset.k = k;
+      c.onclick = () => { picked.push(p); c.classList.add('used'); renderArea(); };
+      poolEl.appendChild(c);
+    });
+    function renderArea(){
+      areaEl.innerHTML = picked.length
+        ? picked.map((p, n) => '<div class="step"><b>' + (n+1) + '</b>' + esc(p.t) + '</div>').join('')
+        : '<em style="color:var(--mute);font-size:15px">Your sequence appears here…</em>';
+    }
+    root.querySelector('[data-undo]').onclick = () => {
+      const last = picked.pop();
+      if (last !== undefined){
+        poolEl.querySelectorAll('.chip').forEach(c => { if (+c.dataset.k === pool.indexOf(last)) c.classList.remove('used'); });
+        renderArea();
+      }
+    };
+    root.querySelector('[data-check]').onclick = () => {
+      if (picked.length < items.length){ fb.innerHTML = '<span class="no">Use all the pieces first!</span>'; return; }
+      const correct = picked.every((p, n) => p.idx === n);
+      if (correct){
+        fb.innerHTML = '<span class="ok">✓ Perfect order! Now read the whole thing out loud.</span>';
+        addXP(20);
+        if (actId) markDone(actId);
+        const rb = document.createElement('button');
+        rb.className = 'btn ghost'; rb.type = 'button'; rb.textContent = '↺ Shuffle and retry';
+        rb.onclick = start;
+        root.appendChild(rb);
+      } else {
+        const right = picked.filter((p, n) => p.idx === n).length;
+        fb.innerHTML = '<span class="no">' + right + '/' + items.length + ' in the right position. Undo and rearrange!</span>';
+      }
+    };
+  }
+  start();
+}
+
+// ================================================================
+// ENGINE 4 — Match pairs (two columns)
+// ================================================================
+function buildMatch(elId, actId, pairs, headL, headR){
+  const root = $id(elId);
+  function start(){
+    let selL = null, selR = null, solvedCount = 0, misses = 0;
+    const left = shuffle(pairs.map((p, i) => ({ t: p[0], i })));
+    const right = shuffle(pairs.map((p, i) => ({ t: p[1], i })));
+    root.innerHTML =
+      '<div class="qprompt">Tap one on the left, then its partner on the right. (' + pairs.length + ' pairs)</div>' +
+      '<div class="paircols"><div data-cl></div><div data-cr></div></div><div class="fb"></div>';
+    const cl = root.querySelector('[data-cl]');
+    const cr = root.querySelector('[data-cr]');
+    const fb = root.querySelector('.fb');
+    function mk(col, item, side){
+      const b = document.createElement('button');
+      b.className = 'pairbtn'; b.type = 'button'; b.textContent = item.t; b.style.display = 'block'; b.style.width = '100%'; b.style.marginBottom = '8px';
+      b.onclick = () => {
+        if (b.classList.contains('ok')) return;
+        if (side === 'L'){ if (selL) selL.classList.remove('sel'); selL = b; b.classList.add('sel'); b.dataset.i = item.i; }
+        else { if (selR) selR.classList.remove('sel'); selR = b; b.classList.add('sel'); b.dataset.i = item.i; }
+        if (selL && selR){
+          if (selL.dataset.i === selR.dataset.i){
+            selL.classList.remove('sel'); selR.classList.remove('sel');
+            selL.classList.add('ok'); selR.classList.add('ok');
+            solvedCount++;
+            addXP(5);
+            if (solvedCount === pairs.length){
+              fb.innerHTML = '<span class="ok">✓ All matched! ' + (misses === 0 ? 'Flawless!' : '') + '</span>';
+              if (actId) markDone(actId);
+              const rb = document.createElement('button');
+              rb.className = 'btn ghost'; rb.type = 'button'; rb.textContent = '↺ Shuffle and replay';
+              rb.onclick = start;
+              root.appendChild(rb);
+            }
+          } else {
+            misses++;
+            selL.classList.add('shake'); selR.classList.add('shake');
+            const a = selL, b2 = selR;
+            setTimeout(() => { a.classList.remove('shake','sel'); b2.classList.remove('shake','sel'); }, 350);
+          }
+          selL = null; selR = null;
+        }
+      };
+      col.appendChild(b);
+    }
+    left.forEach(it => mk(cl, it, 'L'));
+    right.forEach(it => mk(cr, it, 'R'));
+  }
+  start();
+}
+
+// ================================================================
+// ENGINE 5 — Flashcards
+// ================================================================
+function buildFlash(elId, actId, cards){
+  const root = $id(elId);
+  let deck = shuffle(cards), i = 0, flipped = false, seenEnd = false;
+  function show(){
+    const c = deck[i];
+    root.innerHTML =
+      '<div class="qmeta">Card ' + (i+1) + ' of ' + deck.length + ' — say the meaning OUT LOUD before flipping!</div>' +
+      '<div class="flashwrap"><div class="flash' + (flipped ? ' flip' : '') + '" data-card>' +
+        '<div class="fface ffront"><div class="word">' + esc(c[0]) + '</div><div class="tap">tap to flip</div></div>' +
+        '<div class="fface fback"><div class="mean">' + esc(c[1]) + '</div>' + (c[2] ? '<div class="ex">“' + esc(c[2]) + '”</div>' : '') + '</div>' +
+      '</div></div>' +
+      '<div class="fnav">' +
+        '<button class="btn ghost" type="button" data-prev>← Prev</button>' +
+        '<span class="fcount">' + (i+1) + ' / ' + deck.length + '</span>' +
+        '<button class="btn" type="button" data-next>' + (i === deck.length - 1 ? 'Finish deck 🏁' : 'Next →') + '</button>' +
+        '<button class="btn ghost" type="button" data-shuf>🔀 Shuffle</button>' +
+      '</div>';
+    root.querySelector('[data-card]').onclick = function(){ flipped = !flipped; this.classList.toggle('flip', flipped); };
+    root.querySelector('[data-prev]').onclick = () => { if (i > 0){ i--; flipped = false; show(); } };
+    root.querySelector('[data-next]').onclick = () => {
+      if (i < deck.length - 1){ i++; flipped = false; show(); }
+      else {
+        if (!seenEnd){ seenEnd = true; addXP(20); if (actId) markDone(actId); }
+        root.innerHTML = '<div class="result">🃏 Deck complete! ' + deck.length + ' chunks closer to fluency.</div>';
+        const rb = document.createElement('button');
+        rb.className = 'btn ghost'; rb.type = 'button'; rb.textContent = '↺ Go again (shuffled)';
+        rb.onclick = () => { deck = shuffle(cards); i = 0; flipped = false; show(); };
+        root.appendChild(rb);
+        refreshAll();
+      }
+    };
+    root.querySelector('[data-shuf]').onclick = () => { deck = shuffle(cards); i = 0; flipped = false; show(); };
+  }
+  show();
+}
+
+// ================================================================
+// ENGINE 6 — Sorter (word → bucket)
+// ================================================================
+function buildSort(elId, actId, items, buckets){
+  const root = $id(elId);
+  function start(){
+    let deck = shuffle(items), i = 0, score = 0;
+    function show(){
+      const it = deck[i];
+      root.innerHTML =
+        '<div class="qmeta">Word ' + (i+1) + ' of ' + deck.length + ' · Score: ' + score + '</div>' +
+        '<div class="sortword">… ' + esc(it.w) + '</div>' +
+        '<div class="qprompt" style="text-align:center">Which verb goes with it?</div>' +
+        '<div class="bucketrow">' + buckets.map(b => '<button class="bucket" type="button" data-b="' + b + '">' + b + '</button>').join('') + '</div>' +
+        '<div class="fb" style="text-align:center"></div>';
+      const fb = root.querySelector('.fb');
+      let done = false;
+      root.querySelectorAll('.bucket').forEach(btn => {
+        btn.onclick = () => {
+          if (done) return;
+          done = true;
+          if (btn.dataset.b === it.b){
+            score++; addXP(10);
+            fb.innerHTML = '<span class="ok">✓ ' + it.b.toLowerCase() + ' ' + esc(it.w) + '!</span>';
+          } else {
+            fb.innerHTML = '<span class="no">✗ It is “' + it.b.toLowerCase() + ' ' + esc(it.w) + '”.</span> Say it out loud!';
+          }
+          setTimeout(() => { i++; (i < deck.length) ? show() : finish(); }, 1100);
+        };
+      });
+    }
+    function finish(){
+      const pct = Math.round(score / deck.length * 100);
+      if (pct === 100 && !S.perfect){ S.perfect = true; saveState(); }
+      if (pct >= 70 && actId) markDone(actId);
+      root.innerHTML = '<div class="result">' + (pct >= 70 ? '🗂️ Sorted! ' : '💪 ') + score + '/' + deck.length + ' correct</div>';
+      const rb = document.createElement('button');
+      rb.className = 'btn ghost'; rb.type = 'button'; rb.textContent = '↺ Sort again';
+      rb.onclick = start;
+      root.appendChild(rb);
+      refreshAll();
+    }
+    show();
+  }
+  start();
+}
+
+// ================================================================
+// ENGINE 7 — Roleplay (hidden lines)
+// ================================================================
+function buildRoleplay(elId, actId, dialogues){
+  const root = $id(elId);
+  let cur = 0;
+  function show(){
+    const d = dialogues[cur];
+    let html = '<div class="qprompt">Pick a scene, cover Kris’s lines, and play the part. Say each hidden line OUT LOUD before revealing!</div>';
+    html += '<select class="rsel" data-sel>' + dialogues.map((dd, k) => '<option value="' + k + '"' + (k === cur ? ' selected' : '') + '>' + esc(dd.t) + '</option>').join('') + '</select>';
+    html += '<div style="margin-top:12px" data-lines>';
+    d.lines.forEach((ln, k) => {
+      const you = ln[0] === 'Kris';
+      html += '<div class="rline ' + (you ? 'you hidden-line' : 'them') + '" data-line="' + k + '">' +
+        '<span class="rsp">' + ln[0] + ':</span><span class="rtxt">' + esc(ln[1]) + '</span>' +
+        (you ? '<button class="reveal" type="button">👁 Reveal</button>' : '') + '</div>';
+    });
+    html += '</div><div class="fb"></div>';
+    root.innerHTML = html;
+    root.querySelector('[data-sel]').onchange = function(){ cur = +this.value; show(); };
+    const hidden = root.querySelectorAll('.rline.hidden-line');
+    let left = hidden.length;
+    hidden.forEach(l => {
+      l.querySelector('.reveal').onclick = function(){
+        l.classList.remove('hidden-line');
+        this.remove();
+        left--;
+        if (left === 0){
+          root.querySelector('.fb').innerHTML = '<span class="ok">✓ Scene complete! Now run it once more from memory.</span>';
+          addXP(15);
+          if (actId) markDone(actId);
+        }
+      };
+    });
+  }
+  show();
+}
+
+// ================================================================
+// ENGINE 8 — 60-second speaking timer
+// ================================================================
+function buildTimer(elId, actId, prompts){
+  const root = $id(elId);
+  let t = null, left = 60, prompt = prompts[Math.floor(Math.random() * prompts.length)];
+  function render(idle){
+    root.innerHTML =
+      '<div class="timerprompt">🎙 ' + esc(prompt) + '</div>' +
+      '<div class="timerbig" data-clock>' + (idle ? '1:00' : fmt(left)) + '</div>' +
+      '<div class="timerctr">' +
+        '<button class="btn" type="button" data-go>' + (idle ? '▶ Start talking!' : '⏸ Stop') + '</button> ' +
+        '<button class="btn ghost" type="button" data-new>🎲 New prompt</button>' +
+      '</div><div class="fb" style="text-align:center"></div>';
+    root.querySelector('[data-new]').onclick = () => {
+      let p; do { p = prompts[Math.floor(Math.random() * prompts.length)]; } while (p === prompt && prompts.length > 1);
+      prompt = p; stop(); left = 60; render(true);
+    };
+    root.querySelector('[data-go]').onclick = () => { (t ? stop : start)(); };
+  }
+  function fmt(s){ return Math.floor(s/60) + ':' + String(s%60).padStart(2,'0'); }
+  function start(){
+    left = 60;
+    render(false);
+    t = setInterval(() => {
+      left--;
+      const c = root.querySelector('[data-clock]');
+      if (c) c.textContent = fmt(left);
+      if (left <= 0){
+        stop();
+        root.querySelector('.fb').innerHTML = '<span class="ok">🎉 60 seconds of English! That is a real workout.</span>';
+        addXP(25, '+25 XP — speaking champion! 🎤');
+        if (actId) markDone(actId);
+      }
+    }, 1000);
+    const b = root.querySelector('[data-go]');
+    if (b) b.textContent = '⏸ Stop';
+  }
+  function stop(){ clearInterval(t); t = null; }
+  render(true);
+}
+
+// ================================================================
+// DATA — Phrase of the day
+// ================================================================
+const PHRASES = [
+  ['"Fair enough."', '= "Okay, that’s reasonable." Use it once today in a real conversation.'],
+  ['"At the end of the day…"', '= ultimately, when everything is considered. "At the end of the day, guests just want to feel cared for."'],
+  ['"The thing is…"', '= introduces the real point or complication. "I’d love to help — the thing is, I’m fully booked."'],
+  ['"I’ll look into it."', '= I’ll investigate. The native way to say "I will check this problem."'],
+  ['"Let me get back to you."', '= I’ll reply later. Perfect for buying time professionally.'],
+  ['"That’s on me."', '= That’s my mistake, I take responsibility. Confident and mature.'],
+  ['"My pleasure."', '= You’re welcome (hospitality gold standard). Warmer than "no problem."'],
+  ['"Learn the ropes"', '= learn how things are done in a new job. "I help new hires learn the ropes."'],
+  ['"Let’s touch base next week."', '= let’s make brief contact. Classic professional phrase.'],
+  ['"Keep me in the loop."', '= keep me informed. Use it in your next email.'],
+  ['"Can’t complain."', '= I’m doing well. A relaxed answer to "How’s it going?"'],
+  ['"Long time no see!"', '= we haven’t met in a while. Fixed idiom — always this exact word order.'],
+  ['"Sorry to jump in, but…"', '= polite way to interrupt in a meeting.'],
+  ['"Let’s take that offline."', '= let’s discuss it separately, not in this meeting. Sounds senior.'],
+  ['"I see where you’re coming from."', '= I understand your point of view. Perfect before disagreeing politely.'],
+  ['"Would you mind…?"', 'Remember: the polite yes is "No, not at all!" — or just say "Sure, of course!"'],
+  ['"No rush."', '= take your time. A kind softener for any request.'],
+  ['"You’ll get the hang of it."', '= you’ll become skilled at it soon. Great encouragement for trainees.'],
+  ['"Let me see what I can do."', '= the de-escalation phrase. Signals ownership without over-promising.'],
+  ['"7-ish"', 'Add "-ish" to times and numbers: "Let’s meet at 7-ish." Instantly casual and native.'],
+  ['"Have a good one!"', '= have a good day. Friendly, hugely common sign-off.'],
+  ['"I was wondering if you could possibly…"', '= the most polite request form. The longer the request, the more polite it sounds.'],
+  ['"That must’ve been tough."', '= empathy for bad news. Shows you really listened.'],
+  ['"Small world!"', '= say it when you discover something in common with a stranger.'],
+  ['"I’ll do my best."', '= the natural version of "I will try my possible." Learn the chunk!']
+];
+(function initPotd(){
+  const phraseEl = $id('potdPhrase'), meanEl = $id('potdMeaning');
+  let dayIdx = (new Date().getFullYear()*372 + new Date().getMonth()*31 + new Date().getDate()) % PHRASES.length;
+  function showPhrase(i){ phraseEl.textContent = PHRASES[i][0]; meanEl.textContent = PHRASES[i][1]; }
+  showPhrase(dayIdx);
+  $id('potdBtn').addEventListener('click', () => {
+    let n; do { n = Math.floor(Math.random()*PHRASES.length); } while (n === dayIdx);
+    dayIdx = n; showPhrase(n);
+  });
+})();
+
+// ================================================================
+// DATA — quizzes
+// ================================================================
+const Q_P1 = [
+  { q: 'A colleague passes you in the corridor: "Hey Kris, how are you?" The most natural reply is…',
+    o: ['I am fine, thank you. And you? I am fine too.','Good, thanks — you?','I am currently experiencing a positive emotional state.','(Say nothing, just smile)'],
+    a: 1, w: '"How are you?" is a greeting, not a real question — keep it short and bounce it back.' },
+  { q: 'You want to start small talk with a guest at breakfast. Best opener?',
+    o: ['What is your salary?','Lovely morning, isn’t it?','Why are you eating so much?','You look tired today.'],
+    a: 1, w: 'Weather and shared surroundings are always safe, friendly openers.' },
+  { q: '"Any plans for the weekend?" — which reply keeps the conversation alive?',
+    o: ['Yes.','No plans.','Yeah, hiking with some friends. You?','I do not wish to discuss my weekend.'],
+    a: 2, w: 'Answer + a little detail + "You?" — that tiny word keeps the rally going.' },
+  { q: 'You need to end a chat politely. Which works best?',
+    o: ['I stop talking now.','Goodbye forever.','Anyway, I should let you go — it was great chatting!','(Walk away silently)'],
+    a: 2, w: '"I should let you go" politely frames leaving as a favor to THEM. Classic.' },
+  { q: 'Meeting someone new at an event, you say…',
+    o: ['Who are you?','Hi, I don’t think we’ve met — I’m Kris.','You must introduce yourself to me first.','Hello. State your name and occupation.'],
+    a: 1, w: '"I don’t think we’ve met" is the smoothest self-introduction opener.' },
+  { q: 'Someone says "Nice to meet you." The polished one-word reply is…',
+    o: ['Same same.','Me too meet you.','Likewise.','Acknowledged.'],
+    a: 2, w: '"Likewise." = me too. Short, warm, and it sounds effortlessly fluent.' }
+];
+const F_P1 = [
+  { q: 'You bump into an old friend: "____ time no see!"', a: ['long'], h: 'A fixed idiom — opposite of short.', w: '"Long time no see!" — always this exact word order.' },
+  { q: 'Friendly sign-off at work: "Have a good ____!"', a: ['one'], h: 'Not "day" — the casual version.', w: '"Have a good one!" works any time of day.' },
+  { q: 'Casual goodbye: "Catch you ____!"', a: ['later'], h: 'See you… when?', w: '"Catch you later" — relaxed and very common.' },
+  { q: '"Nice to meet you." → "____." (one polished word meaning "me too")', a: ['likewise'], h: 'Starts with L.', w: 'Add "Likewise." to your rotation today.' },
+  { q: '"It was great ____ up — let’s do this again soon."', a: ['catching'], h: 'catch + …', w: '"Catching up" = reconnecting and sharing news.' }
+];
+const O_P1 = [
+  'Hey Minh! Long time no see — how have you been?',
+  'Pretty good, thanks! Busy as always. You?',
+  'Can’t complain. Any plans for the weekend?',
+  'Yeah, heading to the beach with my family.',
+  'Oh nice — hope the weather holds up!',
+  'Anyway, I’d better get back to it. Great catching up!'
+];
+const Q_P2 = [
+  { q: 'A colleague asks: "Would you mind opening the window?" You’re happy to. You say…',
+    o: ['Yes, I mind.','Not at all — go ahead!','Yes.','I am opening.'],
+    a: 1, w: 'The polite yes to "Would you mind" is "No / Not at all" (= I don’t mind).' },
+  { q: 'Your manager suggests something you disagree with. The smoothest start is…',
+    o: ['You’re wrong.','No. Bad idea.','I see what you mean, but I’m not sure I agree.','I refuse this plan.'],
+    a: 2, w: 'Acknowledge first, then soften, then give your view. That’s the formula.' },
+  { q: 'You need a big favor from the General Manager. The most polite form is…',
+    o: ['Give me this.','Can you do this?','You must help me.','I was wondering if you could possibly help me with this.'],
+    a: 3, w: 'The longer and more indirect the request, the more polite it sounds.' },
+  { q: 'You made a small mistake in a report. The confident, mature line is…',
+    o: ['That’s on me — I’ll fix it.','It is not my fault.','The computer did it.','Please do not be angry.'],
+    a: 0, w: '"That’s on me" takes ownership without drama. People respect it.' },
+  { q: 'A friend invites you to dinner but you can’t go. Kindest decline?',
+    o: ['No.','I’d love to, but I can’t make it this time.','I have better things to do.','Ask me again next year.'],
+    a: 1, w: '"I’d love to, but…" protects the relationship while declining.' },
+  { q: 'Someone missed a word you said and asks "Sorry, the… what?" You should…',
+    o: ['Repeat just that word, clearly.','Repeat the whole paragraph, louder.','Change the subject.','Say "never mind."'],
+    a: 0, w: 'Rising "the… what?" targets one missing word — just fill in that word.' }
+];
+const F_P2 = [
+  { q: 'You missed what someone said: "Sorry, I didn’t ____ that."', a: ['catch'], h: 'Like catching a ball.', w: '"I didn’t catch that" — softer than "I didn’t understand."' },
+  { q: '"Sorry, I’m not quite ____. Could you walk me through it again?"', a: ['following'], h: 'follow + ing', w: '"I’m not following" = I’m lost, please re-explain.' },
+  { q: 'Very polite: "Would it be ____ to move the meeting to Friday?"', a: ['possible'], h: 'Would it be p…?', w: '"Would it be possible to…?" — a top-tier polite request.' },
+  { q: 'Taking responsibility: "That’s ____ me — I’ll fix it."', a: ['on'], h: 'A tiny preposition.', w: '"That’s on me." Two letters, huge maturity.' },
+  { q: 'Kind softener for a request: "No ____ — whenever you get a chance."', a: ['rush','hurry'], h: 'No r…', w: '"No rush" instantly makes any request friendlier.' }
+];
+const O_P2 = [
+  'Pass me that stapler.',
+  'Can you pass me that stapler?',
+  'Could you pass me that stapler, please?',
+  'Would you mind passing me that stapler?',
+  'I was wondering if you could possibly pass me that stapler.'
+];
+const M_P3 = [
+  ['going to','gonna'],['want to','wanna'],['got to','gotta'],['let me','lemme'],
+  ['give me','gimme'],['what are you','whatcha'],['did you','didja'],['kind of','kinda']
+];
+const F_P3 = [
+  { q: '"At the end of the ____, guests just want to feel cared for."', a: ['day'], h: 'A period of 24 hours.', w: '"At the end of the day" = ultimately. Instant fluency points.' },
+  { q: '"The ____ is, we’re short on time."', a: ['thing'], h: 'The t… is…', w: '"The thing is…" introduces the real point or problem.' },
+  { q: '"It’s a great idea. That ____, it’s not perfect."', a: ['said'], h: 'That s… (contrast marker)', w: '"That said," = however. A very natural contrast connector.' },
+  { q: 'Casual time: "Let’s meet at seven-____."', a: ['ish'], h: 'Three letters, very native.', w: '"-ish" = approximately. "7-ish", "fifty-ish people".' },
+  { q: 'Softening: "It’s ____ of expensive, isn’t it?"', a: ['kind','sort'], h: 'k… of / s… of', w: '"kind of / sort of" soften any adjective.' }
+];
+const Q_P3 = [
+  { q: 'A colleague’s numbers are wrong. The socially smart version is…',
+    o: ['You’re wrong.','This is incorrect. Fix it.','I think you might be slightly off there.','Wrong numbers. Again.'],
+    a: 2, w: 'Softeners ("I think", "might", "slightly") deliver the same message without the sting.' },
+  { q: 'You’re not sure of the exact time you’ll arrive. Most natural?',
+    o: ['I will arrive at exactly an unknown time.','I’ll be there in ten minutes or so.','My arrival time is undetermined.','Maybe I come, maybe not.'],
+    a: 1, w: '"or so" = approximately. Vague language sounds MORE native, not less.' },
+  { q: 'You need thinking time mid-sentence. A native speaker says…',
+    o: ['(Freeze in silence)','How to say… how to say…','Hmm, how can I put this…','Error. Word not found.'],
+    a: 2, w: 'Buy time OUT LOUD: "How can I put this…", "What’s the word…", "Let me think…"' },
+  { q: 'Best way to change the topic smoothly:',
+    o: ['New topic now.','Anyway, how’s the family?','Stop talking about this.','I am changing the subject.'],
+    a: 1, w: '"Anyway," is the classic topic-switch signal. "By the way," and "Speaking of which," also work.' },
+  { q: 'You have to deliver bad news about a project. Soften it with…',
+    o: ['Bad news. Deal with it.','To be honest, it’s not looking great.','Everything failed totally.','I refuse to say.'],
+    a: 1, w: '"To be honest," and "I’m afraid…" prepare the listener for bad news gently.' }
+];
+const FLASH_P4 = [
+  ['look into','investigate','I’ll look into it and get back to you.'],
+  ['get back to','reply later','Let me get back to you tomorrow.'],
+  ['come up with','produce an idea','We came up with a new plan.'],
+  ['sort out','fix / organize','I’ll sort out the schedule.'],
+  ['figure out','understand / solve','I can’t figure out this form.'],
+  ['deal with','handle','She deals with guest complaints.'],
+  ['bring up','mention a topic','He brought up a good point.'],
+  ['catch up','update / reconnect','Let’s catch up over coffee.'],
+  ['run out of','have none left','We’ve run out of time.'],
+  ['put off','postpone','They put off the meeting.'],
+  ['end up','finally be / do','We ended up staying home.'],
+  ['fill in (for)','substitute for someone','Can you fill in for me?'],
+  ['follow up','take further action','I’ll follow up by email.'],
+  ['reach out','make contact','Feel free to reach out anytime.'],
+  ['go over','review','Let’s go over the details.'],
+  ['pick up','learn / collect','She picked up English fast.'],
+  ['back up','support','I’ll back you up in the meeting.'],
+  ['a piece of cake','very easy','The test was a piece of cake.'],
+  ['on the same page','in agreement','Let’s make sure we’re on the same page.'],
+  ['a ballpark figure','rough estimate','Just give me a ballpark figure.'],
+  ['touch base','make brief contact','Let’s touch base next week.'],
+  ['up in the air','undecided','The date is still up in the air.'],
+  ['out of the blue','unexpectedly','She called me out of the blue.'],
+  ['bite the bullet','do something hard','I bit the bullet and asked for a raise.'],
+  ['the bottom line','the main point','The bottom line is, we need more staff.'],
+  ['get the hang of it','become skilled','You’ll get the hang of it soon.'],
+  ['in the loop','informed','Keep me in the loop, please.'],
+  ['a game changer','transformative','This tool is a game changer.'],
+  ['wrap up','finish','Let’s wrap up for today.']
+];
+const M_P4 = [
+  ['a piece of cake','very easy'],
+  ['on the same page','in agreement'],
+  ['a ballpark figure','rough estimate'],
+  ['up in the air','undecided'],
+  ['out of the blue','unexpectedly'],
+  ['the bottom line','the main point'],
+  ['in the loop','informed'],
+  ['a game changer','transformative']
+];
+const SORT_P4 = [
+  { w: 'a decision', b: 'MAKE' }, { w: 'progress', b: 'MAKE' }, { w: 'sense', b: 'MAKE' },
+  { w: 'an effort', b: 'MAKE' }, { w: 'a favor', b: 'DO' }, { w: 'research', b: 'DO' },
+  { w: 'your best', b: 'DO' }, { w: 'a break', b: 'TAKE' }, { w: 'notes', b: 'TAKE' },
+  { w: 'responsibility', b: 'TAKE' }, { w: 'fun', b: 'HAVE' }, { w: 'a chat', b: 'HAVE' },
+  { w: 'second thoughts', b: 'HAVE' }, { w: 'in touch', b: 'GET' }, { w: 'rid of', b: 'GET' },
+  { w: 'used to', b: 'GET' }
+];
+const Q_P5 = [
+  { q: 'In a meeting, "Can we take that offline?" means…',
+    o: ['Turn off the internet.','Discuss it separately, outside this meeting.','Cancel the project.','Delete the file.'],
+    a: 1, w: 'A polite way to move a side-topic out of the meeting. Sounds senior.' },
+  { q: 'You sent an email 3 days ago, no reply. The polite chase is…',
+    o: ['ANSWER ME NOW.','Why are you ignoring me?','Just checking in on this — any update?','I know you saw my email.'],
+    a: 2, w: '"Just checking in" chases without accusing. Add "no rush" to soften further.' },
+  { q: 'Giving constructive feedback on a trainee’s presentation:',
+    o: ['This was bad.','It might be even stronger if you slowed down at the key points.','You talk too fast. Fix it.','I’ve seen better.'],
+    a: 1, w: '"It might be even stronger if…" frames criticism as upgrading something already good.' },
+  { q: 'The best way to OPEN a training session:',
+    o: ['Silence, please. I will now talk for two hours.','By the end of today, you’ll be able to handle guest complaints confidently.','This is mandatory. Attendance will be checked.','I don’t have much time, so listen fast.'],
+    a: 1, w: 'State the outcome. "By the end of today, you’ll be able to…" gives the session purpose.' },
+  { q: '"Let’s park that for now" means…',
+    o: ['Let’s go to the parking lot.','Let’s set that topic aside and return to it later.','Let’s cancel it forever.','Let’s vote on it.'],
+    a: 1, w: '"Park it" = pause the topic, not kill it. Great for keeping meetings on track.' },
+  { q: 'Closing a meeting like a pro:',
+    o: ['Okay, bye.','We’re out of time. Leave.','So, to sum up, the action items are… and I’ll send round a quick recap.','Meeting over. Everyone forget nothing.'],
+    a: 2, w: 'Summarize actions + owners + a recap promise = you run tight meetings.' }
+];
+const F_P5 = [
+  { q: 'Email: "I’ve ____ the report — let me know if you have questions."', a: ['attached'], h: 'The file is… to the email.', w: '"I’ve attached…" or "Here’s the… you asked for."' },
+  { q: '"Let’s ____ base next week." (make brief contact)', a: ['touch'], h: 'A baseball idiom.', w: '"Touch base" = a quick check-in. Very common at work.' },
+  { q: '"Keep me in the ____, please." (keep me informed)', a: ['loop'], h: 'A circle.', w: '"In the loop" = among the informed people.' },
+  { q: 'Soft email opener: "Just a ____ note about tomorrow’s session."', a: ['quick'], h: 'Opposite of slow.', w: '"Just" and "quick" are email softeners — one is plenty.' },
+  { q: '"____ up on my last email — any thoughts?"', a: ['following'], h: 'follow + ing', w: '"Following up on…" is the standard polite chase opener.' }
+];
+const Q_P6 = [
+  { q: 'A guest says "Thank you so much!" The 5-star reply is…',
+    o: ['No problem.','Yeah, OK.','My pleasure.','Whatever you say.'],
+    a: 2, w: '"My pleasure" is the hospitality gold standard — warmer than "no problem."' },
+  { q: 'A guest has waited 40 minutes for room service and is angry. Your FIRST response:',
+    o: ['That’s not my department.','I’m so sorry — that’s far too long, and I completely understand your frustration. Let me chase it down right now.','Please calm down, sir.','40 minutes is normal in high season.'],
+    a: 1, w: 'Empathize + apologize + act. Never say "calm down" — it escalates.' },
+  { q: 'A guest asks for a dinner recommendation. The most gracious reply:',
+    o: ['I don’t eat out.','There are restaurants outside.','I’d highly recommend Sea Salt — it’s very popular with our guests.','Google it.'],
+    a: 2, w: '"I’d highly recommend… it’s very popular with our guests" — helpful and confident.' },
+  { q: 'A Platinum Elite member arrives. You say…',
+    o: ['Room 512. Next!','Welcome back — thank you for being a valued Bonvoy member.','You again?','Here is your key.'],
+    a: 1, w: 'Elite guests want to feel SEEN: "valued," "welcome back," "loyalty."' },
+  { q: 'Answering the phone at the resort, the professional greeting is…',
+    o: ['Hello?','Yes, what?','Good morning, thank you for calling The Westin Resort. This is Kris speaking — how may I help you?','Westin. Talk.'],
+    a: 2, w: 'Greeting + thanks + name + offer to help. The complete professional formula.' },
+  { q: 'A guest asks if you can arrange a late checkout. Instead of "OK", the classier word is…',
+    o: ['Certainly.','Fine.','If I must.','Sure whatever.'],
+    a: 0, w: '"Certainly" / "Absolutely" / "Right away" — small words, big class.' }
+];
+const O_P6 = [
+  'LISTEN: "I’m sorry to hear that. Please, tell me exactly what happened."',
+  'EMPATHIZE: "I completely understand — that’s not the experience we want for you."',
+  'APOLOGIZE: "I sincerely apologize for the inconvenience."',
+  'ACT: "Here’s what I’m going to do right away…"',
+  'FOLLOW UP: "I’ll check back shortly to make sure everything’s been resolved."'
+];
+const F_P6 = [
+  { q: 'Instead of "OK" a 5-star associate says: "____."', a: ['certainly'], h: 'C… (9 letters)', w: '"Certainly" — instantly more gracious.' },
+  { q: 'Instead of "No problem": "My ____."', a: ['pleasure'], h: 'It was a p… to help.', w: '"My pleasure" — the Westin way.' },
+  { q: 'Instead of "Now": "Right ____."', a: ['away'], h: 'Right a…', w: '"Right away" signals urgency with elegance.' },
+  { q: 'Instead of "I can": "I’d be ____ to."', a: ['happy','glad','delighted'], h: 'An emotion.', w: '"I’d be happy to" turns ability into eagerness.' },
+  { q: 'Instead of a flat "Yes": "____."', a: ['absolutely'], h: 'A… (10 letters)', w: '"Absolutely" — warm, confident agreement.' }
+];
+const DIALOGUES = [
+  { t: '☕ 7.1 Coffee catch-up with Anh', lines: [
+    ['Kris','Hey! Long time no see — how have you been?'],
+    ['Anh','Pretty good, thanks! Busy as always. You?'],
+    ['Kris','Can’t complain. Work’s been full-on with Culture Week coming up.'],
+    ['Anh','Oh nice — are you running it again this year?'],
+    ['Kris','Yeah, MC-ing the whole thing. A bit nerve-racking, honestly, but I kind of love it.'],
+    ['Anh','You’ll smash it. You’re a natural.'],
+    ['Kris','Ha, we’ll see! Anyway, enough about me — how’s the new role treating you?']
+  ]},
+  { t: '💼 7.2 Job interview (STAR answer)', lines: [
+    ['Interviewer','Can you tell me about a time you handled a difficult situation at work?'],
+    ['Kris','Sure. So, in my current role, we once had a training program fall behind schedule because several trainers dropped out at short notice.'],
+    ['Interviewer','And how did you handle that?'],
+    ['Kris','Well, the first thing I did was reassess what was actually essential. I reached out to two colleagues to fill in, restructured the sessions, and kept my manager in the loop throughout. In the end, we delivered on time, and the feedback was actually stronger than the year before.'],
+    ['Interviewer','What did you take away from it?'],
+    ['Kris','Honestly, that staying calm and communicating early matters more than having a perfect plan. Things go wrong — what counts is how quickly you adapt.']
+  ]},
+  { t: '🤝 7.3 Disagreeing without friction', lines: [
+    ['Colleague','I think we should cut the orientation down to half a day to save time.'],
+    ['Kris','I see where you’re coming from, and I agree we’re tight on time. That said, I’d be a bit cautious about cutting orientation — it’s where new hires form their first impression of the brand.'],
+    ['Colleague','Fair, but people do complain it’s long.'],
+    ['Kris','True. What if we kept the full day but made the afternoon more interactive? That way we keep the depth without losing people’s attention.'],
+    ['Colleague','Actually, that’s not a bad idea.']
+  ]},
+  { t: '😤 7.4 Handling an upset guest', lines: [
+    ['Guest','This is ridiculous. I’ve been waiting forty minutes for room service.'],
+    ['Kris','I’m so sorry, sir — forty minutes is far too long, and I completely understand why you’re frustrated.'],
+    ['Guest','I just want my food.'],
+    ['Kris','Absolutely. Let me chase that down for you right now and make sure it’s on its way. As an apology for the wait, I’d like to take the delivery charge off your bill.'],
+    ['Guest','Well… okay, thank you.'],
+    ['Kris','Of course. I’ll personally follow up in a few minutes to make sure everything’s arrived. Again, my sincere apologies.']
+  ]},
+  { t: '🎤 7.5 Networking at a conference', lines: [
+    ['Kris','Hi, mind if I join you? These sessions are great but I don’t know a soul here.'],
+    ['Mai','Ha, same! Please, go ahead. I’m Mai.'],
+    ['Kris','Nice to meet you, Mai — I’m Kris. So what brings you to the conference?'],
+    ['Mai','I’m in HR at a hotel group. You?'],
+    ['Kris','Oh, small world — I’m in Learning and Development, also hospitality. What’s your take on the keynote?'],
+    ['Mai','Loved it, actually. The bit about coaching stuck with me.'],
+    ['Kris','Same here. Hey, we should stay in touch — are you on LinkedIn?']
+  ]}
+];
+const Q_P7 = [
+  { q: '"Can’t complain" as an answer to "How’s it going?" means…',
+    o: ['I am forbidden from complaining.','I’m doing well.','I have many complaints.','I refuse to answer.'],
+    a: 1, w: 'A relaxed, positive answer — literally "things are good enough that I can’t complain."' },
+  { q: '"Work’s been full-on lately" means work has been…',
+    o: ['completely cancelled','very busy and intense','fully online','turned on'],
+    a: 1, w: '"Full-on" = intense, non-stop. Great casual vocabulary.' },
+  { q: 'Your colleague is nervous about a presentation. You say "You’ll smash it!" meaning…',
+    o: ['You will break the projector.','You will do brilliantly.','You should cancel it.','You will be angry.'],
+    a: 1, w: '"Smash it" = perform excellently. Encouraging and very natural.' },
+  { q: 'You discover a stranger works in the same industry as you. You say…',
+    o: ['Suspicious coincidence.','Small world!','Big industry.','That is statistically unlikely.'],
+    a: 1, w: '"Small world!" — THE phrase for discovering unexpected connections.' },
+  { q: '"What’s your take on the keynote?" is asking for…',
+    o: ['your opinion of it','your photo of it','your recording of it','your ticket'],
+    a: 0, w: '"What’s your take on X?" = what do you think of X? Perfect for networking.' }
+];
+const Q_P8 = [
+  { q: 'Where is the stress in "photographer"?',
+    o: ['PHO-to-gra-pher','pho-TO-gra-pher','pho-to-GRA-pher','pho-to-gra-PHER'],
+    a: 1, w: 'PHO-to-graph → pho-TO-gra-pher — the stress MOVES. Say both out loud now!' },
+  { q: '"Present" meaning a GIFT is pronounced…',
+    o: ['pre-SENT','PRE-sent','preh-ZENT with stress on both','It doesn’t matter'],
+    a: 1, w: 'Nouns: PRE-sent, RE-cord. Verbs: pre-SENT, re-CORD. Stress changes the word type!' },
+  { q: 'In words ending -tion (information, decision), the stress falls…',
+    o: ['on the first syllable always','on -tion itself','on the syllable just before -tion','nowhere — all equal'],
+    a: 2, w: 'informA-tion, decI-sion — stress lands right before the ending. A reliable rule!' },
+  { q: 'A yes/no question like "Are you coming?" typically uses… intonation.',
+    o: ['falling ↘','rising ↗','flat →','random'],
+    a: 1, w: 'Yes/no questions rise ↗. Wh-questions and statements fall ↘.' },
+  { q: 'Which set of words all END in a /z/ sound?',
+    o: ['cat, book, eight','is, was, does','think, three, mother','street, texts, asked'],
+    a: 1, w: '"is, was, does" end in /z/ — Vietnamese speakers often drop or soften it. Buzz that z!' },
+  { q: 'Thanks to linking, "an apple" sounds like…',
+    o: ['an. apple. (two crisp words)','a-napple','an-nap-ple-eh','apple-an'],
+    a: 1, w: 'Consonant + vowel link together: "a-napple", "pi-ki-tup" (pick it up).' }
+];
+const FIX_P9 = [
+  { q: 'Fix it: "I very like it."', a: ['i really like it','i like it very much','i like it a lot'], h: '"Very" can’t modify a verb.', w: '"Really" modifies verbs; "very" modifies adjectives.' },
+  { q: 'Fix it: "I have 25 years old."', a: ["i am 25","i'm 25","i am 25 years old","i'm 25 years old"], h: 'Age uses "be," not "have."', w: 'English: I AM 25. (Vietnamese and French use "have" — English doesn’t.)' },
+  { q: 'Fix it: "She go to school."', a: ['she goes to school'], h: '3rd person singular…', w: 'he/she/it + verb-S. Small letter, big signal.' },
+  { q: 'Fix it: "I no have time."', a: ["i don't have time","i do not have time"], h: 'Negatives need a helper verb.', w: 'Negatives need do/does/did: "I don’t have time."' },
+  { q: 'Fix it: "I’m agree with you."', a: ['i agree with you'], h: '"Agree" is already a verb.', w: 'No "am" — agree works alone: "I agree."' },
+  { q: 'Fix it: "Yesterday I go to work."', a: ['yesterday i went to work','i went to work yesterday'], h: 'Past time → past tense.', w: '"Yesterday" forces the past: went, saw, did.' },
+  { q: 'Fix it: "I’m good in English."', a: ["i'm good at english","i am good at english"], h: 'good + which preposition?', w: 'good AT something. "She’s good at her job."' },
+  { q: 'Fix it: "Let’s discuss about it."', a: ["let's discuss it","lets discuss it"], h: '"Discuss" needs no partner word.', w: '"Discuss it" — the "about" is already inside the verb.' }
+];
+const Q_P9 = [
+  { q: 'The class is not interesting. You feel…',
+    o: ['I’m boring in this class.','I’m bored in this class.','I’m bore.','I boring.'],
+    a: 1, w: '-ed = your feeling (bored); -ing = the cause (the class is boring).' },
+  { q: 'The lobby is crowded. Which is correct?',
+    o: ['Too much people','Too many peoples','Too many people','Much people'],
+    a: 2, w: 'People = countable → many. Water, time, money = uncountable → much.' },
+  { q: 'It’s dark. You ask someone to…',
+    o: ['open the light','turn on the light','make the light','start fire the light'],
+    a: 1, w: 'Devices are turned on/off. Vietnamese "mở" ≠ open here!' },
+  { q: 'You want a picture with a guest’s permission. You say "Could I ____ a photo?"',
+    o: ['make','do','take','shoot out'],
+    a: 2, w: 'Photos are TAKEN in English. "Take a photo/picture."' },
+  { q: 'Someone asks "Is it far?" You believe it isn’t. Natural reply:',
+    o: ['I think no.','I don’t think so.','I no think.','Think not I do.'],
+    a: 1, w: '"I don’t think so." — learn the whole chunk, not word-by-word translation.' }
+];
+const PROMPTS_P10 = [
+  'Describe your morning routine — use "gonna" at least once.',
+  'Explain your job to a new friend. Include "learn the ropes."',
+  'Talk about your last weekend. Use "ended up" and "a bunch of."',
+  'Recommend your favorite place in Cam Ranh to a guest.',
+  'Disagree politely with this idea: "All training should be online."',
+  'Tell a STAR story: a problem you solved at work.',
+  'Describe your best friend. Use "get along with."',
+  'You’re MC-ing Culture Week — deliver a 60-second opening!',
+  'Convince me to visit Vietnam. Use "at the end of the day."',
+  'Narrate what you’re doing right now, like a sports commentator.',
+  'Describe an unforgettable guest interaction. Use "out of the blue."',
+  'Give a new hire three tips for their first week. Use "You’ll get the hang of it."'
+];
+
+// ================================================================
+// BOOT — build everything
+// ================================================================
+loadState();
+bumpStreak();
+
+buildQuiz('p1quiz', 'p1quiz', Q_P1);
+buildOrder('p1order', 'p1order', O_P1, 'Rebuild the chat: greeting → answer → small talk → answer → reaction → exit.');
+buildFill('p1fill', 'p1fill', F_P1);
+
+buildQuiz('p2quiz', 'p2quiz', Q_P2);
+buildOrder('p2order', 'p2order', O_P2, 'Same request, five levels of politeness. Order them from most DIRECT (1) to most POLITE (5).');
+buildFill('p2fill', 'p2fill', F_P2);
+
+buildMatch('p3match', 'p3match', M_P3);
+buildFill('p3fill', 'p3fill', F_P3);
+buildQuiz('p3quiz', 'p3quiz', Q_P3);
+
+buildFlash('p4flash', 'p4flash', FLASH_P4);
+buildMatch('p4match', 'p4match', M_P4);
+buildSort('p4sort', 'p4sort', SORT_P4, ['MAKE','DO','TAKE','HAVE','GET']);
+
+buildQuiz('p5quiz', 'p5quiz', Q_P5);
+buildFill('p5fill', 'p5fill', F_P5);
+
+buildQuiz('p6quiz', 'p6quiz', Q_P6);
+buildOrder('p6order', 'p6order', O_P6, 'An upset guest is in front of you. Tap the five recovery steps in the right order.');
+buildFill('p6fill', 'p6fill', F_P6);
+
+buildRoleplay('p7role', 'p7role', DIALOGUES);
+buildQuiz('p7quiz', 'p7quiz', Q_P7);
+
+buildQuiz('p8quiz', 'p8quiz', Q_P8);
+
+buildFill('p9fix', 'p9fix', FIX_P9);
+buildQuiz('p9quiz', 'p9quiz', Q_P9);
+
+buildTimer('p10timer', 'p10timer', PROMPTS_P10);
+
+// Daily Quick 5
+const ALL_MCQ = [].concat(Q_P1, Q_P2, Q_P3, Q_P5, Q_P6, Q_P7, Q_P8, Q_P9);
+$id('daily5btn').addEventListener('click', () => {
+  const five = shuffle(ALL_MCQ).slice(0, 5);
+  $id('daily5btn').style.display = 'none';
+  buildQuiz('p10daily', 'p10daily', five);
+  const again = document.createElement('button');
+  again.className = 'btn ghost'; again.type = 'button'; again.textContent = '🎲 Deal me 5 new ones';
+  again.style.marginTop = '10px';
+  again.onclick = () => buildQuiz('p10daily', 'p10daily', shuffle(ALL_MCQ).slice(0, 5));
+  $id('p10dailybox').appendChild(again);
+});
+
+// Habits
+function renderHabits(){
+  document.querySelectorAll('[data-habit]').forEach(cb => {
+    cb.checked = !!S.habits[cb.dataset.habit];
+    cb.closest('.habit').classList.toggle('on', cb.checked);
+  });
+}
+document.querySelectorAll('[data-habit]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    S.habits[cb.dataset.habit] = cb.checked;
+    cb.closest('.habit').classList.toggle('on', cb.checked);
+    if (cb.checked) addXP(5, '+5 XP — booster done! ✅');
+    else saveState();
+  });
+});
+$id('habitReset').addEventListener('click', () => {
+  S.habits = {}; saveState(); renderHabits(); toast('New week, fresh boosters! 💪');
+});
+
+// Reset all
+$id('resetAll').addEventListener('click', (e) => {
+  e.preventDefault();
+  if (confirm('Reset ALL progress, XP, streak and badges? This cannot be undone.')){
+    S = { xp:0, done:{}, streak:1, last:dayStr(new Date()), habits:{}, perfect:false };
+    saveState();
+    location.reload();
+  }
+});
+
+refreshAll();
+loadRemote();
+</script>
+</body>
+</html>
