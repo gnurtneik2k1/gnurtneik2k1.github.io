@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#071b24">
 <title>Kris's English Studio 2.0 — Learn it. Play it. Speak it.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
@@ -189,12 +190,146 @@
   .habit input{width:20px;height:20px;accent-color:var(--good);cursor:pointer}
   .habit.on{background:#e5f5ee;border-color:var(--good)}
   @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.bar>div,.flash{transition:none}}
+
+  /* ================= STUDIO 2.1 — VISUAL SYSTEM ================= */
+  :root{
+    --night:#071b24; --night-2:#0a2731; --aqua:#68d5c8; --cream:#fffdf8;
+    --paper:#f8f5ed; --violet:#8b7cf6; --shadow:0 24px 70px rgba(1,19,26,.22);
+  }
+  body{
+    font-size:17px;line-height:1.7;
+    background:
+      radial-gradient(900px 560px at 88% 2%,rgba(104,213,200,.17),transparent 62%),
+      radial-gradient(760px 520px at 4% 22%,rgba(139,124,246,.13),transparent 68%),
+      linear-gradient(155deg,var(--night) 0%,#0a3038 56%,#123f43 100%);
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.28;
+    background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:42px 42px;
+  }
+  .wrap{max-width:1280px;padding:28px 22px 90px;grid-template-columns:292px minmax(0,1fr);gap:28px}
+  header.hero{
+    position:relative;overflow:hidden;text-align:left;padding:52px 54px 48px;border-radius:32px;
+    background:linear-gradient(125deg,rgba(8,39,49,.96),rgba(13,86,89,.88));
+    border:1px solid rgba(255,255,255,.16);box-shadow:var(--shadow);
+  }
+  header.hero::after{
+    content:"K";position:absolute;right:34px;top:-64px;font-family:'Fraunces',serif;
+    font-size:270px;font-weight:700;line-height:1;color:rgba(255,255,255,.045);pointer-events:none;
+  }
+  .eyebrow{position:relative;z-index:1;color:#a9ece4;font-size:12px;font-weight:700;letter-spacing:2.6px;text-transform:uppercase;margin-bottom:12px}
+  .hero h1{position:relative;z-index:1;max-width:780px;font-size:clamp(38px,6vw,68px);line-height:1.02;letter-spacing:-1.6px;text-shadow:none}
+  .hero p.sub{position:relative;z-index:1;max-width:680px;margin-top:16px;font-size:18px;line-height:1.6;color:#d6eeec;opacity:1}
+  .statrow,.badges{position:relative;z-index:1;justify-content:flex-start}
+  .statrow{margin-top:24px;gap:8px}
+  .stat{padding:8px 14px;background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);font-size:13px}
+  .stat b{color:#d8fff8}
+  .badges{margin-top:10px}
+  .badge{border-radius:99px;font-size:12px;padding:5px 10px}
+  .potd{
+    position:relative;z-index:1;margin:26px 0 0;max-width:760px;padding:17px 20px;
+    display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 18px;align-items:center;
+    border-color:rgba(255,255,255,.16);background:rgba(255,255,255,.075);border-radius:18px;
+  }
+  .potd .label,.potd .phrase,.potd .meaning{grid-column:1}
+  .potd .phrase{font-size:25px}
+  .potd button{grid-column:2;grid-row:1/4;margin:0;background:#d8fff8;padding:10px 15px}
+  .hero-test-cta{
+    position:absolute;right:48px;bottom:48px;z-index:2;color:#071b24;background:#f7d47c;
+    text-decoration:none;border-radius:99px;padding:11px 17px;font-size:13px;font-weight:700;
+    box-shadow:0 10px 28px rgba(0,0,0,.16);transition:transform .2s,background .2s;
+  }
+  .hero-test-cta:hover{transform:translateY(-2px);background:#ffe5a0}
+  .progresswrap{
+    padding:12px 18px;border-radius:16px;background:rgba(255,255,255,.92);
+    border:1px solid rgba(255,255,255,.6);box-shadow:0 12px 30px rgba(1,18,25,.12);
+  }
+  .bar{height:10px;background:#dfe8e4}.bar>div{background:linear-gradient(90deg,#20a493,#66d3c5,#f7c85e)}
+  nav.side{
+    top:20px;max-height:calc(100vh - 40px);overflow:auto;padding:20px 12px;border-radius:22px;
+    background:rgba(255,253,248,.96);border:1px solid rgba(255,255,255,.68);box-shadow:var(--shadow);
+  }
+  nav.side h2{margin:0 10px 12px;color:#6b7e82}
+  nav.side a{padding:10px 11px;border-radius:12px;font-size:13.5px;line-height:1.3;border:1px solid transparent}
+  nav.side a:hover{background:#edf8f5;border-color:#d4ece7}
+  nav.side a.test-link{margin-top:12px;background:#102f39;color:#fff;border-color:#1b4c56}
+  nav.side a.test-link:hover{background:#15404b;border-color:#68d5c8}
+  nav.side a.test-link .dot{border-color:#68d5c8;background:#17424c}
+  nav.side a.test-link .frac{background:rgba(255,255,255,.13);color:#c9f7f0}
+  nav.side a.test-link.done .frac{background:var(--good);color:#fff}
+  main{min-width:0}
+  section.part{
+    scroll-margin-top:22px;padding:38px 42px;margin-bottom:30px;border-radius:26px;
+    background:var(--cream);border:1px solid rgba(255,255,255,.72);box-shadow:var(--shadow);
+  }
+  section.part>h2{font-size:clamp(27px,3.5vw,38px);line-height:1.18;letter-spacing:-.45px;border:0;padding:0;margin-bottom:12px}
+  section.part>h2::after{content:"";display:block;width:54px;height:4px;margin-top:15px;border-radius:99px;background:linear-gradient(90deg,#f7b32b,#f4795b)}
+  .part .intro{font-size:16px;max-width:760px;color:#61747a}
+  h3{margin-top:30px;font-size:20px}h4{font-size:17px}
+  .tblwrap{border-radius:15px}.tblwrap table{font-size:15.5px}th{background:#103f47}
+  .tip,.dlg{border-radius:14px}
+  .zone{margin-top:32px;padding:24px;border:1px solid #ead8ad;background:linear-gradient(145deg,#fffaf0,#f6f8f4);border-radius:20px}
+  .qbox{border-radius:16px;box-shadow:0 8px 24px rgba(10,63,71,.06)}
+  .btn{border-radius:99px;padding:10px 19px;background:#0e5c63}.opt{border-width:1px}
+
+  /* Master test */
+  section.test-section{
+    padding:0;overflow:hidden;background:#081f29;color:#eaf7f5;border-color:rgba(104,213,200,.22);
+  }
+  .test-cover{position:relative;padding:48px 48px 38px;background:radial-gradient(600px 280px at 100% 0,rgba(139,124,246,.24),transparent 70%),linear-gradient(145deg,#0a2731,#123f46)}
+  .test-cover::after{content:"100";position:absolute;right:32px;bottom:-28px;font-family:'Fraunces',serif;font-size:150px;line-height:1;color:rgba(255,255,255,.035);font-weight:700}
+  .test-kicker{display:inline-block;color:#8be0d6;font-size:12px;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;margin-bottom:10px}
+  .test-cover h2{position:relative;z-index:1;color:#fff;font-size:clamp(34px,5vw,54px);line-height:1.05;margin:0 0 14px;font-family:'Fraunces',serif}
+  .test-cover>p{position:relative;z-index:1;max-width:720px;color:#c2dbd9;font-size:16px}
+  .test-levels{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:28px}
+  .test-level{padding:15px;border:1px solid rgba(255,255,255,.12);border-radius:15px;background:rgba(255,255,255,.055)}
+  .test-level b{display:block;color:#fff;font-family:'Fraunces',serif;font-size:24px;line-height:1.2}
+  .test-level span{font-size:11px;color:#a9c5c4;text-transform:uppercase;letter-spacing:1px}
+  .test-body{padding:34px 48px 48px}
+  .test-start{text-align:center;max-width:660px;margin:0 auto;padding:18px 0}
+  .test-start h3{color:#fff;font-family:'Fraunces',serif;font-size:30px;margin:0 0 8px}
+  .test-start p{color:#bcd1d0}.test-start .btn{background:#72ddcf;color:#08222b;padding:13px 24px;font-size:16px}
+  .test-note{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:18px 0 22px;color:#9fb9b8;font-size:13px}
+  .test-head{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+  .test-counter{font-weight:700;color:#fff}.test-score{margin-left:auto;color:#b9d2d0;font-size:14px}
+  .diff{display:inline-flex;border-radius:99px;padding:5px 10px;font-size:11px;line-height:1;font-weight:700;text-transform:uppercase;letter-spacing:.8px}
+  .diff.easy{background:#dff9e9;color:#16633f}.diff.medium{background:#fff0bd;color:#755600}.diff.fair{background:#ffe0c9;color:#8c3d19}.diff.hard{background:#eadfff;color:#4b3597}
+  .test-progress{height:7px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden;margin-bottom:25px}
+  .test-progress>div{height:100%;background:linear-gradient(90deg,#68d5c8,#8b7cf6);transition:width .35s}
+  .test-question{background:#fffdf8;color:var(--ink);border-radius:22px;padding:28px;box-shadow:0 18px 45px rgba(0,0,0,.14)}
+  .test-source{font-size:12px;text-transform:uppercase;letter-spacing:1.3px;color:#6e8186;font-weight:700;margin-bottom:9px}
+  .test-question h3{font-size:20px;line-height:1.45;color:#173d45;margin:0 0 16px}
+  .test-question .opt{background:#f7f5ef}.test-question .opt:hover{background:#fff8e8}
+  .solution{margin-top:16px;padding:16px 18px;border-radius:14px;background:#edf7f4;border-left:4px solid #2e8b6e;color:#36585d;font-size:14.5px}
+  .solution.bad{background:#fff1ec;border-left-color:#d05a3d}
+  .solution strong{display:block;margin-bottom:4px}
+  .test-next{display:flex;justify-content:flex-end}
+  .test-result{text-align:center}.score-orb{width:170px;height:170px;margin:2px auto 18px;border-radius:50%;display:grid;place-content:center;background:conic-gradient(#68d5c8 var(--score),rgba(255,255,255,.1) 0);box-shadow:inset 0 0 0 15px #0a2731}
+  .score-orb b{display:block;color:#fff;font-family:'Fraunces',serif;font-size:44px;line-height:1}.score-orb span{font-size:12px;color:#afc9c6;text-transform:uppercase;letter-spacing:1px}
+  .test-result h3{color:#fff;font-family:'Fraunces',serif;font-size:30px;margin:0}.test-result>p{color:#b8cfcd}
+  .breakdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:24px 0}
+  .break-card{padding:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px}
+  .break-card b{display:block;color:#fff;font-size:20px}.break-card span{color:#9fb9b8;font-size:11px;text-transform:uppercase}
+  .review{text-align:left;margin-top:30px}.review h4{color:#fff;font-size:17px}.review details{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 14px;margin:8px 0;color:#c7dbd9}
+  .review summary{cursor:pointer;color:#fff;font-size:14px;font-weight:600}.review p{font-size:13.5px;margin:8px 0 0}.review .correct-answer{color:#8be0d6}
+  .test-best{margin-top:10px;color:#9fb9b8;font-size:13px}.test-best b{color:#fff}
+  @media(max-width:1050px){.hero-test-cta{position:relative;display:inline-block;right:auto;bottom:auto;margin-top:18px}.potd{max-width:none}}
+  @media(max-width:900px){.wrap{grid-template-columns:1fr}nav.side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;max-height:none}nav.side h2{grid-column:1/-1}nav.side a.test-link{margin-top:0}}
+  @media(max-width:650px){
+    .wrap{padding:12px 10px 55px;gap:14px}header.hero{padding:34px 24px;border-radius:23px}.hero h1{font-size:39px}.hero p.sub{font-size:15px}
+    .potd{display:block;padding:15px}.potd button{margin-top:10px}.stat{font-size:12px}.badge{font-size:11px}
+    nav.side{grid-template-columns:1fr}section.part{padding:28px 20px;border-radius:21px}.zone{padding:18px 14px}
+    .test-cover,.test-body{padding:30px 20px}.test-levels,.breakdown{grid-template-columns:repeat(2,1fr)}
+    .test-question{padding:20px 16px}.test-score{width:100%;margin-left:0}.score-orb{width:145px;height:145px}
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
 
 <header class="hero" id="top">
+  <div class="eyebrow">Personal learning OS · Edition 2.1</div>
   <h1>Kris's English Studio <span style="color:#ffe9a8">2.0</span></h1>
   <p class="sub">Learn it. Play it. Speak it. — Your interactive conversational English gym 🌅</p>
   <div class="statrow">
@@ -210,6 +345,7 @@
     <div class="meaning" id="potdMeaning">= "Okay, that's reasonable." Use it once today in a real conversation.</div>
     <button id="potdBtn" type="button">Give me another phrase</button>
   </div>
+  <a class="hero-test-cta" href="#test">Take the 100-question TEST →</a>
 </header>
 
 <div class="progresswrap">
@@ -219,7 +355,7 @@
 </div>
 
 <nav class="side" aria-label="Handbook parts">
-  <h2>The 10 parts</h2>
+  <h2>Curriculum</h2>
   <a href="#p1" data-nav="p1"><span class="dot"></span>1 · Everyday Conversation<span class="frac" data-frac="p1"></span></a>
   <a href="#p2" data-nav="p2"><span class="dot"></span>2 · Functional Toolkit<span class="frac" data-frac="p2"></span></a>
   <a href="#p3" data-nav="p3"><span class="dot"></span>3 · Sounding Natural<span class="frac" data-frac="p3"></span></a>
@@ -230,6 +366,7 @@
   <a href="#p8" data-nav="p8"><span class="dot"></span>8 · Pronunciation<span class="frac" data-frac="p8"></span></a>
   <a href="#p9" data-nav="p9"><span class="dot"></span>9 · Fix Common Mistakes<span class="frac" data-frac="p9"></span></a>
   <a href="#p10" data-nav="p10"><span class="dot"></span>10 · 30-Day Plan<span class="frac" data-frac="p10"></span></a>
+  <a href="#test" data-nav="test" class="test-link"><span class="dot"></span>TEST · 100 Questions<span class="frac" data-frac="test"></span></a>
 </nav>
 
 <main>
@@ -1024,6 +1161,25 @@ You already read voraciously and think deeply — rocket fuel for language. The 
 <div class="totop"><a href="#top">↑ Back to top</a></div>
 </section>
 
+<!-- ==================== MASTER TEST ==================== -->
+<section class="part test-section" id="test">
+  <div class="test-cover">
+    <span class="test-kicker">Master assessment</span>
+    <h2>TEST — 100 Questions</h2>
+    <p>A complete knowledge check built only from the ten parts in this studio. The questions progress from recall to real-world judgment, and every answer includes a source-based solution.</p>
+    <div class="test-levels" role="group" aria-label="Test difficulty distribution">
+      <div class="test-level"><b>50</b><span>Easy</span></div>
+      <div class="test-level"><b>30</b><span>Medium</span></div>
+      <div class="test-level"><b>10</b><span>Fairly difficult</span></div>
+      <div class="test-level"><b>10</b><span>Difficult</span></div>
+    </div>
+    <div class="test-best">Personal best: <b id="testBest">—</b></div>
+  </div>
+  <div class="test-body">
+    <div id="testApp"></div>
+  </div>
+</section>
+
 </main>
 
 <footer>Made for Kris · Speak first, polish later · 🌅 Kris's English Studio 2.0 · <a href="#" id="resetAll">reset all progress</a></footer>
@@ -1054,7 +1210,7 @@ function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/
 
 // ---------- state & persistence ----------
 const KEY = 'kris-studio-v2';
-let S = { xp:0, done:{}, streak:1, last:'', habits:{}, perfect:false };
+let S = { xp:0, done:{}, streak:1, last:'', habits:{}, perfect:false, testBest:0 };
 function saveState(){
   try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e){}
   if (typeof window.storage !== 'undefined'){
@@ -1097,7 +1253,8 @@ const ACTS = {
   p7:['p7role','p7quiz'],
   p8:['p8quiz'],
   p9:['p9fix','p9quiz'],
-  p10:['p10timer','p10daily']
+  p10:['p10timer','p10daily'],
+  test:['mastertest']
 };
 function totalActs(){ let n = 0; for (const p in ACTS) n += ACTS[p].length; return n; }
 function doneCount(){ return Object.keys(S.done).length; }
@@ -1173,7 +1330,12 @@ function renderNav(){
   $id('barFill').style.width = pct + '%';
   $id('pctTxt').textContent = pct + '%';
 }
-function refreshAll(){ renderStats(); renderNav(); renderHabits(); }
+function refreshAll(){
+  renderStats();
+  renderNav();
+  renderHabits();
+  if ($id('testBest')) $id('testBest').textContent = S.testBest ? S.testBest + '/100' : 'Not attempted';
+}
 
 // ================================================================
 // ENGINE 1 — Multiple-choice quiz (one question at a time)
@@ -1932,6 +2094,120 @@ const Q_P9 = [
     o: ['I think no.','I don’t think so.','I no think.','Think not I do.'],
     a: 1, w: '"I don’t think so." — learn the whole chunk, not word-by-word translation.' }
 ];
+
+// ================================================================
+// MASTER TEST — 100 source-based questions, easy → difficult
+// ================================================================
+const TEST_QUESTIONS = [
+  // 01–50 · EASY
+  {d:"easy",s:"Part 1 · Greetings",q:"A colleague asks “How are you?” Which answer sounds natural and keeps the greeting light?",o:["Good, thanks — you?","I am fine. And you? I am fine too.","Here is a full report of my week.","No answer is expected."],a:0,e:"Part 1 explains that “How are you?” is usually a greeting. Keep the answer short and bounce it back: “Good, thanks — you?”"},
+  {d:"easy",s:"Part 1 · Greetings",q:"Which greeting is best suited to a VIP guest or senior leader?",o:["What’s up?","Good morning. It’s a pleasure to see you.","Yo!","Catch you later."],a:1,e:"The formal register in Part 1 uses “Good morning. It’s a pleasure to see you.” for senior leaders and VIP guests."},
+  {d:"easy",s:"Part 1 · Goodbyes",q:"What does “Have a good one” do in a conversation?",o:["Starts a complaint","Asks for clarification","Ends a conversation at work","Introduces a stranger"],a:2,e:"Part 1 lists “Have a good one” as a natural work goodbye."},
+  {d:"easy",s:"Part 1 · Small talk",q:"Which tiny follow-up keeps a conversation moving after your answer?",o:["You?","Stop.","Never mind.","That is all."],a:0,e:"Part 1 recommends bouncing the question back with “you?” so the exchange continues naturally."},
+  {d:"easy",s:"Part 1 · Introductions",q:"In an introduction, what does “Likewise” mean?",o:["I disagree.","Nice to meet you too.","Please repeat that.","I am leaving now."],a:1,e:"Part 1 presents “Likewise” as a concise response meaning that the pleasure of meeting is mutual."},
+  {d:"easy",s:"Part 1 · Closing gracefully",q:"Which phrase signals a warm, graceful exit?",o:["I’d better get going, but it was great talking to you.","Why are you still here?","Conversation finished.","Give me the bottom line."],a:0,e:"Part 1 teaches a soft exit: give a reason or signal, then add warmth such as “it was great talking to you.”"},
+  {d:"easy",s:"Part 2 · Agreeing",q:"What does “Fair enough” communicate?",o:["That is reasonable.","That is impossible.","Speak louder.","I need a refund."],a:0,e:"The studio defines “Fair enough” as “Okay, that’s reasonable.”"},
+  {d:"easy",s:"Part 2 · Disagreeing",q:"What is the three-part formula for polite disagreement?",o:["Reject → blame → leave","Acknowledge → soften → give your view","Apologize → agree → complain","Interrupt → correct → repeat"],a:1,e:"Part 2 teaches: acknowledge their point, soften the contrast, then give your own view."},
+  {d:"easy",s:"Part 2 · Clarification",q:"Which phrase asks someone to repeat something you missed?",o:["I didn’t quite catch that.","That’s on me.","Have a good one.","I’m in the loop."],a:0,e:"“I didn’t quite catch that” is one of Part 2’s clarification phrases."},
+  {d:"easy",s:"Part 2 · Requests",q:"Which is a polite everyday request?",o:["Send me the file.","Could you send me the file, please?","File. Now.","You send file."],a:1,e:"Part 2’s politeness ladder upgrades a command with “Could you…?” and “please.”"},
+  {d:"easy",s:"Part 2 · Requests",q:"Someone asks, “Would you mind opening the window?” You are happy to do it. Which answer is clear?",o:["Not at all.","Yes, I refuse.","I mind the window.","Maybe the window."],a:0,e:"Part 2 notes that “Not at all” means you do not mind and are willing to help."},
+  {d:"easy",s:"Part 2 · Invitations",q:"Which response declines an invitation kindly?",o:["No.","I’d love to, but I already have plans.","That is a bad idea.","Do not ask me again."],a:1,e:"Part 2 models a warm decline with appreciation or willingness followed by a brief reason."},
+  {d:"easy",s:"Part 2 · Apologies",q:"What does “That’s on me” mean?",o:["That is my responsibility or mistake.","Put it on the table.","I agree completely.","I need more time."],a:0,e:"Part 2 uses “That’s on me” as a natural way to take responsibility."},
+  {d:"easy",s:"Part 2 · Thanks",q:"Which phrase is a warm response to thanks?",o:["My pleasure.","I object.","Up in the air.","By the way."],a:0,e:"Part 2 lists “My pleasure” as a polished response to thanks."},
+  {d:"easy",s:"Part 2 · Interrupting",q:"Which opening lets you interrupt politely?",o:["Sorry to interrupt, but…","Be quiet.","You are wrong.","End up…"],a:0,e:"Part 2 recommends signaling respect first: “Sorry to interrupt, but…”"},
+  {d:"easy",s:"Part 3 · Fillers",q:"Which phrase buys a moment to think?",o:["Let me think…","Right away.","Wrap up.","Take ownership."],a:0,e:"Part 3 lists “Let me think…” among natural fillers that hold the floor while you organize your thoughts."},
+  {d:"easy",s:"Part 3 · Discourse markers",q:"Which marker often introduces honest or difficult information?",o:["To be honest…","On top of that…","Speaking of which…","For example only."],a:0,e:"Part 3 groups “To be honest” with language used to introduce candid or potentially unwelcome information."},
+  {d:"easy",s:"Part 3 · Hedging",q:"In “It’s kind of expensive,” what does “kind of” do?",o:["Makes the statement softer","Makes it a command","Changes it to the past","Makes it fully certain"],a:0,e:"Part 3 teaches “kind of” and “sort of” as hedges that soften a statement."},
+  {d:"easy",s:"Part 3 · Connected speech",q:"In casual speech, “going to” often sounds like…",o:["gonna","gotta","gimme","didja"],a:0,e:"Part 3’s connected-speech table maps “going to” to “gonna” in casual spoken English."},
+  {d:"easy",s:"Part 3 · Reactions",q:"Which response shows that you are listening without taking over the conversation?",o:["Right, I see.","Stop talking.","No comment.","That said."],a:0,e:"Part 3 describes short reactions such as “Right” and “I see” as backchanneling: active listening signals."},
+  {d:"easy",s:"Part 3 · Vague language",q:"What does “a bunch of emails” mean?",o:["Many emails","Exactly two emails","No emails","One formal email"],a:0,e:"Part 3 lists “a bunch” as useful vague language for an inexact, relatively large quantity."},
+  {d:"easy",s:"Part 3 · Vague language",q:"What does “Let’s meet at seven-ish” mean?",o:["At exactly 7:00 only","Around seven","Before six","At midnight"],a:1,e:"Part 3 explains that “-ish” makes a time approximate."},
+  {d:"easy",s:"Part 4 · Phrasal verbs",q:"What does “look into the issue” mean?",o:["Ignore it","Investigate it","Photograph it","Postpone it"],a:1,e:"Part 4 defines “look into” as investigate."},
+  {d:"easy",s:"Part 4 · Phrasal verbs",q:"What does “figure it out” mean?",o:["Understand or solve it","Mention it","Run away from it","Write it twice"],a:0,e:"Part 4 defines “figure out” as understand or solve."},
+  {d:"easy",s:"Part 4 · Phrasal verbs",q:"If old friends “catch up,” what do they do?",o:["Reconnect and exchange updates","Compete in a race","Cancel a meeting","Investigate a complaint"],a:0,e:"Part 4 defines “catch up” as reconnecting and updating each other."},
+  {d:"easy",s:"Part 4 · Idioms",q:"If a task is “a piece of cake,” it is…",o:["Very easy","Very expensive","Undecided","Unexpected"],a:0,e:"Part 4 defines “a piece of cake” as something easy."},
+  {d:"easy",s:"Part 4 · Idioms",q:"If a team is “on the same page,” they…",o:["Agree or share an understanding","Read silently","Miss the deadline","Need a rough estimate"],a:0,e:"Part 4 defines “on the same page” as being in agreement."},
+  {d:"easy",s:"Part 4 · Idioms",q:"If plans are “up in the air,” they are…",o:["Undecided","Complete","Easy","Confidential"],a:0,e:"Part 4 defines “up in the air” as undecided."},
+  {d:"easy",s:"Part 4 · Collocations",q:"Choose the correct collocation.",o:["make a decision","do a decision","take a decision note","get a decision homework"],a:0,e:"Part 4 places “decision” in the MAKE collocation group."},
+  {d:"easy",s:"Part 4 · Collocations",q:"Choose the correct collocation.",o:["make notes","do notes","take notes","get notes doing"],a:2,e:"Part 4 places “notes” in the TAKE collocation group."},
+  {d:"easy",s:"Part 5 · Meetings",q:"What does “take this offline” mean in a meeting?",o:["Discuss it separately outside the current meeting","Disconnect the internet","Cancel the project","Read the agenda aloud"],a:0,e:"Part 5 uses “take it offline” to move a side discussion out of the current meeting."},
+  {d:"easy",s:"Part 5 · Emails",q:"Which phrase is a natural email follow-up?",o:["Just checking in on…","I demand your answer.","Where response?","Speak now."],a:0,e:"Part 5’s email toolkit includes “Just checking in on…” for a light follow-up."},
+  {d:"easy",s:"Part 5 · Training",q:"Which line clearly states a training objective?",o:["By the end of today, you’ll be able to…","Maybe we do something.","This might take forever.","There is no goal."],a:0,e:"Part 5 recommends “By the end of today, you’ll be able to…” to frame a session outcome."},
+  {d:"easy",s:"Part 5 · Meetings",q:"What does it mean to “park” a topic?",o:["Save it for later discussion","Approve it immediately","Delete it permanently","Send it to a guest"],a:0,e:"Part 5 uses “park that” to pause a topic and return to it later."},
+  {d:"easy",s:"Part 6 · Service language",q:"A guest says, “Thank you.” Which response sounds polished?",o:["My pleasure.","No.","Whatever.","That said."],a:0,e:"Part 6 upgrades a basic response to the warm, professional “My pleasure.”"},
+  {d:"easy",s:"Part 6 · Complaint recovery",q:"What is the first step when an upset guest explains a problem?",o:["Listen","Defend the hotel","Offer an unrelated upgrade","End the call"],a:0,e:"Part 6’s recovery sequence begins with Listen."},
+  {d:"easy",s:"Part 6 · Elite language",q:"Which line recognizes a returning Platinum member?",o:["Welcome back, Ms. Lee. We really value your loyalty.","Name?","You were here before.","Wait over there."],a:0,e:"Part 6 recommends recognition language such as “Welcome back” and “We value your loyalty.”"},
+  {d:"easy",s:"Part 6 · Telephone English",q:"Which opening belongs in a professional phone greeting?",o:["Good morning, [property/department], this is [name] speaking. How may I assist you?","Hello, who is this?","Yes?","Speak quickly."],a:0,e:"Part 6 gives a full phone formula: greeting, property or department, your name, and an offer to assist."},
+  {d:"easy",s:"Part 6 · Service upgrades",q:"Which word is the polished upgrade from a plain “yes”?",o:["Absolutely.","Maybe.","No problem.","Later."],a:0,e:"Part 6’s service-upgrade table pairs “yes” with the more confident “Absolutely.”"},
+  {d:"easy",s:"Part 7 · Dialogues",q:"What does “Can’t complain” usually mean?",o:["Things are going reasonably well.","I am forbidden to speak.","Everything is terrible.","I need the manager."],a:0,e:"Part 7’s dialogue notes define “Can’t complain” as doing well or having no serious complaint."},
+  {d:"easy",s:"Part 7 · Dialogues",q:"If a week has been “full-on,” it has been…",o:["Busy and intense","Quiet and empty","Undecided","Very easy"],a:0,e:"Part 7 defines “full-on” as busy or intense."},
+  {d:"easy",s:"Part 7 · Dialogues",q:"When two people discover an unexpected connection, they may say…",o:["Small world!","Bottom line!","Right away!","Bear with me!"],a:0,e:"Part 7 uses “Small world!” when a surprising connection appears."},
+  {d:"easy",s:"Part 8 · Word stress",q:"Which syllable is stressed in “photographer”?",o:["The first","The second","The third","Every syllable equally"],a:1,e:"Part 8 marks the stress on the second syllable of “photographer.”"},
+  {d:"easy",s:"Part 8 · Intonation",q:"What intonation commonly appears in a yes/no question?",o:["Rising","Falling only","Completely flat","A whisper"],a:0,e:"Part 8 teaches that yes/no questions commonly use rising intonation."},
+  {d:"easy",s:"Part 8 · Vietnamese learner focus",q:"Which sound area should Vietnamese speakers avoid dropping at the end of words?",o:["Final consonants","Only first vowels","Every middle syllable","Word spacing"],a:0,e:"Part 8 highlights final consonants and endings as a major pronunciation focus for Vietnamese speakers."},
+  {d:"easy",s:"Part 9 · Grammar fixes",q:"Choose the natural correction of “I very like it.”",o:["I really like it.","I very am like it.","I like very it.","I am very like it."],a:0,e:"Part 9 explains that “really” can modify the verb “like”; “very” cannot."},
+  {d:"easy",s:"Part 9 · Grammar fixes",q:"Choose the natural way to state your age.",o:["I have 25 years old.","I am 25 years old.","I do 25 years.","I get 25 age."],a:1,e:"Part 9 teaches that English uses BE for age: “I am 25.”"},
+  {d:"easy",s:"Part 9 · Grammar fixes",q:"Choose the correct sentence.",o:["She go to school.","She goes to school.","She going to school every day.","She do go school."],a:1,e:"Part 9 reminds learners that he, she, and it take verb-s in the simple present."},
+  {d:"easy",s:"Part 9 · Adjectives",q:"A class causes no interest. How do you describe your feeling?",o:["I’m bored.","I’m boring.","I’m bore.","I bored class."],a:0,e:"Part 9 distinguishes -ed for a person’s feeling (“bored”) from -ing for the cause (“boring”)."},
+  {d:"easy",s:"Part 9 · Word choice",q:"It is dark. Which request uses the natural verb?",o:["Open the light.","Turn on the light.","Make the light.","Do the light."],a:1,e:"Part 9 corrects the direct translation “open the light” to “turn on the light.”"},
+
+  // 51–80 · MEDIUM
+  {d:"medium",s:"Part 1 · Goodbyes",q:"Which ending best suits a formal first meeting?",o:["Catch you later!","It was a pleasure meeting you. I look forward to staying in touch.","I’m out.","Have a good one, dude."],a:1,e:"Part 1’s formal goodbye combines appreciation for the meeting with a forward-looking close."},
+  {d:"medium",s:"Part 1 · Small talk",q:"Someone says, “I went to Da Lat last weekend.” Which reply best uses echo + expand?",o:["Da Lat? Nice — what did you enjoy most?","Okay.","Why?","I also know weekends."],a:0,e:"Part 1 recommends echoing a key detail, then adding an open follow-up to keep the conversation alive."},
+  {d:"medium",s:"Part 2 · Partial agreement",q:"Which line shows partial agreement without surrendering your own view?",o:["I see your point, but I’m not sure that would work for every team.","You are completely wrong.","Yes, exactly, and I have no other view.","No."],a:0,e:"Part 2 combines acknowledgment (“I see your point”) with a softened contrast and the speaker’s view."},
+  {d:"medium",s:"Part 2 · Polite requests",q:"Which request is the most tentative and polite?",o:["Send me the schedule.","Can you send the schedule?","Could you possibly send the schedule?","I was wondering if you could send me the schedule when you have a moment."],a:3,e:"Part 2’s politeness ladder places “I was wondering if…” at the most indirect, careful end."},
+  {d:"medium",s:"Part 2 · Suggestions",q:"Which sentence makes a cautious suggestion?",o:["Do this now.","It might be worth checking the booking details again.","You must agree.","Checking is impossible."],a:1,e:"Part 2 uses “It might be worth…” to offer a softened suggestion."},
+  {d:"medium",s:"Part 2 · Apologies",q:"Which line fits a professional apology for unclear information?",o:["My bad, whatever.","I apologize for the confusion.","You misunderstood me.","No problem happened."],a:1,e:"Part 2 gives “I apologize for the confusion” as a professional apology."},
+  {d:"medium",s:"Part 2 · Complaints",q:"Which opening raises a problem politely?",o:["This is unacceptable and you failed.","I’m afraid there seems to be a problem with the invoice.","Invoice bad.","Fix this."],a:1,e:"Part 2 softens a complaint with “I’m afraid” and “there seems to be…” before naming the problem."},
+  {d:"medium",s:"Part 3 · Topic management",q:"Which discourse marker naturally changes to a related new topic?",o:["By the way…","The thing is…","At the end of the day…","To be honest…"],a:0,e:"Part 3 groups “By the way” with markers for introducing or shifting topics."},
+  {d:"medium",s:"Part 3 · Reasons",q:"What does “The thing is…” usually introduce?",o:["The real reason or key point","A goodbye","An exact number","A formal title"],a:0,e:"Part 3 identifies “The thing is” as a marker used to explain the real reason or central issue."},
+  {d:"medium",s:"Part 3 · Conclusions",q:"Which marker means roughly “ultimately” when summarizing a view?",o:["At the end of the day…","Speaking of which…","On top of that…","Let’s see…"],a:0,e:"Part 3 groups “At the end of the day” with concluding markers."},
+  {d:"medium",s:"Part 3 · Connected speech",q:"Where are forms such as “gonna” and “wanna” most appropriate according to the studio?",o:["Casual speech","A formal written contract","Every business email","A hotel invoice"],a:0,e:"Part 3 presents these as connected spoken forms. They help listening and natural speech, but are not the default for formal writing."},
+  {d:"medium",s:"Part 3 · Vague language",q:"In “It’ll take ten minutes or so,” what does “or so” signal?",o:["An approximate amount","A strict deadline","A negative answer","A repeated action"],a:0,e:"Part 3 lists “or so” as vague language for approximation."},
+  {d:"medium",s:"Part 4 · Phrasal verbs",q:"If you say “I’ll get back to you tomorrow,” what are you promising?",o:["To reply later","To stand behind them","To cancel the issue","To investigate secretly"],a:0,e:"Part 4 defines “get back to” as reply later."},
+  {d:"medium",s:"Part 4 · Phrasal verbs",q:"Which phrasal verb means fix or organize a problem?",o:["sort out","bring up","run out of","put off"],a:0,e:"Part 4 defines “sort out” as fix or organize."},
+  {d:"medium",s:"Part 4 · Phrasal verbs",q:"Complete the meaning: “We’ve run out of clean towels.”",o:["There are none left.","We reviewed them.","We postponed them.","We mentioned them."],a:0,e:"Part 4 defines “run out of” as having none left."},
+  {d:"medium",s:"Part 4 · Phrasal verbs",q:"If Ana “fills in for” Ben, she…",o:["Substitutes for him","Calls him later","Investigates him","Learns from him"],a:0,e:"Part 4 defines “fill in for” as substitute for someone."},
+  {d:"medium",s:"Part 4 · Idioms",q:"A manager asks for a “ballpark figure.” What do they want?",o:["A rough estimate","A final legal total","A sports ticket","A meeting summary"],a:0,e:"Part 4 defines “ballpark figure” as a rough estimate."},
+  {d:"medium",s:"Part 4 · Idioms",q:"What does “bite the bullet” suggest?",o:["Do a difficult thing you have been avoiding","Make an easy choice","Stay fully informed","Finish a meal"],a:0,e:"Part 4 defines “bite the bullet” as deciding to do something difficult."},
+  {d:"medium",s:"Part 4 · Idioms",q:"In a discussion, “the bottom line” is…",o:["The main point","An unexpected event","A short contact","A new skill"],a:0,e:"Part 4 defines “bottom line” as the main point."},
+  {d:"medium",s:"Part 4 · Collocations",q:"Choose the correct phrase.",o:["make progress","do progress","take progress","have progress a"],a:0,e:"Part 4 places “progress” in the MAKE group."},
+  {d:"medium",s:"Part 4 · Collocations",q:"Choose the correct phrase.",o:["make research","do research","take research","get a research"],a:1,e:"Part 4 places “research” in the DO group."},
+  {d:"medium",s:"Part 4 · Collocations",q:"Choose the correct phrase for accepting accountability.",o:["take responsibility","make responsibility","do responsibility","get responsibility of"],a:0,e:"Part 4 places “responsibility” in the TAKE group."},
+  {d:"medium",s:"Part 4 · Professional chunks",q:"Which chunk means finish work by the agreed time?",o:["meet the deadline","raise the deadline","run the deadline","make the deadline feedback"],a:0,e:"Part 4 lists “meet a deadline” among core professional collocations."},
+  {d:"medium",s:"Part 5 · Meeting control",q:"The conversation has drifted. Which line refocuses it?",o:["Can I bring us back on track?","Let’s take everything offline.","That’s out of the blue.","Can’t complain."],a:0,e:"Part 5 recommends “bring us back on track” for returning a meeting to its purpose."},
+  {d:"medium",s:"Part 5 · Email language",q:"Which line points the reader to a file?",o:["I’ve attached the updated schedule.","I have parked the schedule.","The schedule is full-on.","Could you catch up the schedule?"],a:0,e:"Part 5’s email toolkit uses “I’ve attached…” to refer to an attachment."},
+  {d:"medium",s:"Part 5 · Feedback",q:"Which sentence gives constructive feedback gently?",o:["It might be even stronger if the opening were shorter.","The opening is bad.","You failed to write an opening.","Delete all of it."],a:0,e:"Part 5 models constructive feedback with “It might be even stronger if…”"},
+  {d:"medium",s:"Part 5 · Networking",q:"A new employee is “learning the ropes.” What are they doing?",o:["Learning how the job works","Leaving the company","Giving a formal complaint","Running a training session"],a:0,e:"Part 5 uses “learn the ropes” for becoming familiar with how a role or workplace works."},
+  {d:"medium",s:"Part 6 · Telephone English",q:"Which line asks a caller to wait professionally?",o:["Would you mind holding for a moment, please?","Wait.","Do not move.","Hold because I said so."],a:0,e:"Part 6’s telephone language favors a polite request such as “Would you mind holding for a moment?”"},
+  {d:"medium",s:"Part 6 · Complaint recovery",q:"Choose the complete recovery sequence.",o:["Listen → Empathize → Apologize → Act → Follow up","Apologize → Defend → Leave → Listen → Forget","Act → Argue → Explain → Transfer → End","Listen → Promise anything → Blame → Act → Leave"],a:0,e:"Part 6 explicitly teaches Listen, Empathize, Apologize, Act, then Follow up."},
+  {d:"medium",s:"Part 6 · De-escalation",q:"Why is “Let me see what I can do for you” useful with an upset guest?",o:["It shows ownership without promising an impossible outcome.","It guarantees every demand.","It ends the conversation.","It blames another department."],a:0,e:"Part 6 uses this line to show willingness and ownership while leaving room to find a realistic solution."},
+
+  // 81–90 · FAIRLY DIFFICULT
+  {d:"fair",s:"Parts 2 & 5 · Meeting judgment",q:"A colleague proposes removing all in-person training. Which reply best disagrees politely?",o:["That will never work.","I see where you’re coming from. That said, I’d keep some in-person practice because the team needs roleplay time.","Fine, but you are wrong.","No. Next topic."],a:1,e:"This applies Part 2’s acknowledge → soften → view formula and Part 3’s contrast marker “That said” in a workplace context."},
+  {d:"fair",s:"Part 3 · Discourse flow",q:"Complete the logic: “The plan is creative. ___, it may cost too much. ___, our budget is already tight.”",o:["That said / The thing is","By the way / Plus","At the end of the day / Speaking of which","Let me think / Anyway"],a:0,e:"“That said” introduces contrast; “The thing is” introduces the real reason or issue. Both functions come from Part 3."},
+  {d:"fair",s:"Part 3 · Register",q:"Which sentence uses a connected-speech form in the setting where the studio recommends it?",o:["I’m gonna call her after lunch. (casual conversation)","I am gonna submit the official contract. (formal legal document)","Wanna approve the invoice? (formal audit email)","Lemme state the policy. (published handbook)"],a:0,e:"Part 3 treats “gonna/wanna/lemme” as casual spoken forms, not default formal-writing forms."},
+  {d:"fair",s:"Part 4 · Phrasal-verb precision",q:"The team delayed a decision, but finally chose option B. Which sentence preserves both ideas?",o:["They put off the decision and ended up choosing option B.","They looked into option B and ran out of it.","They filled in for the decision.","They brought up choosing and got back the option."],a:0,e:"Part 4 defines “put off” as postpone and “end up” as finally do or become."},
+  {d:"fair",s:"Part 4 · Collocation control",q:"Which set contains only correct MAKE collocations from the studio?",o:["make an effort · make progress · make sense","make research · make a break · make notes","make responsibility · make a favor · make care","make a meeting · make exercise · make time place"],a:0,e:"Part 4’s MAKE group includes effort, progress, and sense."},
+  {d:"fair",s:"Part 5 · Meeting close",q:"Which closing best completes a productive meeting?",o:["To recap, Mai will update the deck by Friday, and I’ll follow up with Finance. Have I missed anything?","We are done. Bye.","Let’s add three new topics now.","I disagree with the agenda."],a:0,e:"Part 5’s closing language summarizes decisions, names actions and owners, and checks shared understanding."},
+  {d:"fair",s:"Part 2 · Request meaning",q:"A colleague asks, “Would you mind sending that today?” Which answer clearly means you will send it?",o:["Not at all — I’ll send it this afternoon.","Yes, definitely.","I mind, so yes.","The answer is ‘would.’"],a:0,e:"Part 2 warns that “Would you mind…?” asks whether it is a problem. “Not at all” clearly means it is not a problem."},
+  {d:"fair",s:"Part 8 · Contrastive stress",q:"Which stress pattern matches the studio’s noun–verb contrast for “present”?",o:["the PREsent / to preSENT","the preSENT / to PREsent","PREsent for both with no difference","preSENT for both with no difference"],a:0,e:"Part 8 teaches the common noun–verb shift: the noun is stressed earlier, while the verb is stressed later."},
+  {d:"fair",s:"Part 9 · -ed / -ing",q:"Choose the sentence that correctly separates cause and feeling.",o:["The briefing was boring, so the guests were bored.","The briefing was bored, so the guests were boring.","The briefing boring, guests boreded.","The guests were boring because they felt boring."],a:0,e:"Part 9 teaches -ing for the thing that causes the feeling and -ed for the person who experiences it."},
+  {d:"fair",s:"Part 9 · Natural chunks",q:"You are stuck mid-sentence and need a natural English chunk. What should replace the direct translation “How to say…?”",o:["What’s the word…? / How do I put this…?","How say this thing?","What word it is make?","I will try my possible."],a:0,e:"Part 9 recommends “What’s the word…?” or “How do I put this…?” instead of translating word by word."},
+
+  // 91–100 · DIFFICULT
+  {d:"hard",s:"Part 6 · Recovery sequence",q:"A guest has explained that the room was not ready. You listened and said, “I understand how frustrating that must be.” What should come next?",o:["I’m very sorry this happened. Let me check the fastest available solution for you.","Housekeeping caused it, not me.","You need to wait.","I can promise any room you want, immediately."],a:0,e:"After Listen and Empathize, Part 6’s sequence moves to Apologize, then Act. The answer performs both without blame or an impossible promise."},
+  {d:"hard",s:"Part 5 · Constructive feedback",q:"Rewrite “Your introduction is too long and confusing” using the studio’s feedback pattern.",o:["The detail is useful. It might be even stronger if the opening were shorter and the main point came first.","Your introduction failed.","Make it shorter because I dislike it.","This is confusing, full stop."],a:0,e:"Part 5 models constructive feedback by recognizing value and using “It might be even stronger if…” for the improvement."},
+  {d:"hard",s:"Part 5 · Email tone",q:"Which follow-up email is concise, polite, and confident without over-apologizing?",o:["Just a quick note to follow up on the revised schedule. Could you share your feedback by Thursday? Thanks in advance.","I’m so, so sorry to bother you again and I’m sorry this email exists.","Send feedback Thursday.","Why have you not answered me?"],a:0,e:"Part 5 includes “Just a quick note,” “following up,” a clear request, and a warm close. One softener is enough."},
+  {d:"hard",s:"Part 5 · Meeting facilitation",q:"A side issue interrupts a decision meeting. Which sequence handles it and closes clearly?",o:["Let’s park that for now. Can I bring us back on track? To recap, Linh owns the update and will send it Friday.","Let’s take the whole meeting offline and discuss nothing.","Ignore that. Next.","By the way, the issue is full-on and up in the air."],a:0,e:"Part 5 combines three meeting tools: park the side topic, return to the agenda, then recap the action and owner."},
+  {d:"hard",s:"Parts 1 & 7 · Conversation skill",q:"At networking, someone says, “I’ve just moved here from Da Lat.” Which response best builds connection?",o:["Da Lat? Small world — I was there last month. What brought you here?","Okay, next person.","I know where Da Lat is.","Have a good one."],a:0,e:"Part 1 recommends echo + expand and a follow-up question; Part 7 supplies the natural reaction “Small world.”"},
+  {d:"hard",s:"Part 8 · Sentence stress",q:"Which delivery best follows the studio’s sentence-stress principle for “I need the updated report by Friday”?",o:["Stress NEED, UPDATED REPORT, and FRIDAY; keep smaller grammar words lighter.","Stress I, THE, and BY only.","Give every word exactly equal weight.","Drop the word Friday."],a:0,e:"Part 8 says content words carry the message and receive stress, while smaller grammar words are lighter."},
+  {d:"hard",s:"Part 8 · Intonation choice",q:"Which mapping best matches the studio’s intonation guide?",o:["Yes/no question ↗ · Wh-question ↘ · polite reservation ↘↗","Yes/no question ↘ · Wh-question ↗ · every list item ↘","All questions are flat · statements rise","Polite reservations always shout upward"],a:0,e:"Part 8 maps yes/no questions to a rise, Wh-questions and statements to a fall, and polite reservation or an implied “but” to fall-rise."},
+  {d:"hard",s:"Part 9 · Multiple fixes",q:"Which sentence is fully natural according to the grammar, preposition, and word-choice fixes?",o:["I’m interested in the role, I’m good at guest service, and I have good news.","I’m interested on the role, good in guest service, and have a good news.","I interested in role and make good news.","I’m interesting at the role and have many good news."],a:0,e:"Part 9 teaches “interested in,” “good at,” and uncountable “good news” with no article."},
+  {d:"hard",s:"Part 9 · Conditionals and verb forms",q:"Which version fixes every error in “If I will have time tomorrow, I call you and we discuss about it”?",o:["If I have time tomorrow, I’ll call you and we’ll discuss it.","If I will have time tomorrow, I will call you and discuss about it.","If I have time tomorrow, I calling you to discuss about it.","If I had time tomorrow, I call and discuss it about."],a:0,e:"Part 9 uses no “will” in the if-clause, forms the future in the result clause, and teaches “discuss it” without “about.”"},
+  {d:"hard",s:"Part 6 · Capstone service response",q:"A loyal guest says, “This is the second time my airport pickup has been late.” Which response best applies the full studio approach?",o:["I understand how disappointing this is, especially as a returning guest. I’m very sorry. I’ll contact transport now, arrange the fastest option, and update you within five minutes.","Transport is not my department.","Please be patient; delays happen.","I promise this can never happen again."],a:0,e:"The response recognizes loyalty, empathizes, apologizes, takes specific action, and promises a realistic follow-up—the full Part 6 recovery model."}
+];
+
 const PROMPTS_P10 = [
   'Describe your morning routine — use "gonna" at least once.',
   'Explain your job to a new friend. Include "learn the ropes."',
@@ -1946,6 +2222,126 @@ const PROMPTS_P10 = [
   'Describe an unforgettable guest interaction. Use "out of the blue."',
   'Give a new hire three tips for their first week. Use "You’ll get the hang of it."'
 ];
+
+// ================================================================
+// ENGINE 9 — Master 100-question assessment
+// ================================================================
+function buildMasterTest(){
+  const root = $id('testApp');
+  const labels = {easy:'Easy', medium:'Medium', fair:'Fairly difficult', hard:'Difficult'};
+  const totals = {easy:50, medium:30, fair:10, hard:10};
+  const actual = TEST_QUESTIONS.reduce((n, q) => { n[q.d] = (n[q.d] || 0) + 1; return n; }, {});
+  if (TEST_QUESTIONS.length !== 100 || Object.keys(totals).some(k => actual[k] !== totals[k])){
+    root.innerHTML = '<div class="solution bad"><strong>Test configuration error</strong>The question distribution could not be verified.</div>';
+    return;
+  }
+
+  let i = 0, score = 0, wrong = [];
+  let tierScore = {easy:0, medium:0, fair:0, hard:0};
+
+  function startScreen(){
+    root.innerHTML =
+      '<div class="test-start">' +
+        '<h3>One studio. One complete challenge.</h3>' +
+        '<p>Questions appear in order from easy recall to difficult real-world judgment. Choose one answer, study the solution, then move forward.</p>' +
+        '<div class="test-note"><span>◷ No time limit</span><span>✓ Solution after every answer</span><span>↗ 70% to complete</span></div>' +
+        '<button class="btn" id="beginMasterTest" type="button">Start the 100-question test →</button>' +
+      '</div>';
+    $id('beginMasterTest').onclick = () => {
+      i = 0; score = 0; wrong = []; tierScore = {easy:0, medium:0, fair:0, hard:0};
+      showQuestion();
+    };
+  }
+
+  function showQuestion(){
+    const q = TEST_QUESTIONS[i];
+    const opts = shuffle(q.o.map((t, original) => ({t, ok:original === q.a})));
+    root.innerHTML =
+      '<div class="test-head">' +
+        '<span class="test-counter">Question ' + (i + 1) + ' of 100</span>' +
+        '<span class="diff ' + q.d + '">' + labels[q.d] + '</span>' +
+        '<span class="test-score">Score: <b>' + score + '</b></span>' +
+      '</div>' +
+      '<div class="test-progress" aria-label="Test progress"><div style="width:' + i + '%"></div></div>' +
+      '<div class="test-question">' +
+        '<div class="test-source">' + esc(q.s) + '</div>' +
+        '<h3>' + esc(q.q) + '</h3>' +
+        opts.map((o, k) => '<button class="opt" data-test-option="' + k + '" type="button">' + String.fromCharCode(65 + k) + '. ' + esc(o.t) + '</button>').join('') +
+        '<div id="testSolution"></div>' +
+      '</div>';
+
+    let answered = false;
+    root.querySelectorAll('[data-test-option]').forEach(btn => {
+      btn.onclick = () => {
+        if (answered) return;
+        answered = true;
+        const chosen = opts[+btn.dataset.testOption];
+        root.querySelectorAll('[data-test-option]').forEach((other, k) => {
+          other.disabled = true;
+          if (opts[k].ok) other.classList.add('correct');
+        });
+        if (chosen.ok){
+          score++;
+          tierScore[q.d]++;
+        } else {
+          btn.classList.add('wrong');
+          wrong.push({number:i + 1, question:q.q, chosen:chosen.t, correct:q.o[q.a], explanation:q.e, source:q.s});
+        }
+        const solution = $id('testSolution');
+        solution.innerHTML =
+          '<div class="solution ' + (chosen.ok ? '' : 'bad') + '">' +
+            '<strong>' + (chosen.ok ? '✓ Correct' : '✗ Correct answer: ' + esc(q.o[q.a])) + '</strong>' +
+            esc(q.e) +
+          '</div>' +
+          '<div class="test-next"><button class="btn" id="nextTestQuestion" type="button">' +
+            (i < 99 ? 'Next question →' : 'See full result →') +
+          '</button></div>';
+        $id('nextTestQuestion').onclick = () => {
+          i++;
+          if (i < TEST_QUESTIONS.length) showQuestion();
+          else finish();
+        };
+      };
+    });
+  }
+
+  function finish(){
+    const passed = score >= 70;
+    const previousBest = S.testBest || 0;
+    S.testBest = Math.max(previousBest, score);
+    if (score === 100) S.perfect = true;
+    saveState();
+    if (passed) markDone('mastertest');
+    else refreshAll();
+    const verdict = score >= 90 ? 'Studio master' : score >= 80 ? 'Strong command' : score >= 70 ? 'Test completed' : score >= 50 ? 'Solid foundation' : 'Keep training';
+    const review = wrong.length
+      ? '<div class="review"><h4>Review the ' + wrong.length + ' question' + (wrong.length === 1 ? '' : 's') + ' to revisit</h4>' +
+        wrong.map(w =>
+          '<details><summary>' + w.number + '. ' + esc(w.question) + '</summary>' +
+          '<p>Your answer: ' + esc(w.chosen) + '</p>' +
+          '<p class="correct-answer">Correct: ' + esc(w.correct) + '</p>' +
+          '<p>' + esc(w.explanation) + ' <em>— ' + esc(w.source) + '</em></p></details>'
+        ).join('') + '</div>'
+      : '<div class="solution"><strong>Perfect run</strong>You answered every question correctly.</div>';
+    root.innerHTML =
+      '<div class="test-result">' +
+        '<div class="score-orb" style="--score:' + score + '%"><div><b>' + score + '</b><span>out of 100</span></div></div>' +
+        '<h3>' + verdict + '</h3>' +
+        '<p>' + (passed ? 'You passed the master assessment.' : 'Review the solutions below, revisit the linked parts, and try again when ready.') + '</p>' +
+        '<div class="breakdown">' +
+          '<div class="break-card"><b>' + tierScore.easy + '/50</b><span>Easy</span></div>' +
+          '<div class="break-card"><b>' + tierScore.medium + '/30</b><span>Medium</span></div>' +
+          '<div class="break-card"><b>' + tierScore.fair + '/10</b><span>Fairly difficult</span></div>' +
+          '<div class="break-card"><b>' + tierScore.hard + '/10</b><span>Difficult</span></div>' +
+        '</div>' +
+        '<button class="btn" id="retakeMasterTest" type="button">Retake the test ↻</button>' +
+        review +
+      '</div>';
+    $id('retakeMasterTest').onclick = startScreen;
+  }
+
+  startScreen();
+}
 
 // ================================================================
 // BOOT — build everything
@@ -1985,6 +2381,7 @@ buildFill('p9fix', 'p9fix', FIX_P9);
 buildQuiz('p9quiz', 'p9quiz', Q_P9);
 
 buildTimer('p10timer', 'p10timer', PROMPTS_P10);
+buildMasterTest();
 
 // Daily Quick 5
 const ALL_MCQ = [].concat(Q_P1, Q_P2, Q_P3, Q_P5, Q_P6, Q_P7, Q_P8, Q_P9);
@@ -2022,7 +2419,7 @@ $id('habitReset').addEventListener('click', () => {
 $id('resetAll').addEventListener('click', (e) => {
   e.preventDefault();
   if (confirm('Reset ALL progress, XP, streak and badges? This cannot be undone.')){
-    S = { xp:0, done:{}, streak:1, last:dayStr(new Date()), habits:{}, perfect:false };
+    S = { xp:0, done:{}, streak:1, last:dayStr(new Date()), habits:{}, perfect:false, testBest:0 };
     saveState();
     location.reload();
   }
