@@ -314,6 +314,33 @@
   .review{text-align:left;margin-top:30px}.review h4{color:#fff;font-size:17px}.review details{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 14px;margin:8px 0;color:#c7dbd9}
   .review summary{cursor:pointer;color:#fff;font-size:14px;font-weight:600}.review p{font-size:13.5px;margin:8px 0 0}.review .correct-answer{color:#8be0d6}
   .test-best{margin-top:10px;color:#9fb9b8;font-size:13px}.test-best b{color:#fff}
+
+  /* TOEIC-style reading practice */
+  nav.side a.reading-link{margin-top:6px}
+  section.reading-section .test-cover::after{content:"20"}
+  .reading-stats{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:28px}
+  .reading-stat{padding:15px;border:1px solid rgba(255,255,255,.12);border-radius:15px;background:rgba(255,255,255,.055)}
+  .reading-stat b{display:block;color:#fff;font-family:'Fraunces',serif;font-size:24px;line-height:1.2}
+  .reading-stat span{font-size:11px;color:#a9c5c4;text-transform:uppercase;letter-spacing:1px}
+  .reading-toolbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+  .reading-timer{margin-left:auto;border-radius:99px;padding:7px 13px;background:rgba(255,255,255,.09);color:#bfece7;font-weight:700;font-size:14px}
+  .reading-timer.urgent{background:#5e2d2b;color:#ffd8ce}
+  .reading-passage{background:#fffdf8;color:var(--ink);border-radius:22px;padding:28px;box-shadow:0 18px 45px rgba(0,0,0,.14);margin-bottom:16px}
+  .reading-doc-type{font-size:12px;text-transform:uppercase;letter-spacing:1.3px;color:#6e8186;font-weight:700;margin-bottom:10px}
+  .reading-passage h3{margin:0 0 14px;color:#173d45;font-family:'Fraunces',serif;font-size:27px}
+  .reading-copy{font-size:15.5px;line-height:1.72;color:#314d53}
+  .reading-copy p:last-child{margin-bottom:0}
+  .reading-copy .doc-line{padding:8px 0;border-bottom:1px solid #e9e3d8}
+  .reading-copy .doc-line:last-child{border-bottom:0}
+  .reading-questions{display:grid;gap:13px}
+  .reading-q{background:#fffdf8;color:var(--ink);border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(0,0,0,.1)}
+  .reading-q h4{margin:0 0 11px;color:#173d45;font-size:16px;line-height:1.5}
+  .reading-q .opt{font-size:14.5px;padding:9px 12px;margin:6px 0}
+  .reading-q .solution{font-size:13.5px;padding:12px 14px}
+  .reading-actions{display:flex;justify-content:flex-end;margin-top:18px}
+  .reading-actions .btn:disabled{opacity:.45;cursor:not-allowed}
+  .reading-result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}
+  .reading-result-grid .break-card b{font-size:24px}
   @media(max-width:1050px){.hero-test-cta{position:relative;display:inline-block;right:auto;bottom:auto;margin-top:18px}.potd{max-width:none}}
   @media(max-width:900px){.wrap{grid-template-columns:1fr}nav.side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;max-height:none}nav.side h2{grid-column:1/-1}nav.side a.test-link{margin-top:0}}
   @media(max-width:650px){
@@ -321,7 +348,9 @@
     .potd{display:block;padding:15px}.potd button{margin-top:10px}.stat{font-size:12px}.badge{font-size:11px}
     nav.side{grid-template-columns:1fr}section.part{padding:28px 20px;border-radius:21px}.zone{padding:18px 14px}
     .test-cover,.test-body{padding:30px 20px}.test-levels,.breakdown{grid-template-columns:repeat(2,1fr)}
+    .reading-stats{grid-template-columns:repeat(2,1fr)}
     .test-question{padding:20px 16px}.test-score{width:100%;margin-left:0}.score-orb{width:145px;height:145px}
+    .reading-passage,.reading-q{padding:20px 16px}.reading-timer{width:100%;margin-left:0}.reading-result-grid{grid-template-columns:1fr}
   }
 </style>
 </head>
@@ -367,6 +396,7 @@
   <a href="#p9" data-nav="p9"><span class="dot"></span>9 · Fix Common Mistakes<span class="frac" data-frac="p9"></span></a>
   <a href="#p10" data-nav="p10"><span class="dot"></span>10 · 30-Day Plan<span class="frac" data-frac="p10"></span></a>
   <a href="#test" data-nav="test" class="test-link"><span class="dot"></span>TEST · 100 Questions<span class="frac" data-frac="test"></span></a>
+  <a href="#reading" class="test-link reading-link"><span class="dot" id="readingNavDot"></span>READING · 20 Exercises<span class="frac" id="readingNavFrac">0/20</span></a>
 </nav>
 
 <main>
@@ -1177,6 +1207,25 @@ You already read voraciously and think deeply — rocket fuel for language. The 
   </div>
   <div class="test-body">
     <div id="testApp"></div>
+  </div>
+</section>
+
+<!-- ==================== TOEIC-STYLE READING PRACTICE ==================== -->
+<section class="part test-section reading-section" id="reading">
+  <div class="test-cover">
+    <span class="test-kicker">Intermediate reading practice</span>
+    <h2>READING — 20 Exercises</h2>
+    <p>Twenty TOEIC-style workplace and hospitality reading sets, created from the language taught in Parts 1–9. Complete all 80 questions in one 120-minute session, or practise one set at a time.</p>
+    <div class="reading-stats" role="group" aria-label="Reading practice format">
+      <div class="reading-stat"><b>20</b><span>Reading sets</span></div>
+      <div class="reading-stat"><b>80</b><span>Questions</span></div>
+      <div class="reading-stat"><b>B1–B2</b><span>Intermediate</span></div>
+      <div class="reading-stat"><b>120</b><span>Minutes</span></div>
+    </div>
+    <div class="test-best">Personal best: <b id="readingBest">Not attempted</b></div>
+  </div>
+  <div class="test-body">
+    <div id="readingApp"></div>
   </div>
 </section>
 
@@ -2208,6 +2257,242 @@ const TEST_QUESTIONS = [
   {d:"hard",s:"Part 6 · Capstone service response",q:"A loyal guest says, “This is the second time my airport pickup has been late.” Which response best applies the full studio approach?",o:["I understand how disappointing this is, especially as a returning guest. I’m very sorry. I’ll contact transport now, arrange the fastest option, and update you within five minutes.","Transport is not my department.","Please be patient; delays happen.","I promise this can never happen again."],a:0,e:"The response recognizes loyalty, empathizes, apologizes, takes specific action, and promises a realistic follow-up—the full Part 6 recovery model."}
 ];
 
+const READING_EXERCISES = [
+  {
+    title:"A Schedule Change", type:"Single passage · Email", source:"Parts 2 & 5 · Polite requests and workplace email",
+    documents:[{label:"Email",text:"To: Front Office Team\nFrom: Mai Tran, Duty Manager\nSubject: Friday briefing moved\n\nHi team,\n\nJust a quick note to let you know that Friday's front office briefing will begin at 3:30 p.m. instead of 2:00 p.m. The training room is being used for a safety workshop earlier that afternoon. We will meet in the same room once the workshop finishes.\n\nPlease bring the updated arrival list and be ready to share one example of a difficult guest request you handled this week. I would appreciate it if everyone could arrive five minutes early, as we need to finish by 4:15 p.m. Linh, could you please print twelve copies of the new check-in guide?\n\nIf the new time creates a serious conflict, let me know by Thursday noon.\n\nThanks,\nMai"}],
+    questions:[
+      {q:"Why was the briefing moved?",o:["The training room is occupied earlier.","The arrival list is not ready.","The duty manager will be absent.","The team requested a morning meeting."],a:0,e:"The email says a safety workshop will use the training room earlier in the afternoon."},
+      {q:"What should each team member prepare to discuss?",o:["A challenging guest request","A new safety rule","A room inspection","A printing problem"],a:0,e:"Mai asks everyone to share one example of a difficult guest request handled that week."},
+      {q:"What is Linh specifically asked to do?",o:["Print twelve guides","Update the arrival list","Lead the briefing","Book another room"],a:0,e:"The direct but polite request to Linh is to print twelve copies of the check-in guide."},
+      {q:"The phrase “Just a quick note” mainly makes the email sound _____.",o:["brief and friendly","angry and urgent","uncertain and apologetic","highly technical"],a:0,e:"Part 5 presents “Just a quick note” as a concise, warm workplace email opener."}
+    ]
+  },
+  {
+    title:"Keeping the Lobby Ready", type:"Single passage · Staff notice", source:"Parts 3, 4 & 6 · Natural chunks, collocations and hospitality",
+    documents:[{label:"Staff notice",text:"LOBBY READINESS — WEEKEND REMINDER\n\nThis weekend, the resort expects more than 180 arrivals, including three wedding groups. To keep check-in running smoothly, all lobby associates should follow the steps below.\n\n• Check the welcome-drink station at the start of every shift.\n• Keep the main entrance clear and report unattended luggage immediately.\n• When the lobby becomes busy, step in and offer directions before guests have to ask.\n• If you do not know an answer, say, “Let me find out for you,” and contact the correct department.\n• Take notes about repeated questions so that the next shift can prepare for them.\n\nWe may be under pressure at certain times, but small actions make a big difference. Thank you for making an effort to create a calm and welcoming arrival experience."}],
+    questions:[
+      {q:"What is the main purpose of the notice?",o:["To prepare staff for a busy arrival period","To announce three new weddings","To explain how to order welcome drinks","To change the weekend work schedule"],a:0,e:"The notice gives lobby-readiness instructions because a large number of guests will arrive."},
+      {q:"What should an associate do when unsure of an answer?",o:["Find the correct information for the guest","Tell the guest to return later","Guess the most likely answer","Ask the guest to contact a manager"],a:0,e:"The notice gives the service phrase “Let me find out for you” and says to contact the correct department."},
+      {q:"Why should staff record repeated questions?",o:["To help the following shift prepare","To evaluate wedding guests","To reduce the number of arrivals","To complete a safety report"],a:0,e:"The notice directly connects taking notes with helping the next shift prepare."},
+      {q:"In the notice, “step in” is closest in meaning to _____.",o:["offer help","move backward","end a shift","write a report"],a:0,e:"Part 3 teaches natural phrasal chunks; here “step in” means to become involved and help."}
+    ]
+  },
+  {
+    title:"After the Planning Meeting", type:"Single passage · Memo", source:"Parts 4 & 5 · Meetings, action owners and collocations",
+    documents:[{label:"Internal memo",text:"Subject: Actions from Monday's Culture Week Meeting\n\nThank you for the productive discussion yesterday. To recap, the team agreed to hold the opening activity in Ballroom A and move the afternoon quiz to Meeting Room 2. The ballroom gives us enough space for the welcome session, while the meeting room has a better screen for the quiz.\n\nAction items:\n1. Huy will confirm both room bookings by Wednesday.\n2. An will update the poster and send the final version to department heads by Thursday morning.\n3. Kris will run a short rehearsal with the facilitators at 4:00 p.m. on Friday.\n4. Finance will check the prize budget and follow up next Monday.\n\nThe catering discussion is still up in the air, so we have parked it until Finance confirms the budget. Please let me know if I have missed anything."}],
+    questions:[
+      {q:"Why will the afternoon quiz be held in Meeting Room 2?",o:["It has a more suitable screen.","It can hold more guests.","Catering is already arranged there.","Finance requested the change."],a:0,e:"The memo states that Meeting Room 2 has a better screen for the quiz."},
+      {q:"Who will send material to the department heads?",o:["An","Huy","Kris","Finance"],a:0,e:"An owns the poster update and distribution action."},
+      {q:"What has not been decided yet?",o:["The catering plan","The rehearsal time","The opening room","The poster deadline"],a:0,e:"The catering discussion remains “up in the air,” meaning undecided."},
+      {q:"Why does the writer say “To recap”?",o:["To summarize decisions and responsibilities","To introduce a new disagreement","To cancel the previous meeting","To apologize for missing the meeting"],a:0,e:"Part 5 recommends “To recap” when closing a meeting with decisions, owners and deadlines."}
+    ]
+  },
+  {
+    title:"Your Anniversary Stay", type:"Single passage · Confirmation email", source:"Parts 2 & 6 · Polite service language and personalization",
+    documents:[{label:"Reservation email",text:"Dear Ms. Harper,\n\nThank you for choosing Azure Bay Resort for your anniversary stay from 18 to 21 September. I am pleased to confirm your ocean-view room and airport pickup. Our driver will meet you outside Gate 3 at 2:40 p.m. on 18 September and will carry a sign with your name.\n\nWe have also noted your request for a quiet room away from the lift. While a specific room number cannot be guaranteed before arrival, we will do our best to meet your preference. A small anniversary dessert will be delivered after dinner on your first evening. As requested, it will contain no nuts.\n\nWould you mind sending us your flight number by 10 September? This will help our transport team follow any schedule changes. If there is anything else we can arrange, please feel free to let me know.\n\nWarm regards,\nNhi\nGuest Experience Executive"}],
+    questions:[
+      {q:"Where will the driver wait for Ms. Harper?",o:["Outside Gate 3","At the resort lobby","Inside the baggage area","Beside the airport information desk"],a:0,e:"The email gives the exact meeting point as outside Gate 3."},
+      {q:"What request cannot be fully guaranteed yet?",o:["A particular quiet-room location","An ocean view","A nut-free dessert","An airport pickup"],a:0,e:"The resort will try to provide a quiet room away from the lift but cannot guarantee a specific room before arrival."},
+      {q:"Why does Nhi ask for the flight number?",o:["To monitor possible timing changes","To select a room number","To prepare the dessert","To calculate the room price"],a:0,e:"The flight number will allow the transport team to follow schedule changes."},
+      {q:"How should Ms. Harper respond if sending the number is not a problem?",o:["Not at all — I’ll send it today.","Yes, I would mind.","I cannot guarantee it.","You should follow up."],a:0,e:"Part 2 explains that “Not at all” clearly accepts a “Would you mind…?” request."}
+    ]
+  },
+  {
+    title:"Work Better Wednesday", type:"Single passage · Advertisement", source:"Parts 1, 4 & 5 · Networking, fluent vocabulary and workplace English",
+    documents:[{label:"Event advertisement",text:"WORK BETTER WEDNESDAY\nA practical evening for early-career professionals\n\nDo you want to speak more confidently in meetings, build useful connections, and get better at giving feedback? Join trainer Daniel Vo for a two-hour workshop at Riverside Business Centre on 12 October.\n\nThe session includes:\n• a five-minute networking challenge\n• natural ways to agree and disagree\n• a role-play meeting with changing priorities\n• a feedback clinic using real workplace examples\n\nTime: 6:30–8:30 p.m.\nFee: 350,000 VND, including materials and refreshments\nEarly registration: Book by 30 September and bring a colleague for half price.\n\nParticipants should arrive by 6:20 p.m. Registration is limited to 28 people so that everyone has time to practise. No advanced English is required, but the activities are conducted entirely in English."}],
+    questions:[
+      {q:"Who is the event mainly intended for?",o:["Professionals near the beginning of their careers","Advanced language teachers","Hotel guests on holiday","Senior financial managers only"],a:0,e:"The advertisement directly describes the audience as early-career professionals."},
+      {q:"What is included in the fee?",o:["Workshop materials and refreshments","Private coaching after the event","Transport to the business centre","A full evening meal"],a:0,e:"The fee line lists materials and refreshments."},
+      {q:"What benefit is offered before 30 September?",o:["A colleague can attend at half price.","The workshop fee is completely removed.","Participants receive private lessons.","The session begins ten minutes later."],a:0,e:"Early registrants can bring one colleague for half price."},
+      {q:"Why is registration limited?",o:["To provide enough practice time for each person","Because the trainer will leave early","Because refreshments are unavailable","To require advanced English"],a:0,e:"The final paragraph explains that the small group ensures everyone has time to practise."}
+    ]
+  },
+  {
+    title:"A Guest Is Waiting", type:"Single passage · Workplace chat", source:"Parts 2, 3 & 6 · Requests, natural responses and service recovery",
+    documents:[{label:"Team chat — 10:18 a.m.",text:"Linh: Hi Bao, are you free for a moment? A guest in room 512 says the air conditioner is making a loud sound.\n\nBao: I’m checking another room right now, but I can be there in about fifteen minutes.\n\nLinh: Thanks. Would it be possible to come sooner? The guest has an online meeting at 10:45.\n\nBao: Got it. I’ll wrap this up and head to 512 in five minutes. Could you ask the guest to keep the unit on so I can hear the sound?\n\nLinh: Sure. I’ve apologized and offered the business lounge as a quiet place for the meeting. She said she would rather stay in the room if we can fix it quickly.\n\nBao: Fair enough. I’ll update you as soon as I know what the problem is.\n\nLinh: Perfect. Thanks for stepping in."}],
+    questions:[
+      {q:"Why does Linh ask Bao to arrive sooner?",o:["The guest has an online meeting soon.","Another room also has a problem.","The guest wants to leave the resort.","The business lounge is closed."],a:0,e:"The guest needs quiet before an online meeting at 10:45."},
+      {q:"What does Bao ask the guest to do?",o:["Leave the air conditioner operating","Wait in the business lounge","Call him directly","Move to another room"],a:0,e:"Bao needs the unit to remain on so he can hear and diagnose the sound."},
+      {q:"What solution has Linh already offered?",o:["A quiet place for the meeting","A free night at the resort","A new online meeting link","A later check-out time"],a:0,e:"Linh offered the business lounge as a quiet alternative."},
+      {q:"Bao’s reply “Fair enough” shows that he _____.",o:["accepts the guest’s preference as reasonable","refuses to repair the unit","does not understand the situation","wants Linh to complain"],a:0,e:"Part 1 teaches “Fair enough” as a natural way to say that something is reasonable."}
+    ]
+  },
+  {
+    title:"Airport Transfer Desk", type:"Single passage · Schedule", source:"Parts 4 & 6 · Time, action language and guest service",
+    documents:[{label:"Saturday transfer schedule",text:"AZURE BAY RESORT — AIRPORT TRANSFERS\n\nVan A | 08:10 | Airport → Resort | 6 guests | Driver: Minh\nCar 2 | 09:25 | Resort → Airport | Mr. Lee | Driver: Quang\nVan B | 11:40 | Airport → Resort | Park wedding group, 12 guests | Driver: Son\nCar 1 | 13:15 | Resort → Airport | Ms. Diaz | Driver: Minh\nVan A | 15:30 | Resort → City Centre | 7 guests | Driver: Quang\n\nNotes:\n• Drivers should arrive at each pickup point ten minutes early.\n• The Park group has ten large bags; Van B’s rear seats must be folded before departure.\n• Ms. Diaz requested a child seat. It is stored at the concierge desk.\n• Road repairs near the airport may add twenty minutes to afternoon journeys. The desk should call departing guests if the delay becomes longer."}],
+    questions:[
+      {q:"Who drives the 13:15 airport transfer?",o:["Minh","Son","Quang","No driver is listed"],a:0,e:"The 13:15 Resort-to-Airport row assigns Car 1 to Minh."},
+      {q:"What must be collected from the concierge desk?",o:["A child seat","A guest list","A road map","A luggage sign"],a:0,e:"The note for Ms. Diaz says the requested child seat is stored there."},
+      {q:"Why should Van B be prepared differently?",o:["Its group has many large bags.","It will travel during road repairs.","It is carrying one child.","Its driver has another assignment."],a:0,e:"The Park group has ten large bags, so the rear seats must be folded."},
+      {q:"What should the desk do if the afternoon delay increases?",o:["Contact guests who are leaving the resort","Cancel every afternoon transfer","Move all guests to Van A","Ask drivers to leave twenty minutes late"],a:0,e:"The final note instructs the desk to call departing guests if the delay becomes longer."}
+    ]
+  },
+  {
+    title:"Learning to Handle Complaints", type:"Single passage · Training announcement", source:"Parts 5 & 6 · Training communication and service recovery",
+    documents:[{label:"Learning & Development announcement",text:"SERVICE RECOVERY PRACTICE LAB\n\nNext Tuesday, Learning & Development will run a 90-minute practice lab for associates who regularly speak with guests. Instead of listening to a long presentation, participants will work through four realistic complaint scenarios in small groups.\n\nThe lab focuses on five steps: listen without interrupting, show empathy, apologize sincerely, take practical action, and follow up. Participants will also practise avoiding blame and making realistic promises.\n\nTwo sessions are available in Meeting Room 1:\nSession A: 9:00–10:30 a.m.\nSession B: 3:00–4:30 p.m.\n\nDepartment heads should nominate no more than three associates and send their names to L&D by Friday at 5:00 p.m. Associates who attended the same lab in June do not need to attend again. Please arrive ten minutes early and bring one recent guest-service example to discuss."}],
+    questions:[
+      {q:"How will most of the training be delivered?",o:["Through small-group scenario practice","Through a long formal lecture","Through an online examination","Through independent reading only"],a:0,e:"The announcement contrasts a long presentation with four realistic scenarios in small groups."},
+      {q:"What is one skill included in the lab?",o:["Making promises that can be kept","Transferring every complaint","Interrupting to save time","Explaining which department is at fault"],a:0,e:"The lab teaches realistic promises and explicitly says to avoid blame."},
+      {q:"Who is not required to attend?",o:["Associates who completed the June lab","Associates nominated by a department head","Employees who speak with guests","Participants with a recent example"],a:0,e:"Previous participants from June do not need to repeat the lab."},
+      {q:"What must participants bring?",o:["A recent guest-service case","A printed nomination form","Their June test result","A laptop for the presentation"],a:0,e:"The final sentence asks participants to bring a recent guest-service example."}
+    ]
+  },
+  {
+    title:"Learning Coordinator Wanted", type:"Single passage · Job posting", source:"Parts 4, 5 & 9 · Workplace vocabulary and accurate grammar",
+    documents:[{label:"Job posting",text:"LEARNING COORDINATOR — HORIZON HOTELS VIETNAM\n\nHorizon Hotels is looking for an organized and curious Learning Coordinator to support training across three properties in Ho Chi Minh City. The successful candidate will schedule classes, prepare learning materials, update attendance records, and follow up with department leaders after each programme.\n\nApplicants should have at least one year of experience in hospitality, education, or human resources. Strong written English and confidence with spreadsheets are required. Experience facilitating short activities is preferred but not essential; coaching will be provided during the first two months.\n\nThe role suits someone who enjoys working with people, pays close attention to detail, and can handle changing priorities without losing track of deadlines. Some travel between the three hotels is necessary.\n\nPlease email a résumé and a 150-word statement explaining your interest in the role to careers@horizonhotels.vn by 8 November. Shortlisted candidates will be contacted within one week of the deadline."}],
+    questions:[
+      {q:"Which task is part of the position?",o:["Maintaining training attendance records","Designing hotel guest rooms","Managing airport drivers","Preparing restaurant meals"],a:0,e:"Updating attendance records is listed among the core responsibilities."},
+      {q:"Which skill is required?",o:["Using spreadsheets confidently","Leading full-day workshops","Speaking three languages","Managing a hotel property"],a:0,e:"Spreadsheet confidence and strong written English are required."},
+      {q:"What will the employer provide?",o:["Coaching during the first two months","Free transport between all properties","A guaranteed management promotion","A university qualification"],a:0,e:"The posting says facilitation experience is optional because coaching will be provided."},
+      {q:"What must applicants include besides a résumé?",o:["A short statement of interest","Three professional certificates","A sample training video","A hotel reference letter"],a:0,e:"Applicants need a 150-word statement explaining their interest in the role."}
+    ]
+  },
+  {
+    title:"Culture Week Makes a Comeback", type:"Single passage · Company newsletter", source:"Parts 1, 4 & 5 · Engagement, teamwork and natural language",
+    documents:[{label:"Inside Horizon — October newsletter",text:"CULTURE WEEK MAKES A COMEBACK\n\nMore than 140 associates took part in Horizon Cam Ranh's Culture Week last month. The programme turned company values into short daily activities, from a team crossword to a guest-story challenge.\n\nAccording to organizer Kris Nguyen, the strongest activity was not the most complicated one. “The crossword worked because people had to think fast and work together. Once one team got the hang of it, the energy in the room completely changed,” he said.\n\nThe organizing group also learned from a scheduling problem on Day 2. A department briefing ended later than expected, so the game began fifteen minutes behind schedule. For the remaining activities, facilitators sent reminders earlier and asked teams to arrive before the published start time.\n\nNext year, the resort plans to invite associates to submit activity ideas one month in advance. Three ideas will be tested before the final programme is announced."}],
+    questions:[
+      {q:"What was the purpose of Culture Week’s daily activities?",o:["To bring company values into practice","To choose new department managers","To evaluate resort guests","To teach advanced crossword design"],a:0,e:"The newsletter says the programme turned company values into short daily activities."},
+      {q:"Why does Kris think the crossword succeeded?",o:["It encouraged fast thinking and teamwork.","It was the most complicated activity.","It started earlier than planned.","It offered the largest prize."],a:0,e:"Kris directly connects the activity’s success with thinking fast and working together."},
+      {q:"What change was made after Day 2?",o:["Reminders were sent earlier.","All department briefings were cancelled.","The programme was shortened by a day.","Teams stopped using published times."],a:0,e:"Earlier reminders and early arrival requests followed the scheduling delay."},
+      {q:"In the article, “got the hang of it” means _____.",o:["learned how to do it","became tired of it","asked to change it","finished organizing it"],a:0,e:"Part 3 teaches “get the hang of it” as becoming able or comfortable with a new activity."}
+    ]
+  },
+  {
+    title:"A Delayed Room", type:"Double passage · Complaint and response", source:"Parts 2, 5 & 6 · Email tone and full service recovery",
+    documents:[
+      {label:"Guest email — 4 August",text:"Dear Guest Relations,\n\nI arrived at 2:50 p.m. yesterday, but my room was not ready until almost 4:30. I understand that check-in officially begins at 3:00, but no one told me how long the delay would be. I waited in the lobby with my two children and had to ask for an update three times. The room itself was lovely, but the arrival experience was disappointing. I am writing because clear communication would have made a big difference.\n\nRegards,\nHelen Brooks"},
+      {label:"Resort response — 4 August",text:"Dear Ms. Brooks,\n\nThank you for taking the time to share this with us. I understand how frustrating the wait must have been, especially while travelling with children. I am very sorry that we did not provide regular updates.\n\nI have discussed your feedback with the front office team. From today, the lobby host will update waiting guests every fifteen minutes, even when there is no new room status. I would also like to offer breakfast for your family tomorrow. If this would be convenient, please reply by 8:00 p.m. and I will arrange it.\n\nWarm regards,\nTrang Le\nFront Office Manager"}
+    ],
+    questions:[
+      {q:"What bothered Ms. Brooks most?",o:["The lack of clear updates during the delay","The condition of the room","The official check-in time","The breakfast selection"],a:0,e:"She acknowledges the room was lovely and says clear communication would have made a difference."},
+      {q:"What new procedure will begin?",o:["Waiting guests will receive updates every fifteen minutes.","All rooms will be ready before 2:50 p.m.","Families will check in at a separate building.","Lobby hosts will stop sharing room status."],a:0,e:"Trang describes a specific fifteen-minute update process starting that day."},
+      {q:"What does Trang offer Ms. Brooks?",o:["Breakfast for her family","An additional night","Airport transportation","A different room"],a:0,e:"The recovery offer is breakfast for the family the following day."},
+      {q:"Which service-recovery step is shown by “I understand how frustrating…”?",o:["Empathize","Act","Follow up","Explain policy"],a:0,e:"Part 6 identifies language that recognizes the guest’s feeling as empathy."}
+    ]
+  },
+  {
+    title:"A Shorter Monday Meeting", type:"Double passage · Minutes and follow-up", source:"Parts 4 & 5 · Productive meetings and concise follow-up",
+    documents:[
+      {label:"Meeting minutes — Operations huddle",text:"Date: 14 September\nAttendees: Rooms, Food & Beverage, Engineering, Security\n\nDecision 1: Beginning next week, the Monday huddle will last 25 minutes instead of 45.\nDecision 2: Department updates must focus on risks, decisions needed, and actions due that week.\nDecision 3: Detailed project discussions will be taken offline with only the relevant teams.\n\nActions: Quyen will send a new one-page update template by Wednesday. Every department will test it before Friday. Minh will collect feedback after two weeks."},
+      {label:"Follow-up email — Tuesday",text:"Hi everyone,\n\nFollowing up on yesterday’s decision, I have attached the new update template. It has three sections: current risk, support needed, and next action. Could you please complete one trial version for your department and send it to me by 3:00 p.m. Thursday? We will use your feedback to make final changes before Monday.\n\nThanks in advance,\nQuyen"}
+    ],
+    questions:[
+      {q:"What is the main goal of the meeting changes?",o:["To make the weekly huddle shorter and more focused","To include more detailed project discussions","To invite additional departments every week","To remove all action items"],a:0,e:"The new length, focused update topics and offline detail discussions all support a shorter, more focused huddle."},
+      {q:"Who will evaluate the change after it has been used?",o:["Minh","Quyen","Security","Every department head"],a:0,e:"The minutes assign Minh to collect feedback after two weeks."},
+      {q:"When is the trial template due?",o:["Thursday at 3:00 p.m.","Wednesday morning","Friday afternoon","Next Monday"],a:0,e:"Quyen’s follow-up email moves the practical trial to Thursday at 3:00 p.m."},
+      {q:"What is NOT a section of the new template?",o:["Full project history","Current risk","Support needed","Next action"],a:0,e:"The email lists only current risk, support needed and next action."}
+    ]
+  },
+  {
+    title:"A Quiet Morning by the Sea", type:"Double passage · Brochure and guest message", source:"Parts 1, 2 & 6 · Recommendations and personalized hospitality",
+    documents:[
+      {label:"Resort brochure",text:"SUNRISE WELLNESS WALK\n\nBegin your day with a guided walk along the northern beach, followed by ten minutes of gentle breathing beside the garden. The route is approximately 2.5 kilometres and is suitable for beginners.\n\nTuesday, Thursday and Saturday | 6:15–7:15 a.m.\nMeeting point: Recreation Desk\nComplimentary for in-house guests\n\nPlease wear comfortable shoes and bring water. Places are limited to twelve. The walk may be moved to the covered garden path during light rain or cancelled during unsafe weather."},
+      {label:"Guest message",text:"Hello, I’m interested in Saturday’s wellness walk, but I had a minor knee injury earlier this year. I can walk normally now, although steep paths are sometimes uncomfortable. Could you let me know whether the route has many steps? I’m travelling with my sister, who would also like to join. — Rachel, Room 608"}
+    ],
+    questions:[
+      {q:"What happens after the beach walk?",o:["A short breathing activity","A breakfast buffet","A swimming lesson","A garden tour"],a:0,e:"The brochure says the walk is followed by ten minutes of gentle breathing."},
+      {q:"Under what condition might the route change?",o:["Light rain","A full group","A guest request","A late start"],a:0,e:"Light rain may move the activity to the covered garden path."},
+      {q:"What information does Rachel need before booking?",o:["Whether the route includes many steps","Whether water is provided","Whether breakfast is included","Whether the walk begins at sunrise"],a:0,e:"Her knee concern leads directly to a question about steps and steep paths."},
+      {q:"How many places would Rachel like to reserve?",o:["Two","One","Three","Twelve"],a:0,e:"Rachel wants to join with her sister, so she needs two places."}
+    ]
+  },
+  {
+    title:"Meet Our New General Manager", type:"Double passage · Invitation and reply", source:"Parts 1, 2 & 5 · Invitations, small talk and workplace tone",
+    documents:[
+      {label:"Invitation",text:"You are warmly invited to an informal coffee session with our new General Manager, Ms. Elena Ruiz.\n\nDate: Wednesday, 21 October\nTime: 3:00–4:00 p.m.\nPlace: Garden Lounge\n\nThis is an opportunity to learn about Elena’s background, hear her priorities for the coming year, and ask questions. The session is open to all associates, but the lounge can hold only forty people. Please confirm your attendance with Human Resources by Monday noon. Coffee and light snacks will be served. Associates should wear their usual work uniform."},
+      {label:"Reply",text:"Hi HR Team,\n\nI’d love to join the coffee session, but I am scheduled to welcome a group at 3:20 p.m. Would it be possible for me to attend the first fifteen minutes and leave quietly before the group arrives? If that would disrupt the session, please give my place to someone else.\n\nThanks,\nNam — Concierge"}
+    ],
+    questions:[
+      {q:"What can associates do during the event?",o:["Ask the new General Manager questions","Change the company uniform","Apply for a management position","Bring outside guests"],a:0,e:"The invitation includes learning about Elena, hearing priorities and asking questions."},
+      {q:"Why must attendees respond by Monday?",o:["The venue has limited capacity.","Uniforms need to be ordered.","The event may move outdoors.","The manager needs airport transport."],a:0,e:"The lounge holds only forty people, so attendance must be confirmed."},
+      {q:"What does Nam want permission to do?",o:["Attend only the beginning of the session","Arrive after welcoming the group","Send a guest in his place","Wear different clothes"],a:0,e:"Nam asks to join for fifteen minutes and then leave quietly."},
+      {q:"Nam’s message is best described as _____.",o:["polite and considerate","demanding and impatient","unclear and informal","angry and defensive"],a:0,e:"He uses a soft request and offers his place to someone else if leaving early would cause disruption."}
+    ]
+  },
+  {
+    title:"Using Personal Phones at Work", type:"Double passage · Policy and manager email", source:"Parts 2, 5 & 9 · Clear rules, requests and accurate language",
+    documents:[
+      {label:"Updated workplace policy",text:"From 1 November, personal phones must be kept in lockers while associates are working in guest-facing areas. Phones may be checked during scheduled breaks in staff areas.\n\nExceptions apply when a manager has approved phone use for a work task, such as taking event photographs or using an authentication application. Associates expecting an urgent family call should give the department office number to the caller. In an emergency, supervisors will ensure the message reaches the associate immediately.\n\nThe purpose of this update is to reduce distractions and protect guest privacy. It does not change the existing rules for company-owned devices."},
+      {label:"Manager email",text:"Team,\n\nPlease review the updated phone policy before Saturday’s shift. On Saturday morning, we need two associates to photograph the lobby decorations for Marketing. I have approved Lan and Phuc to use their phones for this task from 8:30 to 9:00 a.m. After the photographs are uploaded, the phones should be returned to their lockers.\n\nIf you have questions about an urgent personal situation, speak with me privately before your shift.\n\nThanks,\nHoa"}
+    ],
+    questions:[
+      {q:"Where may personal phones normally be checked?",o:["In staff areas during scheduled breaks","At the front desk between guests","Anywhere before lunch","In all guest-facing areas"],a:0,e:"The policy limits normal checking to scheduled breaks in staff areas."},
+      {q:"What should someone expecting an urgent family call do?",o:["Provide the department office number","Keep a phone at the front desk","Ask Marketing to answer","Use a company device"],a:0,e:"The policy gives the department office number as the approved contact route."},
+      {q:"Why may Lan and Phuc use their phones?",o:["A manager approved a specific work task.","They work in a staff-only area.","The new policy begins after Saturday.","They own company devices."],a:0,e:"Their temporary phone use is an approved exception for taking Marketing photographs."},
+      {q:"What must happen after 9:00 a.m.?",o:["The phones must go back into the lockers.","The decorations must be removed.","The associates must contact their families.","The policy must be rewritten."],a:0,e:"Hoa says the phones should be returned after the photos are uploaded."}
+    ]
+  },
+  {
+    title:"A Review That Led to Change", type:"Double passage · Online review and response", source:"Parts 5 & 6 · Feedback, empathy, action and follow-up",
+    documents:[
+      {label:"Guest review — 3 out of 5 stars",text:"The resort has a beautiful beach and the breakfast team was excellent. However, finding activities was harder than it should have been. The printed weekly schedule in our room listed yoga at 7:00 a.m., but the mobile guide showed 7:30. When we called, the associate was friendly but also unsure. We eventually arrived too late. I hope the information can be made consistent because the yoga session itself looked wonderful."},
+      {label:"Management response",text:"Dear Alex,\n\nThank you for recognizing our breakfast team and for pointing out the conflicting activity times. I understand how disappointing it was to miss yoga after making the effort to check the schedule.\n\nWe found that the printed schedule had not been replaced after last month’s time change. The correct start time is 7:30 a.m. All rooms now have the updated version, and Recreation will compare the printed and mobile schedules every Friday. We have also briefed the service centre so that associates can confirm activity times quickly.\n\nWe hope to welcome you back for a smoother stay.\n\nMina, Rooms Director"}
+    ],
+    questions:[
+      {q:"What positive point does Alex mention?",o:["The breakfast service","The mobile guide design","The yoga instructor","The room schedule"],a:0,e:"Alex calls the breakfast team excellent."},
+      {q:"Why did Alex miss yoga?",o:["Two sources showed different starting times.","The session was cancelled.","The beach was difficult to find.","Breakfast ended late."],a:0,e:"The printed and mobile schedules conflicted, leading Alex to arrive too late."},
+      {q:"What caused the incorrect information?",o:["An old printed schedule remained in the room.","The mobile guide was unavailable.","A service-centre associate changed the time.","Recreation cancelled a Friday check."],a:0,e:"Mina explains that the printed sheet was not replaced after the time changed."},
+      {q:"What preventive action will Recreation take?",o:["Compare both schedule versions each Friday","Call every guest before yoga","Print a new guide every morning","Move yoga back to 7:00"],a:0,e:"The new follow-up control is a weekly comparison of print and mobile information."}
+    ]
+  },
+  {
+    title:"The Missing Notebooks", type:"Double passage · Purchase order and invoice", source:"Parts 4 & 5 · Workplace detail, quantities and follow-up",
+    documents:[
+      {label:"Purchase order PO-1842 — 6 January",text:"Supplier: Bright Office Solutions\nDelivery location: Horizon Hotel, Receiving Bay\nRequested delivery: 12 January\n\nItem 1: A5 recycled notebooks, navy — 60 units × 48,000 VND\nItem 2: Black ballpoint pens — 100 units × 9,000 VND\nItem 3: Name-badge holders — 40 units × 22,000 VND\n\nSpecial instruction: Pack the notebooks in three labelled boxes of twenty. Contact Ms. Vy at least thirty minutes before arrival."},
+      {label:"Invoice INV-7731 — delivered 12 January",text:"A5 recycled notebooks, navy — 40 units × 48,000 VND\nBlack ballpoint pens — 100 units × 9,000 VND\nName-badge holders — 40 units × 22,000 VND\nDelivery fee — 120,000 VND\n\nNote: One box of notebooks is temporarily unavailable and will be delivered on 16 January. No additional delivery fee will be charged. Received by: T. Nguyen, 10:42 a.m."}
+    ],
+    questions:[
+      {q:"How were the notebooks supposed to be packed?",o:["In three boxes with twenty in each","In two boxes with thirty in each","Together with the pens in one box","Individually with badge holders"],a:0,e:"The special instruction specifies three labelled boxes of twenty."},
+      {q:"Which item was not delivered in the full ordered quantity?",o:["Notebooks","Pens","Badge holders","All three items"],a:0,e:"The order requested 60 notebooks, while the invoice records only 40 delivered."},
+      {q:"When should the remaining items arrive?",o:["16 January","12 January","6 January","30 January"],a:0,e:"The invoice note gives 16 January as the later delivery date."},
+      {q:"What will the hotel NOT have to pay for the second delivery?",o:["Another delivery charge","The remaining notebooks","The original pens","The badge holders"],a:0,e:"The supplier explicitly states that no additional delivery fee will be charged."}
+    ]
+  },
+  {
+    title:"Friday’s Leadership Forum", type:"Triple passage · Programme, email and notice", source:"Parts 2, 5 & 7 · Scheduling, polite requests and dialogue",
+    documents:[
+      {label:"Forum programme",text:"08:30 Registration and coffee — Foyer\n09:00 Opening remarks — Ballroom\n09:20 Leading Through Change — Ballroom\n10:15 Break\n10:35 Panel discussion — Ballroom\n11:30 Small-group cases — Rooms 1–4\n12:30 Lunch — Garden Restaurant\n13:45 Feedback That Builds Trust — Ballroom\n15:00 Closing and next steps"},
+      {label:"Organizer email to facilitators",text:"Hi facilitators,\n\nThe small-group cases have attracted more participants than expected. Could you please report to your assigned room at 11:15 rather than 11:25? This will give us time to add chairs and check the case cards. Room assignments remain unchanged. Please collect your facilitator pack from the registration desk when you arrive in the morning.\n\nThanks,\nDiep"},
+      {label:"Notice at registration desk",text:"ROOM 3 FACILITATORS: Your facilitator pack was moved to the ballroom technical desk at 8:15 a.m. Please ask for Mr. Long. All other packs remain here."}
+    ],
+    questions:[
+      {q:"What takes place immediately before the small-group cases?",o:["A panel discussion","Lunch","Opening remarks","A feedback workshop"],a:0,e:"The panel begins at 10:35 and is the programme item immediately before the 11:30 cases."},
+      {q:"Why are facilitators asked to arrive earlier?",o:["More people will join the case activity.","Room assignments have changed.","The opening will begin early.","Lunch has been moved."],a:0,e:"Higher-than-expected participation means chairs and case cards need extra preparation time."},
+      {q:"Where should a Room 3 facilitator collect the pack?",o:["At the ballroom technical desk","At the registration desk","Inside Room 3","At the Garden Restaurant"],a:0,e:"The special notice overrides the general email for Room 3 and gives the technical desk as the new location."},
+      {q:"Who should the Room 3 facilitator speak to?",o:["Mr. Long","Diep","The panel leader","A restaurant associate"],a:0,e:"The registration notice tells Room 3 facilitators to ask for Mr. Long."}
+    ]
+  },
+  {
+    title:"What Associates Said", type:"Triple passage · Survey, recommendation and announcement", source:"Parts 4 & 5 · Data, recommendations and workplace communication",
+    documents:[
+      {label:"Quarterly learning survey — 126 responses",text:"Preferred format: Short in-person practice 54% | Self-paced online modules 28% | Full-day workshops 18%\n\nMain barrier to learning: Not enough time during shifts 46% | Topics not relevant 24% | Sessions announced too late 19% | Manager support 11%\n\nMost requested topic: Handling difficult conversations 39% | Spreadsheet skills 26% | Business writing 21% | Presentation skills 14%"},
+      {label:"L&D recommendation",text:"The results suggest that next quarter’s programme should use shorter, practical sessions. We recommend 45-minute labs offered twice on the same day, with dates published at least three weeks in advance. The first topic should be difficult conversations because it received the most requests. Managers should protect attendance time instead of asking associates to join only when operations are quiet."},
+      {label:"Programme announcement",text:"NEW: DIFFICULT CONVERSATIONS LAB\nTuesday, 17 March | 10:00–10:45 a.m. or 3:30–4:15 p.m.\nMeeting Room 2\n\nPractise giving feedback, disagreeing politely, and responding when a conversation becomes tense. Department heads may nominate four associates per session. Names are due by 24 February."}
+    ],
+    questions:[
+      {q:"Which learning format received the strongest preference?",o:["Short face-to-face practice","Online modules","Full-day workshops","Presentation coaching"],a:0,e:"Short in-person practice leads the survey at 54 percent."},
+      {q:"What was the most common learning difficulty?",o:["Finding time during work shifts","Receiving manager support","Understanding the topics","Getting early announcements"],a:0,e:"The largest barrier, at 46 percent, is not enough time during shifts."},
+      {q:"How does the new programme follow the recommendation?",o:["It offers the same short lab at two times.","It requires a full day away from work.","It begins with spreadsheet skills.","It is entirely self-paced."],a:0,e:"The 45-minute lab is available twice on the same day, exactly as recommended."},
+      {q:"What can be inferred about the announcement date?",o:["It should be published well before 24 February.","It will be shared after the March lab.","It was created because presentation skills ranked first.","It allows unlimited nominations."],a:0,e:"The recommendation calls for at least three weeks’ notice, and nominations close before the 17 March session."}
+    ]
+  },
+  {
+    title:"Train-the-Trainer Essentials", type:"Triple passage · Invitation, timetable and reminder", source:"Parts 2, 5, 6, 8 & 9 · Integrated workplace English",
+    documents:[
+      {label:"Invitation",text:"TRAIN-THE-TRAINER ESSENTIALS\n\nA two-day programme for associates who lead briefings, orientations, or skills practice. Participants will learn to open a session confidently, give clear instructions, check understanding, facilitate practice, and provide constructive feedback.\n\nDates: 7–8 May | 9:00 a.m.–4:30 p.m.\nVenue: Horizon Learning Centre\nFee: Covered by the participant’s property\n\nApplicants must submit a manager-approved form and a short description of a session they expect to deliver within the next three months. Applications close on 10 April. Places are limited to twenty-four."},
+      {label:"Day 2 timetable",text:"09:00 Voice, sentence stress and presence\n10:15 Break\n10:30 Giving instructions that learners can follow\n12:00 Lunch\n13:00 Practice delivery in groups of four\n14:45 Break\n15:00 Peer feedback and personal action plans\n16:15 Programme close"},
+      {label:"Reminder to accepted participants",text:"Please bring a three-minute opening for your future training session. You will deliver it twice on Day 2: first during the morning voice activity and again during group practice after lunch. Bring a laptop only if your opening requires slides. Lunch is provided on both days, but transport is not included. If you can no longer attend, let us know by 30 April so that we can offer your place to someone on the waiting list."}
+    ],
+    questions:[
+      {q:"Who is the programme designed for?",o:["Employees who conduct workplace learning activities","Guests who want conversation lessons","Managers applying for hotel rooms","Associates who only study independently"],a:0,e:"The invitation targets associates who lead briefings, orientations or skills practice."},
+      {q:"What must be approved before application?",o:["The application form","The three-minute opening","A transport request","The Day 2 timetable"],a:0,e:"Applicants must submit a manager-approved form."},
+      {q:"When will participants deliver their opening for the second time?",o:["During the afternoon group practice","At the start of Day 1","Before the 10:15 break","After the programme closes"],a:0,e:"The reminder says the second delivery occurs during group practice after lunch, scheduled at 1:00 p.m."},
+      {q:"Why should a participant cancel by 30 April?",o:["So another applicant can take the place","So transport can be provided","So the course fee can be increased","So the timetable can be shortened"],a:0,e:"Early cancellation allows the organizer to invite someone from the waiting list."}
+    ]
+  }
+];
+
 const PROMPTS_P10 = [
   'Describe your morning routine — use "gonna" at least once.',
   'Explain your job to a new friend. Include "learn the ropes."',
@@ -2344,6 +2629,220 @@ function buildMasterTest(){
 }
 
 // ================================================================
+// ENGINE 10 — 20 TOEIC-style reading exercises
+// ================================================================
+const READING_KEY = 'kris-studio-reading-v1';
+let R = {completed:[], best:0};
+
+function loadReadingState(){
+  try {
+    const saved = localStorage.getItem(READING_KEY);
+    if (saved) R = Object.assign(R, JSON.parse(saved));
+  } catch(e){}
+  if (!Array.isArray(R.completed)) R.completed = [];
+}
+
+function saveReadingState(){
+  try { localStorage.setItem(READING_KEY, JSON.stringify(R)); } catch(e){}
+}
+
+function renderReadingStatus(){
+  const completed = new Set(R.completed).size;
+  const frac = $id('readingNavFrac');
+  const best = $id('readingBest');
+  const link = document.querySelector('a[href="#reading"]');
+  if (frac) frac.textContent = completed + '/20';
+  if (best) best.textContent = R.best ? R.best + '/80' : 'Not attempted';
+  if (link) link.classList.toggle('done', completed === 20);
+}
+
+function buildReadingPractice(){
+  const root = $id('readingApp');
+  if (!root) return;
+  const valid = READING_EXERCISES.length === 20 && READING_EXERCISES.every(ex => ex.questions.length === 4);
+  if (!valid){
+    root.innerHTML = '<div class="solution bad"><strong>Reading configuration error</strong>The 20 × 4 exercise structure could not be verified.</div>';
+    return;
+  }
+
+  let exerciseIndex = 0;
+  let score = 0;
+  let answeredTotal = 0;
+  let wrong = [];
+  let timed = false;
+  let endAt = 0;
+  let timerId = null;
+
+  function stopTimer(){
+    if (timerId) clearInterval(timerId);
+    timerId = null;
+  }
+
+  function renderTimer(){
+    const timer = $id('readingTimer');
+    if (!timer) return;
+    if (!timed){
+      timer.textContent = 'Practice mode · No timer';
+      return;
+    }
+    const remaining = Math.max(0, endAt - Date.now());
+    const totalSeconds = Math.ceil(remaining / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    timer.textContent = 'Time left · ' + minutes + ':' + String(seconds).padStart(2, '0');
+    timer.classList.toggle('urgent', remaining <= 10 * 60 * 1000);
+    if (remaining <= 0) finish(true);
+  }
+
+  function startScreen(){
+    stopTimer();
+    renderReadingStatus();
+    root.innerHTML =
+      '<div class="test-start">' +
+        '<h3>Read for meaning, detail and inference.</h3>' +
+        '<p>The set contains 20 workplace and hospitality exercises with four questions each. The passages progress from single emails and notices to paired and multiple documents.</p>' +
+        '<div class="test-note"><span>◷ 120-minute full session</span><span>✓ 80 questions</span><span>↗ Suggested pace: 6 minutes per exercise</span></div>' +
+        '<button class="btn" id="startTimedReading" type="button">Start 120-minute session →</button> ' +
+        '<button class="btn ghost" id="startPracticeReading" type="button">Practise without timer</button>' +
+        '<p class="test-best">Completed sets: <b>' + new Set(R.completed).size + '/20</b></p>' +
+      '</div>';
+    $id('startTimedReading').onclick = () => start(true);
+    $id('startPracticeReading').onclick = () => start(false);
+  }
+
+  function start(useTimer){
+    exerciseIndex = 0;
+    score = 0;
+    answeredTotal = 0;
+    wrong = [];
+    timed = useTimer;
+    endAt = Date.now() + 120 * 60 * 1000;
+    if (timed) timerId = setInterval(renderTimer, 1000);
+    showExercise();
+  }
+
+  function documentHtml(doc){
+    return '<div class="doc-line"><strong>' + esc(doc.label) + '</strong><br>' + esc(doc.text).replace(/\n/g, '<br>') + '</div>';
+  }
+
+  function showExercise(){
+    const ex = READING_EXERCISES[exerciseIndex];
+    const optionSets = ex.questions.map(q => shuffle(q.o.map((text, original) => ({text, ok:original === q.a}))));
+    let answeredHere = 0;
+
+    root.innerHTML =
+      '<div class="reading-toolbar">' +
+        '<span class="test-counter">Exercise ' + (exerciseIndex + 1) + ' of 20</span>' +
+        '<span class="diff medium">Intermediate</span>' +
+        '<span class="test-score">Score: <b>' + score + '</b>/80</span>' +
+        '<span class="reading-timer" id="readingTimer"></span>' +
+      '</div>' +
+      '<div class="test-progress" aria-label="Reading progress"><div style="width:' + (exerciseIndex * 5) + '%"></div></div>' +
+      '<article class="reading-passage">' +
+        '<div class="reading-doc-type">' + esc(ex.type) + ' · Suggested time: 6 minutes</div>' +
+        '<h3>' + (exerciseIndex + 1) + '. ' + esc(ex.title) + '</h3>' +
+        '<div class="reading-copy">' + ex.documents.map(documentHtml).join('') + '</div>' +
+      '</article>' +
+      '<div class="reading-questions">' +
+        ex.questions.map((q, qIndex) =>
+          '<div class="reading-q" data-reading-question="' + qIndex + '">' +
+            '<div class="qmeta">Question ' + (exerciseIndex * 4 + qIndex + 1) + ' of 80</div>' +
+            '<h4>' + (qIndex + 1) + '. ' + esc(q.q) + '</h4>' +
+            optionSets[qIndex].map((option, optionIndex) =>
+              '<button class="opt" data-reading-option="' + optionIndex + '" type="button">' + String.fromCharCode(65 + optionIndex) + '. ' + esc(option.text) + '</button>'
+            ).join('') +
+            '<div class="reading-solution"></div>' +
+          '</div>'
+        ).join('') +
+      '</div>' +
+      '<div class="reading-actions"><button class="btn" id="nextReadingExercise" type="button" disabled>' +
+        (exerciseIndex < 19 ? 'Next exercise →' : 'See full result →') +
+      '</button></div>';
+
+    renderTimer();
+
+    root.querySelectorAll('[data-reading-question]').forEach(questionEl => {
+      const qIndex = +questionEl.dataset.readingQuestion;
+      const q = ex.questions[qIndex];
+      questionEl.querySelectorAll('[data-reading-option]').forEach(button => {
+        button.onclick = () => {
+          if (questionEl.dataset.answered) return;
+          questionEl.dataset.answered = 'true';
+          const selected = optionSets[qIndex][+button.dataset.readingOption];
+          questionEl.querySelectorAll('[data-reading-option]').forEach((other, optionIndex) => {
+            other.disabled = true;
+            if (optionSets[qIndex][optionIndex].ok) other.classList.add('correct');
+          });
+          if (selected.ok){
+            score++;
+          } else {
+            button.classList.add('wrong');
+            wrong.push({number:exerciseIndex * 4 + qIndex + 1, question:q.q, chosen:selected.text, correct:q.o[q.a], explanation:q.e, source:ex.source});
+          }
+          answeredHere++;
+          answeredTotal++;
+          const solution = questionEl.querySelector('.reading-solution');
+          solution.innerHTML =
+            '<div class="solution ' + (selected.ok ? '' : 'bad') + '">' +
+              '<strong>' + (selected.ok ? '✓ Correct' : '✗ Correct answer: ' + esc(q.o[q.a])) + '</strong>' +
+              esc(q.e) + ' <em>— ' + esc(ex.source) + '</em>' +
+            '</div>';
+          const scoreEl = root.querySelector('.test-score b');
+          if (scoreEl) scoreEl.textContent = score;
+          if (answeredHere === 4) $id('nextReadingExercise').disabled = false;
+        };
+      });
+    });
+
+    $id('nextReadingExercise').onclick = () => {
+      if (!R.completed.includes(exerciseIndex)) R.completed.push(exerciseIndex);
+      saveReadingState();
+      renderReadingStatus();
+      exerciseIndex++;
+      if (exerciseIndex < 20) showExercise();
+      else finish(false);
+    };
+  }
+
+  function finish(timeExpired){
+    stopTimer();
+    const percentage = Math.round(score / 80 * 100);
+    R.best = Math.max(R.best || 0, score);
+    saveReadingState();
+    renderReadingStatus();
+    const verdict = percentage >= 90 ? 'Excellent reading control' : percentage >= 75 ? 'Strong intermediate result' : percentage >= 60 ? 'Solid foundation' : 'Keep building your reading speed';
+    const review = wrong.length
+      ? '<div class="review"><h4>Review your incorrect answers</h4>' + wrong.map(item =>
+          '<details><summary>' + item.number + '. ' + esc(item.question) + '</summary>' +
+            '<p>Your answer: ' + esc(item.chosen) + '</p>' +
+            '<p class="correct-answer">Correct: ' + esc(item.correct) + '</p>' +
+            '<p>' + esc(item.explanation) + ' <em>— ' + esc(item.source) + '</em></p>' +
+          '</details>'
+        ).join('') + '</div>'
+      : '<div class="solution"><strong>No incorrect answers recorded</strong>' + (answeredTotal === 80 ? 'You completed a perfect reading session.' : 'Complete the unanswered exercises in a new session.') + '</div>';
+
+    root.innerHTML =
+      '<div class="test-result">' +
+        '<div class="score-orb" style="--score:' + percentage + '%"><div><b>' + score + '</b><span>out of 80</span></div></div>' +
+        '<h3>' + (timeExpired ? 'Time is up' : verdict) + '</h3>' +
+        '<p>' + (timeExpired ? 'The 120-minute session has ended. Review your answers and try again when you are ready.' : 'You completed all 20 TOEIC-style reading exercises.') + '</p>' +
+        '<div class="reading-result-grid">' +
+          '<div class="break-card"><b>' + answeredTotal + '/80</b><span>Answered</span></div>' +
+          '<div class="break-card"><b>' + score + '</b><span>Correct</span></div>' +
+          '<div class="break-card"><b>' + percentage + '%</b><span>Accuracy</span></div>' +
+        '</div>' +
+        '<button class="btn" id="retryReading" type="button">Start again ↻</button> ' +
+        '<button class="btn ghost" id="readingHome" type="button">Reading start screen</button>' +
+        review +
+      '</div>';
+    $id('retryReading').onclick = () => start(timed);
+    $id('readingHome').onclick = startScreen;
+  }
+
+  startScreen();
+}
+
+// ================================================================
 // BOOT — build everything
 // ================================================================
 loadState();
@@ -2382,6 +2881,9 @@ buildQuiz('p9quiz', 'p9quiz', Q_P9);
 
 buildTimer('p10timer', 'p10timer', PROMPTS_P10);
 buildMasterTest();
+loadReadingState();
+renderReadingStatus();
+buildReadingPractice();
 
 // Daily Quick 5
 const ALL_MCQ = [].concat(Q_P1, Q_P2, Q_P3, Q_P5, Q_P6, Q_P7, Q_P8, Q_P9);
