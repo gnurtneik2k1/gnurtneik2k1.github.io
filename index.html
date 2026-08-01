@@ -391,6 +391,32 @@
     .reading-passage,.reading-q{padding:20px 16px}.reading-timer{width:100%;margin-left:0}.reading-result-grid{grid-template-columns:1fr}
     .speaking-hero{padding:34px 22px}.golden-rules,.formula-steps,.quick-tips{grid-template-columns:1fr}.speaking-body{padding:26px 18px 34px}.speak-inner{padding:18px 14px}.speaking-card>summary{padding-left:16px;font-size:16px}
   }
+
+  /* ================= QUIET STUDY COACH ================= */
+  .study-coach{position:fixed;right:20px;bottom:18px;z-index:120;display:flex;align-items:flex-end;filter:drop-shadow(0 10px 22px rgba(1,20,27,.22))}
+  .coach-controls{display:flex;align-items:center;gap:8px}
+  .coach-avatar,.coach-sound{font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .coach-avatar{position:relative;width:78px;height:78px;padding:0;border:3px solid rgba(255,255,255,.94);border-radius:50%;overflow:hidden;background:#f4efe4;box-shadow:0 0 0 3px #68d5c8,0 10px 28px rgba(1,22,29,.25);animation:coachBreathe 8s ease-in-out infinite}
+  .coach-avatar img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .25s ease}
+  .coach-avatar:hover img{transform:scale(1.055)}
+  .coach-avatar::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(7,49,57,.12);pointer-events:none}
+  .coach-sound{width:34px;height:34px;border:1px solid rgba(255,255,255,.75);border-radius:50%;display:grid;place-items:center;background:#fffdf8;color:#0a4d55;font-size:15px;box-shadow:0 6px 18px rgba(1,22,29,.17)}
+  .coach-sound:hover{background:#e9f8f4}.coach-sound[aria-pressed="false"]{opacity:.72;filter:grayscale(.7)}
+  .coach-bubble{position:absolute;right:0;bottom:94px;width:min(270px,calc(100vw - 34px));padding:12px 15px;border-radius:15px 15px 4px 15px;background:#fffdf8;color:#24464c;border:1px solid #d9e7e3;font-size:13.5px;line-height:1.48;box-shadow:0 12px 34px rgba(1,22,29,.2);opacity:0;transform:translateY(8px) scale(.97);transform-origin:bottom right;pointer-events:none;transition:opacity .22s ease,transform .22s ease}
+  .coach-bubble.show{opacity:1;transform:translateY(0) scale(1)}
+  .coach-bubble strong{display:block;color:#0e5c63;margin-bottom:2px;font-size:12px;letter-spacing:.6px;text-transform:uppercase}
+  .study-coach.correct .coach-avatar{animation:coachHop .55s ease}
+  .study-coach.wrong .coach-avatar{animation:coachTilt .42s ease}
+  .study-coach.milestone .coach-avatar{animation:coachCelebrate .8s ease;box-shadow:0 0 0 4px #f7c85e,0 0 28px rgba(247,200,94,.7)}
+  .coach-spark{position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px;border-radius:50%;background:var(--spark,#f7c85e);pointer-events:none;animation:coachSpark .85s ease-out forwards}
+  @keyframes coachBreathe{0%,70%,100%{transform:translateY(0) rotate(0)}78%{transform:translateY(-3px) rotate(-1deg)}84%{transform:translateY(0) rotate(1deg)}90%{transform:translateY(0) rotate(0)}}
+  @keyframes coachHop{0%,100%{transform:translateY(0) scale(1)}42%{transform:translateY(-12px) scale(1.04)}68%{transform:translateY(1px) scale(.98)}}
+  @keyframes coachTilt{0%,100%{transform:rotate(0)}30%{transform:rotate(-6deg)}65%{transform:rotate(5deg)}}
+  @keyframes coachCelebrate{0%,100%{transform:translateY(0) scale(1)}30%{transform:translateY(-11px) rotate(-4deg) scale(1.08)}58%{transform:translateY(-4px) rotate(5deg) scale(1.05)}}
+  @keyframes coachSpark{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--spark-x),var(--spark-y)) scale(.2)}}
+  @media(max-width:650px){.study-coach{right:12px;bottom:12px}.coach-avatar{width:64px;height:64px}.coach-bubble{bottom:78px}.coach-sound{width:31px;height:31px;font-size:13px}}
+  @media(prefers-reduced-motion:reduce){.coach-avatar,.study-coach.correct .coach-avatar,.study-coach.wrong .coach-avatar,.study-coach.milestone .coach-avatar,.coach-spark{animation:none}.coach-bubble{transition:none}}
+  @media print{.study-coach{display:none}}
 </style>
 </head>
 <body>
@@ -1620,6 +1646,15 @@ You already read voraciously and think deeply — rocket fuel for language. The 
 <footer>Made for Kris · Speak first, polish later · 🌅 Kris's English Studio 2.0 · <a href="#" id="resetAll">reset all progress</a></footer>
 </div>
 <div id="toast"></div>
+<aside class="study-coach" id="studyCoach" aria-label="Interactive study coach">
+  <div class="coach-bubble" id="coachBubble" role="status" aria-live="polite"><strong>Study coach</strong><span id="coachMessage">Ready when you are.</span></div>
+  <div class="coach-controls">
+    <button class="coach-sound" id="coachSound" type="button" aria-pressed="true" aria-label="Mute study sounds" title="Toggle gentle study sounds">🔊</button>
+    <button class="coach-avatar" id="coachAvatar" type="button" aria-label="Ask the horse study coach for encouragement" title="Tap for a quick study tip">
+      <img src="assets/horse-coach.webp" alt="Oil-painted horse study coach" width="384" height="384" decoding="async">
+    </button>
+  </div>
+</aside>
 <script>
 /* ================================================================
    Kris's English Studio 2.0 — interactive engine
@@ -3315,6 +3350,168 @@ $id('resetAll').addEventListener('click', (e) => {
 
 refreshAll();
 loadRemote();
+
+// ================================================================
+// QUIET STUDY COACH — motion, optional sound, and gentle feedback
+// ================================================================
+(() => {
+  const coach = $id('studyCoach');
+  const avatar = $id('coachAvatar');
+  const bubble = $id('coachBubble');
+  const message = $id('coachMessage');
+  const soundButton = $id('coachSound');
+  if (!coach || !avatar || !bubble || !message || !soundButton) return;
+
+  const SOUND_KEY = 'kris-coach-sound';
+  const correctLines = [
+    'Nice work — keep that rhythm going.',
+    'Strong choice. Trust your first clear answer.',
+    'You got it. One small win at a time.',
+    'That answer landed — ready for the next one?'
+  ];
+  const retryLines = [
+    'Good try. Check the clue, then go again.',
+    'No problem — the explanation is part of the training.',
+    'Stay curious. Find the detail that changes the answer.'
+  ];
+  const tapTips = [
+    'Say the answer aloud before you click it.',
+    'Read for the main idea first, then hunt for details.',
+    'If you freeze, start with one short, direct sentence.',
+    'After answering, ask yourself: “What clue proved it?”',
+    'Keep your shoulders relaxed and breathe out before speaking.'
+  ];
+
+  let soundEnabled = true;
+  let audioContext = null;
+  let bubbleTimer = null;
+  let reactionTimer = null;
+  let lastSoundAt = 0;
+  let correctStreak = 0;
+  let answerCount = 0;
+  let tipIndex = 0;
+
+  try { soundEnabled = localStorage.getItem(SOUND_KEY) !== 'off'; } catch(e){}
+
+  function updateSoundControl(){
+    soundButton.textContent = soundEnabled ? '🔊' : '🔇';
+    soundButton.setAttribute('aria-pressed', soundEnabled ? 'true' : 'false');
+    soundButton.setAttribute('aria-label', soundEnabled ? 'Mute study sounds' : 'Turn on study sounds');
+  }
+
+  function showBubble(text, duration){
+    message.textContent = text;
+    bubble.classList.add('show');
+    clearTimeout(bubbleTimer);
+    bubbleTimer = setTimeout(() => bubble.classList.remove('show'), duration || 2300);
+  }
+
+  function playTone(kind){
+    if (!soundEnabled || Date.now() - lastSoundAt < 650) return;
+    const AudioEngine = window.AudioContext || window.webkitAudioContext;
+    if (!AudioEngine) return;
+    try {
+      audioContext = audioContext || new AudioEngine();
+      if (audioContext.state === 'suspended') audioContext.resume();
+      const now = audioContext.currentTime;
+      const notes = kind === 'wrong' ? [[196,.05,.11,.012]] : kind === 'milestone' ? [[523,0,.12,.026],[659,.12,.12,.025],[784,.24,.16,.024]] : [[659,0,.09,.022],[880,.09,.13,.019]];
+      notes.forEach(([frequency, delay, length, volume]) => {
+        const oscillator = audioContext.createOscillator();
+        const gain = audioContext.createGain();
+        oscillator.type = kind === 'wrong' ? 'sine' : 'triangle';
+        oscillator.frequency.setValueAtTime(frequency, now + delay);
+        gain.gain.setValueAtTime(0.0001, now + delay);
+        gain.gain.exponentialRampToValueAtTime(volume, now + delay + .018);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + delay + length);
+        oscillator.connect(gain); gain.connect(audioContext.destination);
+        oscillator.start(now + delay); oscillator.stop(now + delay + length + .02);
+      });
+      lastSoundAt = Date.now();
+    } catch(e){}
+  }
+
+  function burst(){
+    const colors = ['#f7c85e','#68d5c8','#f4795b','#8b7cf6','#ffffff','#f7b32b'];
+    colors.forEach((color, index) => {
+      const spark = document.createElement('span');
+      const angle = index * Math.PI / 3 - Math.PI / 2;
+      spark.className = 'coach-spark';
+      spark.style.setProperty('--spark', color);
+      spark.style.setProperty('--spark-x', Math.cos(angle) * 52 + 'px');
+      spark.style.setProperty('--spark-y', Math.sin(angle) * 52 + 'px');
+      avatar.appendChild(spark);
+      setTimeout(() => spark.remove(), 900);
+    });
+  }
+
+  function react(kind, text){
+    clearTimeout(reactionTimer);
+    coach.classList.remove('correct','wrong','milestone');
+    void coach.offsetWidth;
+    coach.classList.add(kind);
+    reactionTimer = setTimeout(() => coach.classList.remove(kind), kind === 'milestone' ? 850 : 580);
+    playTone(kind);
+    if (text) showBubble(text, kind === 'wrong' ? 2700 : 2200);
+    if (kind === 'milestone') burst();
+  }
+
+  soundButton.addEventListener('click', () => {
+    soundEnabled = !soundEnabled;
+    try { localStorage.setItem(SOUND_KEY, soundEnabled ? 'on' : 'off'); } catch(e){}
+    updateSoundControl();
+    if (soundEnabled){
+      lastSoundAt = 0;
+      playTone('correct');
+      showBubble('Gentle sounds are on. You can mute them anytime.', 2200);
+    } else {
+      showBubble('Sounds are off. The coach will still react quietly.', 2200);
+    }
+  });
+
+  avatar.addEventListener('click', () => {
+    const tip = tapTips[tipIndex++ % tapTips.length];
+    react('correct', tip);
+  });
+
+  document.addEventListener('click', event => {
+    const option = event.target.closest('button.opt');
+    if (!option || option.dataset.coachHandled === 'true') return;
+    const kind = option.classList.contains('wrong') ? 'wrong' : option.classList.contains('correct') ? 'correct' : '';
+    if (!kind) return;
+    option.dataset.coachHandled = 'true';
+    answerCount++;
+    if (kind === 'correct'){
+      correctStreak++;
+      const milestone = correctStreak > 0 && correctStreak % 5 === 0;
+      const text = milestone ? correctStreak + ' correct in a row — you’re flying!' : (answerCount === 1 || correctStreak % 3 === 0 ? correctLines[Math.floor(Math.random() * correctLines.length)] : '');
+      react(milestone ? 'milestone' : 'correct', text);
+    } else {
+      correctStreak = 0;
+      react('wrong', retryLines[Math.floor(Math.random() * retryLines.length)]);
+    }
+  });
+
+  const toastElement = $id('toast');
+  if (toastElement && typeof MutationObserver !== 'undefined'){
+    let lastToast = '';
+    new MutationObserver(() => {
+      const text = toastElement.textContent.trim();
+      if (!toastElement.classList.contains('show') || !text || text === lastToast) return;
+      lastToast = text;
+      if (/bonus|done|fire|beautiful|perfect|completed/i.test(text)){
+        setTimeout(() => react('milestone', 'Exercise complete — excellent momentum!'), 700);
+      }
+    }).observe(toastElement, {childList:true, subtree:true, attributes:true, attributeFilter:['class']});
+  }
+
+  updateSoundControl();
+  try {
+    if (!sessionStorage.getItem('kris-coach-welcomed')){
+      sessionStorage.setItem('kris-coach-welcomed','yes');
+      setTimeout(() => showBubble('I’ll cheer quietly while you practise. Tap me anytime for a quick tip.', 3600), 900);
+    }
+  } catch(e){}
+})();
 </script>
 </body>
 </html>
