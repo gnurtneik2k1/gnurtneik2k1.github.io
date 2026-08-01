@@ -341,6 +341,44 @@
   .reading-actions .btn:disabled{opacity:.45;cursor:not-allowed}
   .reading-result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}
   .reading-result-grid .break-card b{font-size:24px}
+
+  /* Real-life speaking practice */
+  nav.side a.speaking-link{margin-top:6px;background:#183b47;border-color:#315b66}
+  nav.side a.speaking-link:hover{background:#1d4a56;border-color:#f7c85e}
+  section.speaking-section{padding:0;overflow:hidden;background:#fffdf8}
+  .speaking-hero{position:relative;overflow:hidden;padding:48px;background:radial-gradient(560px 280px at 100% 0,rgba(247,200,94,.22),transparent 72%),linear-gradient(140deg,#163d47,#0d5e63);color:#fff}
+  .speaking-hero::after{content:"10";position:absolute;right:30px;bottom:-35px;font-family:'Fraunces',serif;font-size:155px;line-height:1;color:rgba(255,255,255,.045);font-weight:700}
+  .speaking-hero h2{position:relative;z-index:1;font-family:'Fraunces',serif;font-size:clamp(33px,5vw,52px);line-height:1.08;margin:0 0 14px;max-width:760px}
+  .speaking-hero>p{position:relative;z-index:1;max-width:760px;color:#d2eeeb;font-size:16px}
+  .golden-rules{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+  .golden-rule{padding:16px;background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.14);border-radius:16px}
+  .golden-rule b{display:block;color:#ffe3a1;font-size:15px;margin-bottom:4px}.golden-rule span{color:#d2e4e3;font-size:13px;line-height:1.5}
+  .speaking-body{padding:36px 42px 48px}
+  .speaking-intro{margin:0 0 24px;color:#5b7075;font-size:15px}
+  details.speaking-card{border:1px solid #e0d9cc;border-radius:20px;margin:14px 0;background:#fff;box-shadow:0 8px 25px rgba(10,63,71,.07);overflow:hidden}
+  details.speaking-card[open]{border-color:#b9dcd6}
+  .speaking-card>summary{list-style:none;cursor:pointer;padding:20px 52px 20px 22px;color:#123f47;font-weight:700;font-size:18px;position:relative;background:linear-gradient(90deg,#f6fbf9,#fffaf0)}
+  .speaking-card>summary::-webkit-details-marker{display:none}
+  .speaking-card>summary::after{content:"+";position:absolute;right:20px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#e0f2ee;color:#0e5c63}
+  .speaking-card[open]>summary::after{content:"−"}
+  .speak-number{display:inline-grid;place-items:center;width:30px;height:30px;margin-right:9px;border-radius:50%;background:#0e5c63;color:#fff;font-size:13px}
+  .speak-inner{padding:24px}
+  .coach-panel{border-radius:16px;padding:18px 20px;margin:12px 0;border:1px solid #e3ddd1;background:#fdfbf6}
+  .coach-panel h4{margin:0 0 8px;font-size:15px;color:#0e5c63}.coach-panel p:last-child{margin-bottom:0}
+  .coach-panel.model{background:#edf8f5;border-color:#cde8e2}.coach-panel.fill{background:#fff7e7;border-color:#ecd9ad}
+  .formula-name{font-family:'Fraunces',serif;font-size:21px;color:#173f47;margin-bottom:10px}
+  .formula-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;counter-reset:speakstep}
+  .formula-step{counter-increment:speakstep;padding:12px;border-radius:13px;background:#f2f6f4;font-size:13.5px;color:#455e63}
+  .formula-step::before{content:counter(speakstep);display:grid;place-items:center;width:23px;height:23px;border-radius:50%;background:#68d5c8;color:#08343a;font-weight:700;margin-bottom:6px}
+  .chunk-list{margin-bottom:4px}.chunk-list li{font-size:14.5px;padding-top:4px;padding-bottom:4px}
+  .quick-tips{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+  .quick-tip{border-radius:14px;padding:14px 16px;background:#f4f0ff;color:#4f4a68;font-size:14px}.quick-tip.confidence{background:#eef7f5;color:#315b5e}
+  .level-up{margin:12px 0;padding:12px 15px;border-left:4px solid #8b7cf6;border-radius:0 12px 12px 0;background:#f4f0ff;color:#4d4767;font-size:14.5px}
+  .your-turn{margin-top:16px;padding:16px 18px;border-radius:15px;background:linear-gradient(120deg,#0e5c63,#15727a);color:#e9fffb}
+  .your-turn b{display:block;color:#ffe3a1;margin-bottom:4px}.your-turn span{font-size:14.5px}
+  .challenge-wrap{margin-top:32px;padding:25px;border-radius:20px;background:#f4f8f6;border:1px solid #d5e5e0}
+  .challenge-wrap h3{margin:0 0 6px;font-family:'Fraunces',serif;font-size:28px;color:#0e5c63}.challenge-wrap>p{color:#61747a;font-size:15px}
+  .challenge-wrap table{min-width:620px}.challenge-wrap td:first-child{font-weight:700;color:#0e5c63;white-space:nowrap}
   @media(max-width:1050px){.hero-test-cta{position:relative;display:inline-block;right:auto;bottom:auto;margin-top:18px}.potd{max-width:none}}
   @media(max-width:900px){.wrap{grid-template-columns:1fr}nav.side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;max-height:none}nav.side h2{grid-column:1/-1}nav.side a.test-link{margin-top:0}}
   @media(max-width:650px){
@@ -351,6 +389,7 @@
     .reading-stats{grid-template-columns:repeat(2,1fr)}
     .test-question{padding:20px 16px}.test-score{width:100%;margin-left:0}.score-orb{width:145px;height:145px}
     .reading-passage,.reading-q{padding:20px 16px}.reading-timer{width:100%;margin-left:0}.reading-result-grid{grid-template-columns:1fr}
+    .speaking-hero{padding:34px 22px}.golden-rules,.formula-steps,.quick-tips{grid-template-columns:1fr}.speaking-body{padding:26px 18px 34px}.speak-inner{padding:18px 14px}.speaking-card>summary{padding-left:16px;font-size:16px}
   }
 </style>
 </head>
@@ -397,6 +436,7 @@
   <a href="#p10" data-nav="p10"><span class="dot"></span>10 · 30-Day Plan<span class="frac" data-frac="p10"></span></a>
   <a href="#test" data-nav="test" class="test-link"><span class="dot"></span>TEST · 100 Questions<span class="frac" data-frac="test"></span></a>
   <a href="#reading" class="test-link reading-link"><span class="dot" id="readingNavDot"></span>READING · 20 Exercises<span class="frac" id="readingNavFrac">0/20</span></a>
+  <a href="#speaking" class="test-link speaking-link"><span class="dot"></span>SPEAKING · 10 Questions<span class="frac">10 keys</span></a>
 </nav>
 
 <main>
@@ -1226,6 +1266,352 @@ You already read voraciously and think deeply — rocket fuel for language. The 
   </div>
   <div class="test-body">
     <div id="readingApp"></div>
+  </div>
+</section>
+
+<!-- ==================== REAL-LIFE SPEAKING PRACTICE ==================== -->
+<section class="part speaking-section" id="speaking">
+  <div class="speaking-hero">
+    <span class="test-kicker">Speak before you feel ready</span>
+    <h2>SPEAKING — 10 Real-Life Questions &amp; Answer Keys</h2>
+    <p>You do not need a perfect sentence. You need a clear first line, one real detail, and enough energy to keep the conversation moving. Train these answers out loud until your mouth knows what to do before your fear can stop you.</p>
+    <div class="golden-rules" aria-label="Three golden rules of natural speaking">
+      <div class="golden-rule"><b>1 · Start directly</b><span>Answer the question in your first sentence. Do not build a long introduction.</span></div>
+      <div class="golden-rule"><b>2 · Add one real detail</b><span>A tiny example makes you sound human, confident, and easy to talk to.</span></div>
+      <div class="golden-rule"><b>3 · Bounce it back</b><span>Finish with a question. A conversation is a game of catch, not a speech.</span></div>
+    </div>
+  </div>
+
+  <div class="speaking-body">
+    <p class="speaking-intro">🎙️ <strong>How to use this section:</strong> open one card, read the model once, close the text, and speak from the three-step formula. Keep going even if you make a mistake. Energy first, accuracy second.</p>
+
+    <details class="speaking-card" open>
+      <summary><span class="speak-number">1</span>“Hey, tell me a bit about yourself.”</summary>
+      <div class="speak-inner">
+        <div class="coach-panel model">
+          <h4>🎧 Model answer</h4>
+          <p>Hey, I’m Kien. I’m 25 and I work in Learning and Development at a resort in Cam Ranh. Most of my job is helping people learn, communicate, and feel more confident at work. Outside work, I read a lot, study English, and experiment with AI tools. I’m quite curious and usually have a new project going on. I’m working on becoming a stronger trainer and eventually moving into an L&amp;D management role. How about you?</p>
+        </div>
+        <div class="coach-panel fill">
+          <h4>✍️ Make it yours</h4>
+          <p>Hey, I’m ... (your name). I’m ... (your age) and I work as ... (your job) at ... (your workplace). Most of my job is ... (what you usually do). Outside work, I’m into ... (two interests). I’d say I’m quite ... (one personality word), and I’m currently working on ... (one goal). That’s a little about me. How about you?</p>
+        </div>
+        <div class="coach-panel">
+          <div class="formula-name">🧠 The Snapshot → Spark → Send Back formula</div>
+          <div class="formula-steps"><div class="formula-step"><strong>Snapshot</strong><br>Name, current work, or current situation.</div><div class="formula-step"><strong>Spark</strong><br>Add one interest or goal people can ask about.</div><div class="formula-step"><strong>Send back</strong><br>Finish with “How about you?”</div></div>
+        </div>
+        <div class="coach-panel">
+          <h4>🧩 Natural chunks</h4>
+          <ul class="chunk-list">
+            <li><strong>“A bit about me…”</strong> — Use it to organize your thoughts without sounding formal.</li>
+            <li><strong>“I work in…”</strong> — Use it for your field; say “I work as…” for your job title.</li>
+            <li><strong>“Outside work, I’m into…”</strong> — A relaxed way to introduce hobbies.</li>
+            <li><strong>“I’m currently working on…”</strong> — Useful for a goal or personal project.</li>
+            <li><strong>“How about you?”</strong> — The easiest way to hand the conversation back.</li>
+          </ul>
+        </div>
+        <div class="quick-tips"><div class="quick-tip"><strong>🗣️ Rhythm tip</strong><br>Use contractions: <em>I’m</em>, not <em>I am</em>. Stress NAME, WORK, INTEREST, and GOAL; let the smaller words stay light.</div><div class="quick-tip confidence"><strong>⚡ Confidence tip</strong><br>Look up before your last sentence and ask the other person back. Confident speakers create the next turn.</div></div>
+        <div class="level-up"><strong>🚀 Level Up:</strong> “Long story short, I’m an L&amp;D guy who loves books, technology, and turning ideas into projects.”</div>
+        <div class="your-turn"><b>🎤 Your Turn</b><span>Record one 25-second introduction. No restarting. Smile on the first line and finish with “What about you?”</span></div>
+      </div>
+    </details>
+
+    <details class="speaking-card">
+      <summary><span class="speak-number">2</span>“So, what do you do?”</summary>
+      <div class="speak-inner">
+        <div class="coach-panel model">
+          <h4>🎧 Model answer</h4>
+          <p>I work as an L&amp;D Coordinator at a resort. Basically, I help organize training, prepare learning materials, and support new employees during orientation. I also work with different departments, so no two days are exactly the same. I’ve been doing it for a few months, and I really like the mix of people, communication, and creativity. The challenging part is keeping everything on schedule, but I’m getting better at it. What about you—what do you do?</p>
+        </div>
+        <div class="coach-panel fill">
+          <h4>✍️ Make it yours</h4>
+          <p>I work as ... (your role) at ... (your company or type of workplace). Basically, I ... (main task), ... (second task), and ... (third task). I work with ... (people or departments), so ... (what makes the job interesting). I’ve been doing it for ... (length of time), and I really like ... (favorite part). The challenging part is ... (one challenge), but ... (positive progress). What about you?</p>
+        </div>
+        <div class="coach-panel">
+          <div class="formula-name">🧠 The Role → Real Work → Return formula</div>
+          <div class="formula-steps"><div class="formula-step"><strong>Role</strong><br>Say what you do in one clean sentence.</div><div class="formula-step"><strong>Real work</strong><br>Give two tasks and one honest feeling.</div><div class="formula-step"><strong>Return</strong><br>Ask about their work or studies.</div></div>
+        </div>
+        <div class="coach-panel">
+          <h4>🧩 Natural chunks</h4>
+          <ul class="chunk-list">
+            <li><strong>“I work as…”</strong> — Put a specific role after this phrase.</li>
+            <li><strong>“Basically, I…”</strong> — Use it before a simple explanation of a complicated job.</li>
+            <li><strong>“No two days are the same.”</strong> — Great when your work changes from day to day.</li>
+            <li><strong>“I’ve been doing it for…”</strong> — Use it to talk about experience up to now.</li>
+            <li><strong>“What line of work are you in?”</strong> — A slightly more polished question back.</li>
+          </ul>
+        </div>
+        <div class="quick-tips"><div class="quick-tip"><strong>🗣️ Rhythm tip</strong><br>Stress your ROLE and two TASK words. Link “work_as_an” smoothly instead of separating every word.</div><div class="quick-tip confidence"><strong>⚡ Confidence tip</strong><br>Do not hide behind your job title. Explain one real thing you do, then show curiosity about their work.</div></div>
+        <div class="level-up"><strong>🚀 Level Up:</strong> “I’m in Learning and Development, so I spend most of my time helping people grow at work.”</div>
+        <div class="your-turn"><b>🎤 Your Turn</b><span>Explain your job in 20 seconds without using your official title until the final sentence. Make the work understandable.</span></div>
+      </div>
+    </details>
+
+    <details class="speaking-card">
+      <summary><span class="speak-number">3</span>“Where are you from originally?”</summary>
+      <div class="speak-inner">
+        <div class="coach-panel model">
+          <h4>🎧 Model answer</h4>
+          <p>I’m originally from a small city in central Vietnam, but these days I spend most of my time in Cam Ranh because of work. My hometown is quieter than the big cities, and the food there is one of the things I miss most. People are friendly, life moves at a slower pace, and I always feel relaxed when I go back. I try to visit whenever I have a few days off. Have you ever been to central Vietnam?</p>
+        </div>
+        <div class="coach-panel fill">
+          <h4>✍️ Make it yours</h4>
+          <p>I’m originally from ... (your hometown), but these days I live in ... (your current city) because of ... (work, study, or family). My hometown is ... (one comparison), and ... (food, people, weather, or place) is what I miss most. It’s known for ... (one special thing), and I usually feel ... (feeling) when I go back. I try to visit ... (how often). Have you ever been there?</p>
+        </div>
+        <div class="coach-panel">
+          <div class="formula-name">🧠 The Place → Picture → Pass Back formula</div>
+          <div class="formula-steps"><div class="formula-step"><strong>Place</strong><br>Say your hometown and where you live now.</div><div class="formula-step"><strong>Picture</strong><br>Describe one food, feeling, or local feature.</div><div class="formula-step"><strong>Pass back</strong><br>Ask whether they know the place.</div></div>
+        </div>
+        <div class="coach-panel">
+          <h4>🧩 Natural chunks</h4>
+          <ul class="chunk-list">
+            <li><strong>“I’m originally from…”</strong> — Use it for the place you grew up, not necessarily where you live now.</li>
+            <li><strong>“These days, I live in…”</strong> — A natural way to shift to your current home.</li>
+            <li><strong>“It’s known for…”</strong> — Introduce a famous food, place, or tradition.</li>
+            <li><strong>“What I miss most is…”</strong> — Add emotion and a memorable detail.</li>
+            <li><strong>“Have you ever been?”</strong> — Invite the listener to connect through travel.</li>
+          </ul>
+        </div>
+        <div class="quick-tips"><div class="quick-tip"><strong>🗣️ Rhythm tip</strong><br>Link “originally_from” and keep <em>originally</em> light. Stress the HOMETOWN and the detail you love most.</div><div class="quick-tip confidence"><strong>⚡ Confidence tip</strong><br>Give the listener a hook—a dish, landmark, or feeling—then invite them to share a place they love.</div></div>
+        <div class="level-up"><strong>🚀 Level Up:</strong> “I’m from a laid-back coastal area in central Vietnam—it’s the kind of place where life never feels rushed.”</div>
+        <div class="your-turn"><b>🎤 Your Turn</b><span>Speak for 25 seconds and make your hometown visible: include one smell, taste, view, or feeling.</span></div>
+      </div>
+    </details>
+
+    <details class="speaking-card">
+      <summary><span class="speak-number">4</span>“What do you like to do in your free time?”</summary>
+      <div class="speak-inner">
+        <div class="coach-panel model">
+          <h4>🎧 Model answer</h4>
+          <p>In my free time, I’m really into reading, learning English, and trying new AI tools. I usually read nonfiction, but I also enjoy a good novel when I want to switch off. Lately, I’ve been building small websites and turning my notes into creative projects. It’s a fun way to learn something useful without feeling like I’m studying all the time. I also like watching films and exploring new places when I can. What do you do for fun?</p>
+        </div>
+        <div class="coach-panel fill">
+          <h4>✍️ Make it yours</h4>
+          <p>In my free time, I’m really into ... (hobby one), ... (hobby two), and ... (hobby three). I usually ... (what you normally do), but I also enjoy ... (a different activity) when I want to switch off. Lately, I’ve been ... (current hobby or project). It’s a fun way to ... (benefit or feeling). I also like ... (occasional activity) when I can. What do you do for fun?</p>
+        </div>
+        <div class="coach-panel">
+          <div class="formula-name">🧠 The Top Two → Tiny Example → Turn Back formula</div>
+          <div class="formula-steps"><div class="formula-step"><strong>Top two</strong><br>Name only your strongest interests first.</div><div class="formula-step"><strong>Tiny example</strong><br>Say what you did recently or why you enjoy it.</div><div class="formula-step"><strong>Turn back</strong><br>Ask what they do for fun.</div></div>
+        </div>
+        <div class="coach-panel">
+          <h4>🧩 Natural chunks</h4>
+          <ul class="chunk-list">
+            <li><strong>“I’m really into…”</strong> — A lively, casual way to say you like something.</li>
+            <li><strong>“Lately, I’ve been…”</strong> — Use it for a current habit or temporary interest.</li>
+            <li><strong>“When I want to switch off…”</strong> — Means when you want to relax mentally.</li>
+            <li><strong>“Whenever I get the chance…”</strong> — Useful for hobbies you cannot do often.</li>
+            <li><strong>“What do you do for fun?”</strong> — More natural than asking for someone’s hobbies.</li>
+          </ul>
+        </div>
+        <div class="quick-tips"><div class="quick-tip"><strong>🗣️ Rhythm tip</strong><br>Say “really_into” as one smooth unit. Stress the HOBBY words and your specific recent EXAMPLE.</div><div class="quick-tip confidence"><strong>⚡ Confidence tip</strong><br>Do not list ten hobbies. Pick two, sound excited, and ask a follow-up when the other person shares theirs.</div></div>
+        <div class="level-up"><strong>🚀 Level Up:</strong> “I’m a bit of a bookworm, and lately I’ve gone down the rabbit hole of building things with AI.”</div>
+        <div class="your-turn"><b>🎤 Your Turn</b><span>Choose one hobby and tell a 20-second mini-story about the last time you did it. No list-only answers.</span></div>
+      </div>
+    </details>
+
+    <details class="speaking-card">
+      <summary><span class="speak-number">5</span>“Got any plans for the weekend?”</summary>
+      <div class="speak-inner">
+        <div class="coach-panel model">
+          <h4>🎧 Model answer</h4>
+          <p>This weekend, I’m planning to take it fairly easy. On Saturday morning, I’ll probably study English and finish a small project I’ve been working on. Later, I might grab coffee with a friend or go somewhere near the beach. Sunday is still up in the air, but I’d like to read, reset, and get ready for the week ahead. Nothing too exciting, but honestly, that sounds perfect to me. How about you—got anything planned?</p>
+        </div>
+        <div class="coach-panel fill">
+          <h4>✍️ Make it yours</h4>
+          <p>This weekend, I’m planning to ... (main plan). On ... (day and time), I’ll probably ... (specific activity) and ... (second activity). Later, I might ... (possible plan) with ... (person). ... (other day) is still up in the air, but I’d like to ... (rest or preparation plan). Nothing too ... (busy, exciting, or unusual), but ... (your feeling). How about you—got anything planned?</p>
+        </div>
+        <div class="coach-panel">
+          <div class="formula-name">🧠 The Plan → Possibility → Pass Back formula</div>
+          <div class="formula-steps"><div class="formula-step"><strong>Plan</strong><br>Give one thing that is likely to happen.</div><div class="formula-step"><strong>Possibility</strong><br>Add a “might” plan or say what is undecided.</div><div class="formula-step"><strong>Pass back</strong><br>Ask about their weekend.</div></div>
+        </div>
+        <div class="coach-panel">
+          <h4>🧩 Natural chunks</h4>
+          <ul class="chunk-list">
+            <li><strong>“I’m planning to…”</strong> — Use it for an intention, even if every detail is not fixed.</li>
+            <li><strong>“I’ll probably…”</strong> — A natural choice for a likely plan.</li>
+            <li><strong>“I might…”</strong> — Use it when the plan is possible but uncertain.</li>
+            <li><strong>“It’s still up in the air.”</strong> — Means nothing has been decided yet.</li>
+            <li><strong>“Got anything planned?”</strong> — A friendly, casual question back.</li>
+          </ul>
+        </div>
+        <div class="quick-tips"><div class="quick-tip"><strong>🗣️ Rhythm tip</strong><br>Contract <em>I will</em> to <em>I’ll</em>. Stress SATURDAY, STUDY, COFFEE, and BEACH—not every word.</div><div class="quick-tip confidence"><strong>⚡ Confidence tip</strong><br>Even a quiet weekend is worth sharing. Say it with positive energy, then suggest a shared activity if the moment feels right.</div></div>
+        <div class="level-up"><strong>🚀 Level Up:</strong> “I’m keeping it pretty low-key—maybe coffee, a bit of reading, and some time by the beach.”</div>
+        <div class="your-turn"><b>🎤 Your Turn</b><span>Send a 20-second voice note to a friend: one definite plan, one possible plan, then ask about theirs.</span></div>
+      </div>
+    </details>
+
+    <details class="speaking-card">
+      <summary><span class="speak-number">6</span>“What kind of food are you into?”</summary>
+      <div class="speak-inner">
+        <div class="coach-panel model">
+          <h4>🎧 Model answer</h4>
+          <p>I’m really into Vietnamese food, especially dishes with bold flavors and lots of fresh herbs. I could eat noodles several times a week and never get bored. When I’m eating out, I usually go for something local rather than fast food, although I do enjoy pizza once in a while. I’m also trying to be more adventurous and order dishes I haven’t tried before. If you know a good place nearby, I’m always open to recommendations. What’s your favorite?</p>
+        </div>
+        <div class="coach-panel fill">
+          <h4>✍️ Make it yours</h4>
+          <p>I’m really into ... (type of food), especially ... (specific dish or flavor). I could eat ... (favorite dish) ... (how often) and never get bored. When I’m eating out, I usually go for ... (usual choice) rather than ... (less preferred choice), although I do enjoy ... (exception) once in a while. I’m also trying to ... (food goal). If you know a good place nearby, I’m open to recommendations. What’s your favorite?</p>
+        </div>
+        <div class="coach-panel">
+          <div class="formula-name">🧠 The Favorite → Flavor → Find Theirs formula</div>
+          <div class="formula-steps"><div class="formula-step"><strong>Favorite</strong><br>Name a cuisine or dish immediately.</div><div class="formula-step"><strong>Flavor</strong><br>Describe why you like it or how often you eat it.</div><div class="formula-step"><strong>Find theirs</strong><br>Ask for their favorite or a recommendation.</div></div>
+        </div>
+        <div class="coach-panel">
+          <h4>🧩 Natural chunks</h4>
+          <ul class="chunk-list">
+            <li><strong>“I’m really into…”</strong> — Use it for a cuisine, style, or food trend you enjoy.</li>
+            <li><strong>“I usually go for…”</strong> — Means this is your normal choice when ordering.</li>
+            <li><strong>“Once in a while…”</strong> — Use it for something you enjoy occasionally.</li>
+            <li><strong>“I never get bored of…”</strong> — Shows strong enthusiasm for a favorite.</li>
+            <li><strong>“Any places you’d recommend?”</strong> — Turns food talk into a useful local conversation.</li>
+          </ul>
+        </div>
+        <div class="quick-tips"><div class="quick-tip"><strong>🗣️ Rhythm tip</strong><br>In casual speech, “kind of” often sounds like <em>kinda</em>. Stress the DISH and the FLAVOR words.</div><div class="quick-tip confidence"><strong>⚡ Confidence tip</strong><br>Food is an easy conversation engine. Ask where they eat it, what they order, or whether they can recommend a place.</div></div>
+        <div class="level-up"><strong>🚀 Level Up:</strong> “I’m a sucker for anything spicy, especially a good bowl of noodles with loads of fresh herbs.”</div>
+        <div class="your-turn"><b>🎤 Your Turn</b><span>Recommend one Vietnamese dish in 25 seconds: name it, describe the taste, say where to try it, and ask what they like.</span></div>
+      </div>
+    </details>
+
+    <details class="speaking-card">
+      <summary><span class="speak-number">7</span>“Do you have a big family?”</summary>
+      <div class="speak-inner">
+        <div class="coach-panel model">
+          <h4>🎧 Model answer</h4>
+          <p>My family isn’t very big, but we’re quite close. I live away from home because of work, so we don’t see each other every day, but we stay in touch through messages and calls. When I visit, we usually eat together, talk about what’s been happening, and keep things simple. I’m especially close to my mother, and she’s usually the first person I call when I need advice. How about your family—do you all live near each other?</p>
+        </div>
+        <div class="coach-panel fill">
+          <h4>✍️ Make it yours</h4>
+          <p>My family is ... (big, small, or somewhere in between), and we’re ... (how close you are). I live ... (near or away from them) because of ... (reason), so we ... (how often you meet), but we stay in touch through ... (messages, calls, or visits). When we get together, we usually ... (family activity). I’m especially close to ... (family member) because ... (short reason). How about your family?</p>
+        </div>
+        <div class="coach-panel">
+          <div class="formula-name">🧠 The Size → Connection → Send Back formula</div>
+          <div class="formula-steps"><div class="formula-step"><strong>Size</strong><br>Give a simple answer without listing everyone.</div><div class="formula-step"><strong>Connection</strong><br>Share how you stay close or what you do together.</div><div class="formula-step"><strong>Send back</strong><br>Ask a gentle family question.</div></div>
+        </div>
+        <div class="coach-panel">
+          <h4>🧩 Natural chunks</h4>
+          <ul class="chunk-list">
+            <li><strong>“We’re quite close.”</strong> — Describes a strong family relationship.</li>
+            <li><strong>“I live away from home.”</strong> — Use it when work or study takes you elsewhere.</li>
+            <li><strong>“We stay in touch through…”</strong> — Explain how you maintain the relationship.</li>
+            <li><strong>“When we get together…”</strong> — Introduce a normal family activity.</li>
+            <li><strong>“Do you all live near each other?”</strong> — A gentle question that is less personal than asking for details.</li>
+          </ul>
+        </div>
+        <div class="quick-tips"><div class="quick-tip"><strong>🗣️ Rhythm tip</strong><br>Use the contractions <em>isn’t</em>, <em>we’re</em>, and <em>don’t</em>. Stress CLOSE, STAY IN TOUCH, and the activity you share.</div><div class="quick-tip confidence"><strong>⚡ Confidence tip</strong><br>You control how much you share. Give one warm detail, then ask a respectful question instead of letting the topic end.</div></div>
+        <div class="level-up"><strong>🚀 Level Up:</strong> “We’re a small but tight-knit family, and even when we’re busy, we make a point of checking in.”</div>
+        <div class="your-turn"><b>🎤 Your Turn</b><span>Give a 20-second answer with one family routine. If the topic feels personal, practise a comfortable boundary: “We’re close, but I usually keep family details private.”</span></div>
+      </div>
+    </details>
+
+    <details class="speaking-card">
+      <summary><span class="speak-number">8</span>“Have you traveled anywhere interesting recently?”</summary>
+      <div class="speak-inner">
+        <div class="coach-panel model">
+          <h4>🎧 Model answer</h4>
+          <p>I haven’t taken a big international trip recently, but I’ve explored a few places around central and southern Vietnam. I really enjoy trips where I can slow down, try local food, and learn something about the place instead of rushing from one attraction to another. One of my favorite recent experiences was spending a quiet day by the coast with no fixed schedule. I’d love to visit the United States one day, especially New York and California. Where have you traveled lately?</p>
+        </div>
+        <div class="coach-panel fill">
+          <h4>✍️ Make it yours</h4>
+          <p>I haven’t ... (taken a big trip or traveled abroad) recently, but I’ve been to ... (recent place). I enjoy trips where I can ... (activity one), ... (activity two), and ... (activity three) instead of ... (something you dislike). One of my favorite recent experiences was ... (specific travel moment). I’d love to visit ... (dream destination) one day, especially ... (specific place or reason). Where have you traveled lately?</p>
+        </div>
+        <div class="coach-panel">
+          <div class="formula-name">🧠 The Where → Highlight → Wander Back formula</div>
+          <div class="formula-steps"><div class="formula-step"><strong>Where</strong><br>Name a recent place—or honestly say you stayed local.</div><div class="formula-step"><strong>Highlight</strong><br>Share one scene, taste, surprise, or feeling.</div><div class="formula-step"><strong>Wander back</strong><br>Ask about their latest or dream trip.</div></div>
+        </div>
+        <div class="coach-panel">
+          <h4>🧩 Natural chunks</h4>
+          <ul class="chunk-list">
+            <li><strong>“I haven’t traveled much lately, but…”</strong> — Keeps the answer alive even without a big trip.</li>
+            <li><strong>“One of the highlights was…”</strong> — Introduces your best travel moment.</li>
+            <li><strong>“I loved being able to…”</strong> — Explain what made the experience enjoyable.</li>
+            <li><strong>“I’d love to visit…”</strong> — Shift naturally from past travel to a future dream.</li>
+            <li><strong>“Where have you been lately?”</strong> — A simple question back that invites a story.</li>
+          </ul>
+        </div>
+        <div class="quick-tips"><div class="quick-tip"><strong>🗣️ Rhythm tip</strong><br>“Have you” often links to sound like <em>hav-yuh</em>. In your answer, stress the PLACE and the HIGHLIGHT.</div><div class="quick-tip confidence"><strong>⚡ Confidence tip</strong><br>You do not need an impressive destination. Tell one vivid local moment, then become the curious traveler and ask for their story.</div></div>
+        <div class="level-up"><strong>🚀 Level Up:</strong> “I’ve mostly stayed close to home lately, but I did squeeze in a relaxing coastal trip, which was exactly what I needed.”</div>
+        <div class="your-turn"><b>🎤 Your Turn</b><span>Speak for 30 seconds about one trip. Include where, who with, one highlight, and a question about the listener’s travels.</span></div>
+      </div>
+    </details>
+
+    <details class="speaking-card">
+      <summary><span class="speak-number">9</span>“What made you want to learn English?”</summary>
+      <div class="speak-inner">
+        <div class="coach-panel model">
+          <h4>🎧 Model answer</h4>
+          <p>I started taking English more seriously because I realized it could open a lot of doors in my career. I work with international standards and sometimes communicate with colleagues or guests in English, so I don’t want to freeze when a real conversation starts. I also want to study abroad or work for a global company someday. Reading is fairly comfortable for me, but speaking is still the part I’m pushing myself to improve. What language would you like to learn?</p>
+        </div>
+        <div class="coach-panel fill">
+          <h4>✍️ Make it yours</h4>
+          <p>I started taking English more seriously because ... (main reason). I ... (work, study, or life situation) and sometimes need English to ... (real task), so I don’t want to ... (problem you want to overcome). I also want to ... (future opportunity) someday. ... (one skill) is fairly comfortable for me, but ... (weaker skill) is still the part I’m pushing myself to improve. What language would you like to learn?</p>
+        </div>
+        <div class="coach-panel">
+          <div class="formula-name">🧠 The Reason → Real Need → Return formula</div>
+          <div class="formula-steps"><div class="formula-step"><strong>Reason</strong><br>Say what first made English important.</div><div class="formula-step"><strong>Real need</strong><br>Connect it to one work, travel, or life situation.</div><div class="formula-step"><strong>Return</strong><br>Ask about their language experience.</div></div>
+        </div>
+        <div class="coach-panel">
+          <h4>🧩 Natural chunks</h4>
+          <ul class="chunk-list">
+            <li><strong>“I started taking it seriously when…”</strong> — Introduce the moment your attitude changed.</li>
+            <li><strong>“It can open a lot of doors.”</strong> — Means it can create new opportunities.</li>
+            <li><strong>“I don’t want to freeze when…”</strong> — Name the real situation that makes you nervous.</li>
+            <li><strong>“I’m pushing myself to…”</strong> — Shows active, energetic effort.</li>
+            <li><strong>“Have you ever learned another language?”</strong> — Invites shared experience and empathy.</li>
+          </ul>
+        </div>
+        <div class="quick-tips"><div class="quick-tip"><strong>🗣️ Rhythm tip</strong><br>In casual speech, “want to” often becomes <em>wanna</em>. Keep the beat on ENGLISH, CAREER, SPEAKING, and IMPROVE.</div><div class="quick-tip confidence"><strong>⚡ Confidence tip</strong><br>Say “I’m improving,” not “My English is bad.” Then ask how the other person learned—curiosity turns anxiety into connection.</div></div>
+        <div class="level-up"><strong>🚀 Level Up:</strong> “English stopped being just a school subject when I realized it was the bridge to the career and life I wanted.”</div>
+        <div class="your-turn"><b>🎤 Your Turn</b><span>Record a 25-second answer with three beats: why you started, where you freeze, and what confident English will help you do.</span></div>
+      </div>
+    </details>
+
+    <details class="speaking-card">
+      <summary><span class="speak-number">10</span>“What are you hoping to do next?”</summary>
+      <div class="speak-inner">
+        <div class="coach-panel model">
+          <h4>🎧 Model answer</h4>
+          <p>Over the next few years, I’m hoping to become a strong L&amp;D professional and eventually move into a management role. I’d like to build better training programs, use data and AI more effectively, and become confident enough to work in a large international company. I’m also considering a master’s degree in business or human resources. Right now, my main focus is improving my English and gaining practical experience one project at a time. What are you working toward?</p>
+        </div>
+        <div class="coach-panel fill">
+          <h4>✍️ Make it yours</h4>
+          <p>Over the next ... (time period), I’m hoping to ... (main goal) and eventually ... (bigger future goal). I’d like to ... (skill or achievement one), ... (skill or achievement two), and become confident enough to ... (future opportunity). I’m also considering ... (course, move, or project). Right now, my main focus is ... (current priority) and ... (second priority) one step at a time. What are you working toward?</p>
+        </div>
+        <div class="coach-panel">
+          <div class="formula-name">🧠 The Goal → Grounded Step → Give Back formula</div>
+          <div class="formula-steps"><div class="formula-step"><strong>Goal</strong><br>Name the direction that excites you.</div><div class="formula-step"><strong>Grounded step</strong><br>Say what you are doing right now.</div><div class="formula-step"><strong>Give back</strong><br>Ask what they are working toward.</div></div>
+        </div>
+        <div class="coach-panel">
+          <h4>🧩 Natural chunks</h4>
+          <ul class="chunk-list">
+            <li><strong>“I’m hoping to…”</strong> — Natural for a future goal that is important but not guaranteed.</li>
+            <li><strong>“Eventually, I’d like to…”</strong> — Introduce a longer-term ambition.</li>
+            <li><strong>“Right now, my main focus is…”</strong> — Bring a big dream back to today’s action.</li>
+            <li><strong>“One step at a time.”</strong> — Shows patience and realistic progress.</li>
+            <li><strong>“What are you working toward?”</strong> — A warm question about goals without sounding like an interview.</li>
+          </ul>
+        </div>
+        <div class="quick-tips"><div class="quick-tip"><strong>🗣️ Rhythm tip</strong><br>Link “hoping_to” and contract <em>I would</em> to <em>I’d</em>. Stress FUTURE GOAL and TODAY’S ACTION.</div><div class="quick-tip confidence"><strong>⚡ Confidence tip</strong><br>Speak about your goal as a direction, not a fantasy. Name the action you took this week, then invite the other person to share theirs.</div></div>
+        <div class="level-up"><strong>🚀 Level Up:</strong> “Long term, I’m aiming for an L&amp;D leadership role, but right now I’m focused on sharpening my English and building real experience.”</div>
+        <div class="your-turn"><b>🎤 Your Turn</b><span>Give a 30-second future answer: one big goal, two current actions, and one sincere question back. Stand up while you say it.</span></div>
+      </div>
+    </details>
+
+    <div class="challenge-wrap">
+      <h3>🔥 The 7-Day Speak-First Challenge</h3>
+      <p>One week. No silent studying. Every day must include your real voice and one question back.</p>
+      <div class="tblwrap"><table>
+        <tr><th>Day</th><th>Your mission</th><th>Win condition</th></tr>
+        <tr><td>Day 1 · Start strong</td><td>Record Questions 1 and 2 twice. Keep the second take, even with mistakes.</td><td>Two answers under 30 seconds, both ending with a question.</td></tr>
+        <tr><td>Day 2 · Make it visual</td><td>Practise Questions 3 and 4 with one vivid hometown detail and one hobby mini-story.</td><td>The listener can picture a place and remember one interest.</td></tr>
+        <tr><td>Day 3 · Sound spontaneous</td><td>Answer Questions 5 and 6 without reading. Change one detail on your second attempt.</td><td>You use <em>probably</em>, <em>might</em>, or <em>really into</em> naturally.</td></tr>
+        <tr><td>Day 4 · Build connection</td><td>Practise Questions 7 and 8, then ask two follow-up questions aloud.</td><td>Your answer creates at least two possible next turns.</td></tr>
+        <tr><td>Day 5 · Own your story</td><td>Record Questions 9 and 10 with confident body language and clear content-word stress.</td><td>No “My English is bad.” Replace it with active progress language.</td></tr>
+        <tr><td>Day 6 · Random mode</td><td>Write 1–10 on small pieces of paper. Pick five at random and answer immediately.</td><td>You begin every answer within three seconds.</td></tr>
+        <tr><td>Day 7 · Real conversation</td><td>Use at least three answers with a friend, colleague, tutor, or voice-chat partner.</td><td>Three real questions answered—and three questions asked back.</td></tr>
+      </table></div>
+      <div class="tip gold"><div class="tiptitle">Final coaching note</div>Fluency is not the absence of pauses. It is the decision to keep the connection alive. Start before you feel ready, give people something real, and stay curious enough to ask the next question.</div>
+    </div>
+
+    <div class="totop"><a href="#top">↑ Back to top</a></div>
   </div>
 </section>
 
